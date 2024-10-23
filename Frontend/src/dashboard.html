@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dashboard Page</title>
+    <link rel="icon" type="image/x-icon" href="./img/ai.svg" />
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+      body {
+        font-family: "Open Sans", sans-serif;
+        color: #444444;
+      }
+
+      a {
+        text-decoration: none;
+        color: #d9232d;
+      }
+
+      a:hover {
+        color: #e24d55;
+        text-decoration: none;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Raleway", sans-serif;
+      }
+
+      /*--------------------------------------------------------------
+      # Back to top button
+      --------------------------------------------------------------*/
+      .back-to-top {
+        position: fixed;
+        visibility: hidden;
+        opacity: 0;
+        right: 15px;
+        bottom: 15px;
+        z-index: 996;
+        background: #d9232d;
+        width: 40px;
+        height: 40px;
+        border-radius: 4px;
+        transition: all 0.4s;
+      }
+
+      .back-to-top i {
+        font-size: 28px;
+        color: #fff;
+        line-height: 0;
+      }
+
+      .back-to-top:hover {
+        background: #e1444d;
+        color: #fff;
+      }
+
+      .back-to-top.active {
+        visibility: visible;
+        opacity: 1;
+      }
+
+      /*--------------------------------------------------------------
+      # Header
+      --------------------------------------------------------------*/
+      #header {
+        background: white;
+        transition: all 0.5s;
+        z-index: 997;
+        padding: 20px 0;
+      }
+
+      #header.header-scrolled {
+        box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+        padding: 12px 0;
+      }
+
+      #header.header-inner-pages {
+        box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      #header .logo {
+        font-size: 28px;
+        margin: 0;
+        padding: 0;
+        line-height: 1;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+
+      #header .logo a {
+        color: #556270;
+      }
+
+      #header .logo img {
+        max-height: 40px;
+      }
+
+      /*--------------------------------------------------------------
+      # Navigation Menu
+      --------------------------------------------------------------*/
+      /**
+      * Desktop Navigation 
+      */
+      .navbar {
+        padding: 0;
+        width: 100%;
+      }
+
+      .navbar ul {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        list-style: none;
+        align-items: center;
+      }
+
+      .navbar li {
+        position: relative;
+      }
+
+      .logout-button {
+        background-color: red;
+        color: white;
+        padding: 8px 16px;
+        border: none;
+        border-radius: 4px;
+        position: absolute;
+        top: 50%;
+        right: 16px;
+        transform: translateY(-50%);
+      }
+
+      .navbar a,
+      .navbar a:focus {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 0 10px 30px;
+        font-family: "Poppins", sans-serif;
+        font-size: 15px;
+        font-weight: 500;
+        color: #556270;
+        white-space: nowrap;
+        transition: 0.3s;
+      }
+
+      .navbar a i,
+      .navbar a:focus i {
+        font-size: 12px;
+        line-height: 0;
+        margin-left: 5px;
+      }
+
+      .navbar a:hover,
+      .navbar .active,
+      .navbar .active:focus,
+      .navbar li:hover > a {
+        color: #d9232d;
+      }
+
+      .navbar .getstarted,
+      .navbar .getstarted:focus {
+        background: #d9232d;
+        padding: 8px 25px;
+        margin-left: 30px;
+        border-radius: 4px;
+        font-weight: 400;
+        color: #fff;
+      }
+
+      .navbar .getstarted:hover,
+      .navbar .getstarted:focus:hover {
+        color: #fff;
+        background: #e1444d;
+      }
+
+      .navbar .dropdown ul {
+        display: block;
+        position: absolute;
+        left: 14px;
+        top: calc(100% + 30px);
+        margin: 0;
+        padding: 10px 0;
+        z-index: 99;
+        opacity: 0;
+        visibility: hidden;
+        background: #fff;
+        box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
+        transition: 0.3s;
+      }
+
+      .navbar .dropdown ul li {
+        min-width: 200px;
+      }
+
+      .navbar .dropdown ul a {
+        padding: 10px 20px;
+        font-size: 15px;
+        text-transform: none;
+        font-weight: 400;
+      }
+
+      .navbar .dropdown ul a i {
+        font-size: 12px;
+      }
+
+      .navbar .dropdown ul a:hover,
+      .navbar .dropdown ul .active:hover,
+      .navbar .dropdown ul li:hover > a {
+        color: #d9232d;
+      }
+
+      .navbar .dropdown:hover > ul {
+        opacity: 1;
+        top: 100%;
+        visibility: visible;
+      }
+
+      .navbar .dropdown .dropdown ul {
+        top: 0;
+        left: calc(100% - 30px);
+        visibility: hidden;
+      }
+
+      .navbar .dropdown .dropdown:hover > ul {
+        opacity: 1;
+        top: 0;
+        left: 100%;
+        visibility: visible;
+      }
+
+      @media (max-width: 1366px) {
+        .navbar .dropdown .dropdown ul {
+          left: -90%;
+        }
+
+        .navbar .dropdown .dropdown:hover > ul {
+          left: -100%;
+        }
+      }
+
+      /**
+      * Mobile Navigation 
+      */
+      .mobile-nav-toggle {
+        color: #556270;
+        font-size: 28px;
+        cursor: pointer;
+        display: none;
+        line-height: 0;
+        transition: 0.5s;
+      }
+
+      .mobile-nav-toggle.bi-x {
+        color: #fff;
+      }
+
+      @media (max-width: 991px) {
+        .mobile-nav-toggle {
+          display: block;
+        }
+
+        .navbar ul {
+          display: none;
+        }
+      }
+
+      .navbar-mobile {
+        position: fixed;
+        overflow: hidden;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        background: rgba(63, 73, 83, 0.9);
+        transition: 0.3s;
+        z-index: 999;
+      }
+
+      .navbar-mobile .mobile-nav-toggle {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+      }
+
+      .navbar-mobile ul {
+        display: block;
+        position: absolute;
+        top: 55px;
+        right: 15px;
+        bottom: 15px;
+        left: 15px;
+        padding: 10px 0;
+        background-color: #fff;
+        overflow-y: auto;
+        transition: 0.3s;
+      }
+
+      .navbar-mobile a,
+      .navbar-mobile a:focus {
+        padding: 10px 20px;
+        font-size: 15px;
+        color: #556270;
+      }
+
+      .navbar-mobile a:hover,
+      .navbar-mobile .active,
+      .navbar-mobile li:hover > a {
+        color: #d9232d;
+      }
+
+      .navbar-mobile .getstarted,
+      .navbar-mobile .getstarted:focus {
+        margin: 15px;
+      }
+
+      .navbar-mobile .dropdown ul {
+        position: static;
+        display: none;
+        margin: 10px 20px;
+        padding: 10px 0;
+        z-index: 99;
+        opacity: 1;
+        visibility: visible;
+        background: #fff;
+        box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
+      }
+
+      .navbar-mobile .dropdown ul li {
+        min-width: 200px;
+      }
+
+      .navbar-mobile .dropdown ul a {
+        padding: 10px 20px;
+      }
+
+      .navbar-mobile .dropdown ul a i {
+        font-size: 12px;
+      }
+
+      .navbar-mobile .dropdown ul a:hover,
+      .navbar-mobile .dropdown ul .active:hover,
+      .navbar-mobile .dropdown ul li:hover > a {
+        color: #d9232d;
+      }
+
+      .navbar-mobile .dropdown > .dropdown-active {
+        display: block;
+      }
+    </style>
+    <script>
+      (function (factory) {
+        typeof define === "function" && define.amd
+          ? define(factory)
+          : factory();
+      })(function () {
+        "use strict";
+
+        /**
+         * The code was extracted from:
+         * https://github.com/davidchambers/Base64.js
+         */
+
+        var chars =
+          "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+
+        function InvalidCharacterError(message) {
+          this.message = message;
+        }
+
+        InvalidCharacterError.prototype = new Error();
+        InvalidCharacterError.prototype.name = "InvalidCharacterError";
+
+        function polyfill(input) {
+          var str = String(input).replace(/=+$/, "");
+          if (str.length % 4 == 1) {
+            throw new InvalidCharacterError(
+              "'atob' failed: The string to be decoded is not correctly encoded."
+            );
+          }
+          for (
+            // initialize result and counters
+            var bc = 0, bs, buffer, idx = 0, output = "";
+            // get next character
+            (buffer = str.charAt(idx++));
+            // character found in table? initialize bit storage and add its ascii value;
+            ~buffer &&
+            ((bs = bc % 4 ? bs * 64 + buffer : buffer),
+            // and if not first of each 4 characters,
+            // convert the first 8 bits to one ascii character
+            bc++ % 4)
+              ? (output += String.fromCharCode(255 & (bs >> ((-2 * bc) & 6))))
+              : 0
+          ) {
+            // try to find character in table (0-63, not found => -1)
+            buffer = chars.indexOf(buffer);
+          }
+          return output;
+        }
+
+        var atob =
+          (typeof window !== "undefined" &&
+            window.atob &&
+            window.atob.bind(window)) ||
+          polyfill;
+
+        function b64DecodeUnicode(str) {
+          return decodeURIComponent(
+            atob(str).replace(/(.)/g, function (m, p) {
+              var code = p.charCodeAt(0).toString(16).toUpperCase();
+              if (code.length < 2) {
+                code = "0" + code;
+              }
+              return "%" + code;
+            })
+          );
+        }
+
+        function base64_url_decode(str) {
+          var output = str.replace(/-/g, "+").replace(/_/g, "/");
+          switch (output.length % 4) {
+            case 0:
+              break;
+            case 2:
+              output += "==";
+              break;
+            case 3:
+              output += "=";
+              break;
+            default:
+              throw new Error("base64 string is not of the correct length");
+          }
+
+          try {
+            return b64DecodeUnicode(output);
+          } catch (err) {
+            return atob(output);
+          }
+        }
+
+        function InvalidTokenError(message) {
+          this.message = message;
+        }
+
+        InvalidTokenError.prototype = new Error();
+        InvalidTokenError.prototype.name = "InvalidTokenError";
+
+        function jwtDecode(token, options) {
+          if (typeof token !== "string") {
+            throw new InvalidTokenError(
+              "Invalid token specified: must be a string"
+            );
+          }
+
+          options = options || {};
+          var pos = options.header === true ? 0 : 1;
+
+          var part = token.split(".")[pos];
+          if (typeof part !== "string") {
+            throw new InvalidTokenError(
+              "Invalid token specified: missing part #" + (pos + 1)
+            );
+          }
+
+          try {
+            var decoded = base64_url_decode(part);
+          } catch (e) {
+            throw new InvalidTokenError(
+              "Invalid token specified: invalid base64 for part #" +
+                (pos + 1) +
+                " (" +
+                e.message +
+                ")"
+            );
+          }
+
+          try {
+            return JSON.parse(decoded);
+          } catch (e) {
+            throw new InvalidTokenError(
+              "Invalid token specified: invalid json for part #" +
+                (pos + 1) +
+                " (" +
+                e.message +
+                ")"
+            );
+          }
+        }
+
+        /*
+         * Expose the function on the window object
+         */
+
+        //use amd or just through the window object.
+        if (window) {
+          if (typeof window.define == "function" && window.define.amd) {
+            window.define("jwt_decode", function () {
+              return jwtDecode;
+            });
+          } else if (window) {
+            window.jwt_decode = jwtDecode;
+          }
+        }
+      });
+      //# sourceMappingURL=jwt-decode.js.map
+    </script>
+    <script>
+      // Retrieve the token from local storage
+      const token = localStorage.getItem("token");
+      // Check if the user is authenticated
+      fetch("http://localhost:5000/api/auth", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "x-auth-token": token,
+        },
+      })
+        .then((response) => {
+          console.log(response);
+          if (response.ok) {
+            // User is authenticated, proceed with the dashboard content
+            console.log("User is authenticated");
+
+            // Verify the token
+            try {
+              const decodedToken = jwt_decode(token);
+              // The decodedToken variable now contains the decoded token payload
+
+              // Perform any necessary checks or validations on the decoded token
+              // For example, you can check the expiration date, user ID, or any other relevant information
+
+              // If the token is valid and meets your criteria, allow access to the dashboard
+              // Otherwise, redirect the user to the login page or display an error message
+              console.log("Token verification successful:", decodedToken);
+            } catch (error) {
+              // Error occurred while decoding or verifying the token
+              // Redirect the user to the login page or display an error message
+              console.error("Token verification failed:", error);
+              window.location.href = "http://localhost:8080/login.html";
+            }
+
+            // Here you can add your specific dashboard content and functionality
+          } else {
+            // User is not authenticated, redirect to the login page or handle accordingly
+            console.log("User is not authenticated");
+            window.location.href = "http://localhost:8080/login.html";
+          }
+        })
+        .catch((error) => {
+          console.error("Error checking authentication:", error);
+          // Handle error if necessary
+        });
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <!-- <link rel="stylesheet" type="text/css" href="./template.css"> -->
+  </head>
+
+  <body style="height: 100%">
+    <header id="header" class="fixed-top d-flex align-items-center">
+      <div class="container d-flex align-items-center">
+        <h1 class="logo me-auto"><a href="index.html">HPE</a></h1>
+
+        <a href="index.html" class="logo me-auto">
+          <img src="\img\yoga.svg" alt="" class="img-fluid" />
+        </a>
+
+        <nav id="navbar" class="navbar">
+          <ul>
+            <li><a href="dashboard.html">Exercises</a></li>
+            <li><a href="user_activity.html"> Activities</a></li>
+            <li><a href="bmi.html">Diet Plan Generator</a></li>
+            <li><a href="user_activity_graph.html"> Activity Graphs</a></li>
+            <button id="logoutButton" class="logout-button">Logout</button>
+          </ul>
+          <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav>
+      </div>
+    </header>
+
+    <!--------------------------------------------------------------
+  # Main Exercise Section.
+  -------------------------------------------------------------->
+
+    <!-- SQUATs -->
+    <div class="row" style="margin-top: 100px">
+      <div class="col-10 offset-1 col-md-8 offset-md-2">
+        <div class="card mb-3">
+          <div class="row no-gutters">
+            <div class="col-md-4">
+              <img
+                src="img/squats.gif"
+                class="card-img"
+                alt="Your Image"
+                style="width: 100%; height: 100%"
+              />
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">Squats</h5>
+                <p class="card-text">
+                  Begin with proper form: stand with feet shoulder-width apart,
+                  keep back straight, engage core muscles, and maintain a
+                  neutral spine. As you squat down, push your hips back and
+                  lower your body until your thighs are parallel to the ground
+                  or as low as you can comfortably go. Keep your knees in line
+                  with your toes, avoid letting them collapse inward or outward.
+                  Push through your heels and engage your leg muscles to return
+                  to a standing position. Repeat for desired number of
+                  repetitions.
+                </p>
+                <button
+                  class="btn btn-primary"
+                  onclick="updateWorkout('squat')"
+                >
+                  Perform Squats
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Push-Ups -->
+    <div class="row">
+      <div class="col-10 offset-1 col-md-8 offset-md-2">
+        <div class="card mb-3">
+          <div class="row no-gutters">
+            <div class="col-md-4">
+              <img
+                src="img/pushups.gif"
+                class="card-img"
+                alt="Your Image"
+                style="width: 100%; height: 100%"
+              />
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">Push Ups</h5>
+                <p class="card-text">
+                  Push ups are a great exercise for building upper body
+                  strength. Begin in a plank position with your hands
+                  shoulder-width apart, fingers pointing forward. Keep your body
+                  in a straight line from head to heels. Lower your body until
+                  your chest almost touches the ground, then push up to the
+                  starting position. Keep your elbows close to your body as you
+                  lower and raise your body. Start with a few reps and gradually
+                  increase as you become stronger. Remember to engage your core
+                  and breathe deeply throughout the exercise.
+                </p>
+                <button
+                  class="btn btn-primary"
+                  onclick="updateWorkout('push-up')"
+                >
+                  Perform Pushups
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Jumping-Jacks -->
+    <div class="row">
+      <div class="col-10 offset-1 col-md-8 offset-md-2">
+        <div class="card mb-3">
+          <div class="row no-gutters">
+            <div class="col-md-4">
+              <img
+                src="img/jumpingjacks.gif"
+                class="card-img"
+                alt="Your Image"
+                style="width: 100%; height: 100%"
+              />
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">Jumping-Jacks</h5>
+                <p class="card-text">
+                  Jumping jacks are a fun and effective exercise for improving
+                  cardiovascular fitness and coordination. Begin by standing
+                  with your feet together and arms at your sides. Jump up,
+                  spreading your legs wider than hip-width apart while
+                  simultaneously raising your arms above your head. Return to
+                  the starting position by jumping again and bringing your arms
+                  and legs back together. Repeat for several reps, keeping a
+                  steady pace. Remember to land softly on the balls of your feet
+                  and keep your core engaged throughout the exercise.
+                </p>
+                <button
+                  class="btn btn-primary"
+                  onclick="updateWorkout('jumping-jacks')"
+                >
+                  Perform Jumping-Jacks
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- High Curls -->
+    <div class="row">
+      <div class="col-10 offset-1 col-md-8 offset-md-2">
+        <div class="card mb-3">
+          <div class="row no-gutters">
+            <div class="col-md-4">
+              <img
+                src="img/highcurls2.gif"
+                class="card-img"
+                alt="Your Image"
+                style="width: 100%; height: 100%"
+              />
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">Dumbbell High Curl</h5>
+                <p class="card-text">
+                  Dumbbell high curls are a great exercise for building bicep
+                  strength and definition. Begin by standing with your feet
+                  shoulder-width apart and holding a dumbbell in each hand with
+                  palms facing forward. Raise the dumbbells towards your
+                  shoulders while keeping your elbows close to your body. Once
+                  the dumbbells are at shoulder level, rotate your wrists so
+                  that your palms are facing upwards. Slowly lower the dumbbells
+                  back to the starting position. Remember to engage your core
+                  and breathe deeply throughout the exercise.
+                </p>
+                <button
+                  class="btn btn-primary"
+                  onclick="updateWorkout('curls')"
+                >
+                  Perform Dumbbell High Curl
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lunges -->
+    <div class="row">
+      <div class="col-10 offset-1 col-md-8 offset-md-2">
+        <div class="card mb-3">
+          <div class="row no-gutters">
+            <div class="col-md-4">
+              <img
+                src="img/Lunges2.gif"
+                class="card-img"
+                alt="Your Image"
+                style="width: 100%; height: 100%"
+              />
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">Lunges</h5>
+                <p class="card-text">
+                  Lunges are a great exercise for strengthening and toning your
+                  lower body muscles. Begin by standing up straight with your
+                  feet hip-width apart. Take a big step forward with your right
+                  leg, bending your knee until your thigh is parallel to the
+                  ground. Make sure your knee doesn't go past your toes. Push
+                  off your right foot to return to the starting position, then
+                  repeat on the other leg. Keep your core engaged and your back
+                  straight throughout the exercise. Start with a few reps and
+                  gradually increase as you become stronger.
+                </p>
+                <button
+                  class="btn btn-primary"
+                  onclick="updateWorkout('lunges')"
+                >
+                  Perform Lunges
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+      function updateWorkout(exercise) {
+        localStorage.setItem(
+          "DBWOSettings",
+          JSON.stringify({
+            ...JSON.parse(localStorage.getItem("DBWOSettings")),
+            currWorkout: exercise,
+          })
+        );
+        location.href = "http://localhost:8080/temp.html";
+      }
+    </script>
+    <script>
+      // Logout button click event
+      document.getElementById("logoutButton").addEventListener("click", (e) => {
+        e.preventDefault();
+        // Remove the token from localStorage
+        localStorage.removeItem("token");
+
+        // Redirect to the login page or perform any other necessary actions
+        window.location.href = "/";
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+{
+    "poseDetectorConfig": {
+      "model": "MoveNet",
+      "detectorConfig": {},
+      "estimationConfig": {}
+    },
+    "classifierConfig": {
+      "path": "./tfjs-model/Lunges/model.json",
+      "label": ["Lunges", "Other"]
+    },
+    "rulesCountConfig": {
+      "nameWorkout": "Lunges",
+      "nameStage": ["Left","Right"],
+      "pathImageStage": ["./img/iconmonstr-caret-down-circle-filled-64.png", "./img/iconmonstr-caret-up-circle-filled-64.png"],
+      "pathAudioStage": ["./audio/go-down-from-google-translate.webm", "./audio/go-up-from-google-translate.webm"],
+      "anglePoint": {
+        
+        "13": {
+          "spouseIdx": [11, 15],
+          "rangeAngle": [
+            { "min": 60, "max": 90 },
+            { "min": 90, "max": 120 }
+          ]
+        },
+        "14": {
+          "spouseIdx": [12, 16],
+          "rangeAngle": [
+            { "min": 90, "max": 120 },
+            { "min": 60, "max": 90 }
+          ]
+        }
+      }  
+    }
+  }
+  
