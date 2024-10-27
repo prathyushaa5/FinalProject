@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Blogs</title>
-  <link rel="icon" type="image/x-icon" href="./img/ai.svg" />
+  <head>
+    <title>Blogs</title>
+    <link rel="icon" type="image/x-icon" href="./img/ai.svg" />
 
-	<style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-    body {
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+      body {
         font-family: "Open Sans", sans-serif;
         color: #444444;
       }
-      
+
       a {
         text-decoration: none;
         color: #d9232d;
       }
-      
+
       a:hover {
         color: #e24d55;
         text-decoration: none;
       }
-      
+
       h1,
       h2,
       h3,
@@ -29,7 +29,7 @@
       h6 {
         font-family: "Raleway", sans-serif;
       }
-      
+
       /*--------------------------------------------------------------
       # Back to top button
       --------------------------------------------------------------*/
@@ -46,23 +46,23 @@
         border-radius: 4px;
         transition: all 0.4s;
       }
-      
+
       .back-to-top i {
         font-size: 28px;
         color: #fff;
         line-height: 0;
       }
-      
+
       .back-to-top:hover {
         background: #e1444d;
         color: #fff;
       }
-      
+
       .back-to-top.active {
         visibility: visible;
         opacity: 1;
       }
-      
+
       /*--------------------------------------------------------------
       # Header
       --------------------------------------------------------------*/
@@ -72,16 +72,16 @@
         z-index: 997;
         padding: 20px 0;
       }
-      
+
       #header.header-scrolled {
         box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
         padding: 12px 0;
       }
-      
+
       #header.header-inner-pages {
         box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
       }
-      
+
       #header .logo {
         font-size: 28px;
         margin: 0;
@@ -90,15 +90,15 @@
         font-weight: 700;
         text-transform: uppercase;
       }
-      
+
       #header .logo a {
         color: #556270;
       }
-      
+
       #header .logo img {
         max-height: 40px;
       }
-      
+
       /*--------------------------------------------------------------
       # Navigation Menu
       --------------------------------------------------------------*/
@@ -108,7 +108,7 @@
       .navbar {
         padding: 0;
       }
-      
+
       .navbar ul {
         margin: 0;
         padding: 0;
@@ -116,11 +116,11 @@
         list-style: none;
         align-items: center;
       }
-      
+
       .navbar li {
         position: relative;
       }
-      
+
       .navbar a,
       .navbar a:focus {
         display: flex;
@@ -134,21 +134,21 @@
         white-space: nowrap;
         transition: 0.3s;
       }
-      
+
       .navbar a i,
       .navbar a:focus i {
         font-size: 12px;
         line-height: 0;
         margin-left: 5px;
       }
-      
+
       .navbar a:hover,
       .navbar .active,
       .navbar .active:focus,
-      .navbar li:hover>a {
+      .navbar li:hover > a {
         color: #d9232d;
       }
-      
+
       .navbar .getstarted,
       .navbar .getstarted:focus {
         background: #d9232d;
@@ -158,13 +158,13 @@
         font-weight: 400;
         color: #fff;
       }
-      
+
       .navbar .getstarted:hover,
       .navbar .getstarted:focus:hover {
         color: #fff;
         background: #e1444d;
       }
-      
+
       .navbar .dropdown ul {
         display: block;
         position: absolute;
@@ -179,57 +179,57 @@
         box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
         transition: 0.3s;
       }
-      
+
       .navbar .dropdown ul li {
         min-width: 200px;
       }
-      
+
       .navbar .dropdown ul a {
         padding: 10px 20px;
         font-size: 15px;
         text-transform: none;
         font-weight: 400;
       }
-      
+
       .navbar .dropdown ul a i {
         font-size: 12px;
       }
-      
+
       .navbar .dropdown ul a:hover,
       .navbar .dropdown ul .active:hover,
-      .navbar .dropdown ul li:hover>a {
+      .navbar .dropdown ul li:hover > a {
         color: #d9232d;
       }
-      
-      .navbar .dropdown:hover>ul {
+
+      .navbar .dropdown:hover > ul {
         opacity: 1;
         top: 100%;
         visibility: visible;
       }
-      
+
       .navbar .dropdown .dropdown ul {
         top: 0;
         left: calc(100% - 30px);
         visibility: hidden;
       }
-      
-      .navbar .dropdown .dropdown:hover>ul {
+
+      .navbar .dropdown .dropdown:hover > ul {
         opacity: 1;
         top: 0;
         left: 100%;
         visibility: visible;
       }
-      
+
       @media (max-width: 1366px) {
         .navbar .dropdown .dropdown ul {
           left: -90%;
         }
-      
-        .navbar .dropdown .dropdown:hover>ul {
+
+        .navbar .dropdown .dropdown:hover > ul {
           left: -100%;
         }
       }
-      
+
       /**
       * Mobile Navigation 
       */
@@ -241,21 +241,21 @@
         line-height: 0;
         transition: 0.5s;
       }
-      
+
       .mobile-nav-toggle.bi-x {
         color: #fff;
       }
-      
+
       @media (max-width: 991px) {
         .mobile-nav-toggle {
           display: block;
         }
-      
+
         .navbar ul {
           display: none;
         }
       }
-      
+
       .navbar-mobile {
         position: fixed;
         overflow: hidden;
@@ -267,13 +267,13 @@
         transition: 0.3s;
         z-index: 999;
       }
-      
+
       .navbar-mobile .mobile-nav-toggle {
         position: absolute;
         top: 15px;
         right: 15px;
       }
-      
+
       .navbar-mobile ul {
         display: block;
         position: absolute;
@@ -286,25 +286,25 @@
         overflow-y: auto;
         transition: 0.3s;
       }
-      
+
       .navbar-mobile a,
       .navbar-mobile a:focus {
         padding: 10px 20px;
         font-size: 15px;
         color: #556270;
       }
-      
+
       .navbar-mobile a:hover,
       .navbar-mobile .active,
-      .navbar-mobile li:hover>a {
+      .navbar-mobile li:hover > a {
         color: #d9232d;
       }
-      
+
       .navbar-mobile .getstarted,
       .navbar-mobile .getstarted:focus {
         margin: 15px;
       }
-      
+
       .navbar-mobile .dropdown ul {
         position: static;
         display: none;
@@ -316,63 +316,65 @@
         background: #fff;
         box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
       }
-      
+
       .navbar-mobile .dropdown ul li {
         min-width: 200px;
       }
-      
+
       .navbar-mobile .dropdown ul a {
         padding: 10px 20px;
       }
-      
+
       .navbar-mobile .dropdown ul a i {
         font-size: 12px;
       }
-      
+
       .navbar-mobile .dropdown ul a:hover,
       .navbar-mobile .dropdown ul .active:hover,
-      .navbar-mobile .dropdown ul li:hover>a {
+      .navbar-mobile .dropdown ul li:hover > a {
         color: #d9232d;
       }
-      
-      .navbar-mobile .dropdown>.dropdown-active {
+
+      .navbar-mobile .dropdown > .dropdown-active {
         display: block;
       }
-  </style>
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-	<!-- Font Awesome -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-  <!-- <link rel="stylesheet" type="text/css" href="./template.css"> -->
-</head>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <!-- <link rel="stylesheet" type="text/css" href="./template.css"> -->
+  </head>
 
+  <body style="height: 100%">
+    <header id="header" class="fixed-top d-flex align-items-center">
+      <div class="container d-flex align-items-center">
+        <h1 class="logo me-auto"><a href="index.html">Zen&Gen</a></h1>
 
-<body style="height: 100%;">
-  <header id="header" class="fixed-top d-flex align-items-center">
-    <div class="container d-flex align-items-center">
+        <a href="index.html" class="logo me-auto">
+          <img src="\img\yoga.svg" alt="" class="img-fluid" />
+        </a>
 
-      <h1 class="logo me-auto"><a href="index.html">HPE</a></h1>
-      
-      <a href="index.html" class="logo me-auto">
-        <img src="\img\yoga.svg" alt="" class="img-fluid"/> 
-      </a>
+        <nav id="navbar" class="navbar">
+          <ul>
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
 
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a href="index.html" class="active">Home</a></li>
-          <li><a href="about.html">About Us</a></li>
-          
-          <li><a href="blog.html">Blog</a></li>
+            <li><a href="blog.html">Blog</a></li>
 
-          <li><a href="contact.html">Contact</a></li>
-          
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav>
-
-    </div>
-  </header>
-</body>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+          <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav>
+      </div>
+    </header>
+  </body>
 </html>
