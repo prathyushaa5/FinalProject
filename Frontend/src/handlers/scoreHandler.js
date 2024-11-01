@@ -53,25 +53,24 @@ export default class ScoreHandler {
       date: new Date().toLocaleString(),
     });
 
-    let emailId= "abc@gmail.com";
+    let emailId = "abc@gmail.com";
     emailId = localStorage.getItem("uid");
     const data = { emailId, newScore };
 
-    fetch('http://18.191.166.16:5000/exercise/scores', {
-      method: 'POST',
+    fetch("http://localhost:5000/exercise/scores", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
     })
-      .then(response => response.json())
-      .then(result => {
-        console.log('Success:', result);
+      .then((response) => response.json())
+      .then((result) => {
+        console.log("Success:", result);
       })
-      .catch(error => {
-        console.error('Error:', error);
+      .catch((error) => {
+        console.error("Error:", error);
       });
-
 
     this.saveToLocalStorage();
   };

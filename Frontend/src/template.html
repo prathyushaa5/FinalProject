@@ -2127,6 +2127,174 @@ body {
     color: white;
   }
 
+  /* diet recommendation */
+  .diet-box{
+    margin:0 auto;
+    width: 400px;
+    padding: 40px;
+    background: rgba(0, 0, 0, .5);
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 10px;
+  }
+  .diet-box h2{
+    margin: 0 0 30px;
+    padding: 0;
+    color: #fff;
+    text-align: center;
+  }
+  .diet-box .user-box{
+    position: relative;
+  }
+  .diet-box .user-box input{
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+  }
+  .diet-box .user-box label {
+    position: absolute;
+    top:0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
+  }
+
+  .diet-box .user-box input:focus ~ label,
+  .diet-box .user-box input:valid ~ label {
+    top: -20px;
+    left: 0;
+    color: #03e9f4;
+    font-size: 12px;
+  }
+  .diet-box form .button1 {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: #03e9f4;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 40px;
+    letter-spacing: 4px
+  }
+
+  .diet-box .button1:hover {
+    background: #03e9f4;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #03e9f4,
+                0 0 25px #03e9f4,
+                0 0 50px #03e9f4,
+                0 0 100px #03e9f4;
+  }
+
+  .diet-box .button1 span {
+    position: absolute;
+    display: block;
+  }
+
+  .diet-box .button1 span:nth-child(1) {
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #03e9f4);
+  }
+
+  .diet-box .button1 span:nth-child(2) {
+    top: -100%;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, #03e9f4);
+  }
+
+  .diet-box .button1 span:nth-child(3) {
+    bottom: 0;
+    right: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(270deg, transparent, #03e9f4);
+  }
+
+
+  .diet-box .button1 span:nth-child(4) {
+    bottom: -100%;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(360deg, transparent, #03e9f4);
+  }
+  @keyframes btn-anim1 {
+    0% {
+      left: -100%;
+    }
+    50%,100% {
+      left: 100%;
+    }
+  }
+
+  @keyframes btn-anim2 {
+    0% {
+      top: -100%;
+    }
+    50%,100% {
+      top: 100%;
+    }
+  }
+
+  @keyframes btn-anim3 {
+    0% {
+      right: -100%;
+    }
+    50%,100% {
+      right: 100%;
+    }
+  }
+
+  @keyframes btn-anim4 {
+    0% {
+      bottom: -100%;
+    }
+    50%,100% {
+      bottom: 100%;
+    }
+  }
+
+/* USING KEYFRAMES */
+
+  .diet-box .button1 span:nth-child(1) {
+    animation: btn-anim1 1s linear infinite;
+  }
+
+  .diet-box .button1 span:nth-child(2) {
+    animation: btn-anim2 1s linear infinite;
+    animation-delay: .25s
+  }
+
+  .diet-box .button1 span:nth-child(3) {
+    animation: btn-anim3 1s linear infinite;
+    animation-delay: .5s
+  }
+
+  .diet-box .button1 span:nth-child(4) {
+    animation: btn-anim4 1s linear infinite;
+    animation-delay: .75s
+  }
+  .diet-box{
+    background: #141e30;
+  }
+
   </style>
   
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -2158,6 +2326,7 @@ body {
 
           <li><a href="contact.html">Contact</a></li>
           <li><a href="login.html" class="getstarted">Login</a></li>
+          <li><a href="https://aiworkout.profematika.com/">Exercise</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav>
@@ -2285,6 +2454,63 @@ body {
         </div>
 
       </div>
+    </section>
+
+    <section class="diet-box">
+      <h2>Diet Recommendation</h2>
+      <form id="dietForm">
+        <div class="user-box">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required />
+        </div>
+        <br>
+        <div class="user-box">
+          <label for="age">Age:</label>
+          <input type="number" id="age" name="age" required />
+        </div>
+        <br>
+        <div class="user-box">
+          <label for="country">Country:</label>
+          <input type="text" id="country" name="country" required />
+        </div>
+        <br>
+        <div class="user-box">
+          <label for="region">Region:</label>
+          <input type="text" id="region" name="region" required />
+        </div>
+        <br>
+        <div class="user-box">
+          <label for="weightGoal">Weight Goal:</label>
+          <select id="weightGoal" name="weightGoal" required>
+            <option value="gain">Gain Weight</option>
+            <option value="lose">Lose Weight</option>
+            <option value="healthy">Maintain Health</option>
+          </select>
+        </div>
+        <br>
+        <div class="user-box">
+          <label for="dietType">Diet Type:</label>
+          <select id="dietType" name="dietType" required>
+            <option value="veg">Vegetarian</option>
+            <option value="nonveg">Non-Vegetarian</option>
+          </select>
+        </div>
+        <br>
+        <div class="user-box">
+          <label for="height">Height (cm):</label>
+          <input type="number" id="height" name="height" required />
+        </div>
+        <br>
+        <div class="button1">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <button type="submit">Generate Diet Plan</button>
+        </div>
+      </form>
+      <br>
+      <div id="dietPlan"></div>
     </section>
 
     <section id="services" class="services">

@@ -37,21 +37,21 @@ export default class SettingsHandler {
   };
 
   saveToDatabase = () => {
-    fetch('http://18.191.166.16:5000/exercise/settingsChange', {
-      method: 'POST',
+    fetch("http://localhost:5000/exercise/settingsChange", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(this.DBWOSettings),
     })
-      .then(response => response.json())
-      .then(result => {
-        console.log('Success:', result);
+      .then((response) => response.json())
+      .then((result) => {
+        console.log("Success:", result);
       })
-      .catch(error => {
-        console.error('Error:', error);
+      .catch((error) => {
+        console.error("Error:", error);
       });
-  }
+  };
 
   getEffectChange = (afterConfig, actionCB) => {
     // Assign DBWOSettings to beforeConfig

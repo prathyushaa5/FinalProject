@@ -1,4 +1,4 @@
 {
-  "mongoURI": "",
+  "mongoURI": "mongodb+srv://prajwalacharya0612:Evu0vROLKF1Cg2ih@cluster0.66xt4.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
   "jwtSecret": "295Major"
 }
