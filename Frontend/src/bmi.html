@@ -1,112 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Contacs</title>
+    <title>Activity</title>
     <link rel="icon" type="image/x-icon" href="./img/ai.svg" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
     <style>
+      /* 1st change */
       @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
-
-      /* CSS for calories Start */
-      .form-title {
-        font-size: 24px;
-        font-weight: bold;
-        margin-bottom: 10px;
-        color: #ff8c00;
-      }
-
-      #personal-info-form {
-        background-color: white;
-        border-radius: 10px;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-        margin: auto;
-        max-width: 500px;
-        padding: 20px;
-        float: left;
-        width: 50%;
-      }
-
-      #personal-info-form label {
-        display: block;
-        margin-bottom: 7px;
-        margin-top: 10px;
-      }
-
-      #personal-info-form input[type="number"],
-      #personal-info-form select {
-        border: none;
-        border-radius: 4px;
-        box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
-        font-size: 16px;
-        padding: 8px;
-        width: 100%;
-      }
-
-      #personal-info-form button[type="submit"] {
-        background-color: orange;
-        border: none;
-        border-radius: 4px;
-        color: white;
-        cursor: pointer;
-        font-size: 16px;
-        margin-top: 10px;
-        padding: 10px;
-        width: 100%;
-      }
-
-      #personal-info-results {
-        background-color: orange;
-        border-radius: 10px;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-        color: white;
-        margin: auto;
-        max-width: 500px;
-        padding: 20px;
-        text-align: center;
-        float: right;
-        width: 50%;
-      }
-
-      #personal-info-results p {
-        font-size: 18px;
-        margin: 0;
-        margin-bottom: 10px;
-      }
-
-      #personal-info-results h2 {
-        text-align: center;
-        font-size: 24px;
-        margin-bottom: 20px;
-      }
-
-      #plan-my-diet {
-        text-align: center;
-        float: right;
-        width: 50%;
-        display: block;
-      }
-
-      #plan-my-diet-button {
-        background-color: #4caf50;
-        border: none;
-        border-radius: 4px;
-        color: white;
-        cursor: pointer;
-        font-size: 16px;
-        margin-top: 10px;
-        padding: 10px;
-        width: 25%;
-      }
-
-      #plan-my-diet-button:hover {
-        background-color: #3e8e41;
-      }
-
-      #diet-results {
-        margin-top: 20px;
-        text-align: center;
-      }
-      /* Css for Calories Ends */
       body {
         font-family: "Open Sans", sans-serif;
         color: #444444;
@@ -200,12 +104,7 @@
         max-height: 40px;
       }
 
-      /*--------------------------------------------------------------
-      # Navigation Menu
-      --------------------------------------------------------------*/
-      /**
-      * Desktop Navigation 
-      */
+      /* 1st change ends here */
       .navbar {
         padding: 0;
         width: 100%;
@@ -343,7 +242,7 @@
           left: -100%;
         }
       }
-
+      /* Second Change */
       /**
       * Mobile Navigation 
       */
@@ -452,7 +351,341 @@
       .navbar-mobile .dropdown > .dropdown-active {
         display: block;
       }
+      /* Second change ends here */
+      /* Popup overlay is default */
+      .popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0px 0px 5px gray;
+      }
+
+      .popup-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1;
+      }
+
+
+      form {
+  margin-top: 10px;
+}
+
+form input, form select {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+form button {
+  background-color: #d9232d;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+form button:hover {
+  background-color: #e1444d;
+}
+
+
+form {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+      }
+
+      .meal-section {
+        background-color: #fff;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      h2 {
+        font-family: "Raleway", sans-serif;
+        color: #d9232d;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #f9f9f9;
+      }
+
+      table th, table td {
+        padding: 12px;
+        text-align: left;
+        border: 1px solid #ddd;
+      }
+
+      table th {
+        background-color: #f1f1f1;
+        color: #555;
+      }
+
+      table td {
+        background-color: #fff;
+        color: #333;
+      }
+
+      table tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+
+      table tr:hover {
+        background-color: #f0f0f0;
+      }
+
+      .meal-section p {
+        font-size: 16px;
+        color: #888;
+        font-style: italic;
+      }
+
+      #results {
+        margin-top: 20px;
+      }
+
+      button {
+        background-color: #d9232d;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
+      }
+
+      button:hover {
+        background-color: #e1444d;
+      }
+      section{
+        margin-top:100px;
+      }
     </style>
+    <script>
+      (function (factory) {
+        typeof define === "function" && define.amd
+          ? define(factory)
+          : factory();
+      })(function () {
+        "use strict";
+
+        /**
+         * The code was extracted from:
+         * https://github.com/davidchambers/Base64.js
+         */
+
+        var chars =
+          "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+
+        function InvalidCharacterError(message) {
+          this.message = message;
+        }
+
+        InvalidCharacterError.prototype = new Error();
+        InvalidCharacterError.prototype.name = "InvalidCharacterError";
+
+        function polyfill(input) {
+          var str = String(input).replace(/=+$/, "");
+          if (str.length % 4 == 1) {
+            throw new InvalidCharacterError(
+              "'atob' failed: The string to be decoded is not correctly encoded."
+            );
+          }
+          for (
+            // initialize result and counters
+            var bc = 0, bs, buffer, idx = 0, output = "";
+            // get next character
+            (buffer = str.charAt(idx++));
+            // character found in table? initialize bit storage and add its ascii value;
+            ~buffer &&
+            ((bs = bc % 4 ? bs * 64 + buffer : buffer),
+            // and if not first of each 4 characters,
+            // convert the first 8 bits to one ascii character
+            bc++ % 4)
+              ? (output += String.fromCharCode(255 & (bs >> ((-2 * bc) & 6))))
+              : 0
+          ) {
+            // try to find character in table (0-63, not found => -1)
+            buffer = chars.indexOf(buffer);
+          }
+          return output;
+        }
+
+        var atob =
+          (typeof window !== "undefined" &&
+            window.atob &&
+            window.atob.bind(window)) ||
+          polyfill;
+
+        function b64DecodeUnicode(str) {
+          return decodeURIComponent(
+            atob(str).replace(/(.)/g, function (m, p) {
+              var code = p.charCodeAt(0).toString(16).toUpperCase();
+              if (code.length < 2) {
+                code = "0" + code;
+              }
+              return "%" + code;
+            })
+          );
+        }
+
+        function base64_url_decode(str) {
+          var output = str.replace(/-/g, "+").replace(/_/g, "/");
+          switch (output.length % 4) {
+            case 0:
+              break;
+            case 2:
+              output += "==";
+              break;
+            case 3:
+              output += "=";
+              break;
+            default:
+              throw new Error("base64 string is not of the correct length");
+          }
+
+          try {
+            return b64DecodeUnicode(output);
+          } catch (err) {
+            return atob(output);
+          }
+        }
+
+        function InvalidTokenError(message) {
+          this.message = message;
+        }
+
+        InvalidTokenError.prototype = new Error();
+        InvalidTokenError.prototype.name = "InvalidTokenError";
+
+        function jwtDecode(token, options) {
+          if (typeof token !== "string") {
+            throw new InvalidTokenError(
+              "Invalid token specified: must be a string"
+            );
+          }
+
+          options = options || {};
+          var pos = options.header === true ? 0 : 1;
+
+          var part = token.split(".")[pos];
+          if (typeof part !== "string") {
+            throw new InvalidTokenError(
+              "Invalid token specified: missing part #" + (pos + 1)
+            );
+          }
+
+          try {
+            var decoded = base64_url_decode(part);
+          } catch (e) {
+            throw new InvalidTokenError(
+              "Invalid token specified: invalid base64 for part #" +
+                (pos + 1) +
+                " (" +
+                e.message +
+                ")"
+            );
+          }
+
+          try {
+            return JSON.parse(decoded);
+          } catch (e) {
+            throw new InvalidTokenError(
+              "Invalid token specified: invalid json for part #" +
+                (pos + 1) +
+                " (" +
+                e.message +
+                ")"
+            );
+          }
+        }
+
+        /*
+         * Expose the function on the window object
+         */
+
+        //use amd or just through the window object.
+        if (window) {
+          if (typeof window.define == "function" && window.define.amd) {
+            window.define("jwt_decode", function () {
+              return jwtDecode;
+            });
+          } else if (window) {
+            window.jwt_decode = jwtDecode;
+          }
+        }
+      });
+      //# sourceMappingURL=jwt-decode.js.map
+    </script>
+    <script>
+      // Retrieve the token from local storage
+      const token = localStorage.getItem("token");
+      // Check if the user is authenticated
+      fetch("http://localhost:5000/api/auth", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "x-auth-token": token,
+        },
+      })
+        .then((response) => {
+          console.log(response);
+          if (response.ok) {
+            // User is authenticated, proceed with the dashboard content
+            console.log("User is authenticated");
+
+            // Verify the token
+            try {
+              const decodedToken = jwt_decode(token);
+              // The decodedToken variable now contains the decoded token payload
+
+              // Perform any necessary checks or validations on the decoded token
+              // For example, you can check the expiration date, user ID, or any other relevant information
+
+              // If the token is valid and meets your criteria, allow access to the dashboard
+              // Otherwise, redirect the user to the login page or display an error message
+              console.log("Token verification successful:", decodedToken);
+            } catch (error) {
+              // Error occurred while decoding or verifying the token
+              // Redirect the user to the login page or display an error message
+              console.error("Token verification failed:", error);
+              window.location.href = "http://localhost:8080/login.html";
+            }
+
+            // Here you can add your specific dashboard content and functionality
+          } else {
+            // User is not authenticated, redirect to the login page or handle accordingly
+            console.log("User is not authenticated");
+            window.location.href = "http://localhost:8080/login.html";
+          }
+        })
+        .catch((error) => {
+          console.error("Error checking authentication:", error);
+          // Handle error if necessary
+        });
+    </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!-- Bootstrap CSS -->
@@ -465,7 +698,6 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
     />
-    <!-- <link rel="stylesheet" type="text/css" href="./template.css"> -->
   </head>
 
   <body style="height: 100%">
@@ -488,175 +720,172 @@
           <i class="bi bi-list mobile-nav-toggle"></i>
         </nav>
       </div>
-    </header>
-    <div style="margin-top: 100px">
-      <h1 class="form-title">Enter Personal Information</h1>
-      <form id="personal-info-form">
-        <label for="age">Age:</label>
-        <input type="number" id="age" name="age" required />
+    </header><div class="container">
+  <!-- BMI and BMR Form -->
+  <section>
+    <h2>Enter Personal Information for BMI Calculation</h2>
+    <form id="personal-info-form">
+      <label for="age">Age:</label>
+      <input type="number" id="age" name="age" required />
 
-        <label for="weight">Weight (kg):</label>
-        <input type="number" id="weight" name="weight" step="0.01" required />
+      <label for="weight">Weight (kg):</label>
+      <input type="number" id="weight" name="weight" step="0.01" required />
 
-        <label for="height">Height (m):</label>
-        <input type="number" id="height" name="height" step="0.01" required />
+      <label for="height">Height (m):</label>
+      <input type="number" id="height" name="height" step="0.01" required />
 
-        <label for="gender">Gender:</label>
-        <select id="gender" name="gender" required>
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-          <option value="other">Other</option>
-        </select>
+      <label for="gender">Gender:</label>
+      <select id="gender" name="gender" required>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="other">Other</option>
+      </select>
 
-        <label for="activity-level"
-          >Activity Level: (On a scale of 10, rate yourself)</label
-        >
-        <select id="activity-level" name="activity-level" required>
-          <option value="sedentary">0-2</option>
-          <option value="lightly Active">2-4</option>
-          <option value="moderately active">4-6</option>
-          <option value="very active">6-8</option>
-          <option value="extra active">8-10</option>
-        </select>
-
-        <button type="submit">Submit</button>
-      </form>
-    </div>
-
+      <button type="submit">Calculate BMI and BMR</button>
+    </form>
     <div id="personal-info-results" style="display: none"></div>
+  </section>
 
-    <div id="plan-my-diet" style="display: none">
-      <button id="plan-my-diet-button">Plan My Diet!</button>
-      <div id="diet-results"></div>
-    </div>
+  <!-- Diet Plan Form -->
+  <section>
+    <h2>Diet Plan Generator</h2>
+    <form id="dietForm">
+      <label for="dietType">Diet Type:</label>
+      <select id="dietType">
+        <option value="0">Vegetarian</option>
+        <option value="1">Non-Vegetarian</option>
+      </select>
 
-    <script>
-      // Front end code
-      const personalInfoForm = document.querySelector("#personal-info-form");
-      const personalInfoResults = document.querySelector(
-        "#personal-info-results"
-      );
-      const planMyDietDiv = document.querySelector("#plan-my-diet");
+      <label for="weightGoal">Weight Goal:</label>
+      <select id="weightGoal">
+        <option value="gain">Gain</option>
+        <option value="lose">Lose</option>
+        <option value="healthy">Healthy</option>
+      </select>
 
-      personalInfoForm.addEventListener("submit", (event) => {
+      <button type="submit">Get Diet Plan</button>
+    </form>
+    <div id="results"></div>
+  </section>
+</div>
+
+<button class="back-to-top" onclick="scrollToTop()">
+  <i class="fas fa-arrow-up"></i>
+</button>
+
+<script>
+  // Scroll to Top
+  window.addEventListener("scroll", () => {
+    document.querySelector(".back-to-top").style.display =
+      window.pageYOffset > 200 ? "block" : "none";
+  });
+
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  // BMI and BMR Calculation
+  document.getElementById("personal-info-form").addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  const age = parseFloat(document.getElementById("age").value);
+  const weight = parseFloat(document.getElementById("weight").value);
+  const height = parseFloat(document.getElementById("height").value);
+  const gender = document.getElementById("gender").value;
+
+  // Convert height to meters if entered in centimeters
+  const heightInMeters = height / 100;
+
+  // Calculate BMI
+  const BMI = weight / (heightInMeters * heightInMeters);
+
+  // Calculate BMR based on gender
+  const BMR = gender === "male"
+    ? 10 * weight + 6.25 * height - 5 * age + 5
+    : 10 * weight + 6.25 * height - 5 * age - 161;
+
+  // Determine BMI category
+  let bmiCategory;
+  if (BMI < 18.5) bmiCategory = "Underweight";
+  else if (BMI < 25) bmiCategory = "Normal weight";
+  else if (BMI < 30) bmiCategory = "Overweight";
+  else bmiCategory = "Obese";
+
+  // Display results
+  document.getElementById("personal-info-results").innerHTML = `
+    <h2>BMI and BMR Results</h2>
+    <p><strong>BMI:</strong> ${BMI.toFixed(2)} (${bmiCategory})</p>
+    <p><strong>BMR:</strong> ${BMR.toFixed(2)} kcal/day</p>
+  `;
+  document.getElementById("personal-info-results").style.display = "block";
+});
+
+  // Diet Plan Fetching
+  document.getElementById("dietForm").addEventListener("submit", async function (event) {
         event.preventDefault();
 
-        const age = parseFloat(personalInfoForm.elements["age"].value);
-        const weight = parseFloat(personalInfoForm.elements["weight"].value);
-        const height = parseFloat(personalInfoForm.elements["height"].value);
-        const gender = personalInfoForm.elements["gender"].value;
-        const activityLevel = personalInfoForm.elements["activity-level"].value;
-        //const activityLevelInt = parseInt(activityLevel);
+        const dietType = document.getElementById("dietType").value;
+        const weightGoal = document.getElementById("weightGoal").value;
 
-        const activityLevels = {
-          sedentary: 1,
-          "lightly active": 2,
-          "moderately active": 3,
-          "very active": 4,
-          "extra active": 5,
-        };
-
-        const activityLevelInt = activityLevels[activityLevel.toLowerCase()];
-
-        // Calculate BMI and BMR
-        const BMI = weight / (height * height);
-        const BMR =
-          gender === "male"
-            ? 10 * weight + 6.25 * height - 5 * age + 5
-            : 10 * weight + 6.25 * height - 5 * age - 161;
-
-        // Determine BMI tags
-        let BMITags = "";
-        if (BMI < 18.5) {
-          BMITags = "Underweight";
-        } else if (BMI >= 18.5 && BMI < 25) {
-          BMITags = "Normal weight";
-        } else if (BMI >= 25 && BMI < 30) {
-          BMITags = "Overweight";
-        } else {
-          BMITags = "Obese";
-        }
-
-        // Calculate macronutrient ratio based on BMI tags
-        let carb_ratio, protein_ratio, fat_ratio;
-        if (BMITags.includes("Underweight")) {
-          carb_ratio = 55;
-          protein_ratio = 20;
-          fat_ratio = 25;
-        } else if (BMITags.includes("Normal weight")) {
-          carb_ratio = 50;
-          protein_ratio = 25;
-          fat_ratio = 25;
-        } else if (BMITags.includes("Overweight")) {
-          carb_ratio = 45;
-          protein_ratio = 30;
-          fat_ratio = 25;
-        } else {
-          // Obese
-          carb_ratio = 40;
-          protein_ratio = 30;
-          fat_ratio = 30;
-        }
-        // Calculate daily calorie intake needed to maintain weight
-        let calories_to_maintain_weight;
-        if (gender === "male") {
-          calories_to_maintain_weight = Math.round(
-            BMR * activityLevelInt + 6.25 * height * 100 - 5 * age + 5
+        try {
+          const response = await fetch(
+            `http://127.0.0.1:8000/get_diet_plan/?diet_type=${dietType}&weight_goal=${weightGoal}`
           );
-        } else {
-          calories_to_maintain_weight = Math.round(
-            BMR * activityLevelInt + 6.25 * height * 100 - 5 * age - 161
-          );
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+
+          const data = await response.json();
+          document.getElementById("results").innerHTML = ""; // Clear previous results
+          const mealTypes = ["breakfast", "lunch", "dinner"];
+
+          mealTypes.forEach((meal) => {
+            const suggestions = data.suggestions[meal];
+            const mealSection = document.createElement("div");
+            mealSection.className = "meal-section";
+
+            // Add a heading for each meal
+            const mealHeading = document.createElement("h2");
+            mealHeading.textContent = meal.charAt(0).toUpperCase() + meal.slice(1);
+            mealSection.appendChild(mealHeading);
+
+            // Check if there are suggestions for the meal
+            if (suggestions && suggestions.length > 0) {
+              let tableHtml = `
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Food Items</th>
+                      <th>Calories</th>
+                      <th>Proteins</th>
+                      <th>Fats</th>
+                      <th>Carbohydrates</th>
+                    </tr>
+                  </thead>
+                  <tbody>`;
+
+              suggestions.forEach((item) => {
+                tableHtml += `
+                  <tr>
+                    <td>${item.Food_items}</td>
+                    <td>${item.Calories}</td>
+                    <td>${item.Proteins}</td>
+                    <td>${item.Fats}</td>
+                    <td>${item.Carbohydrates}</td>
+                  </tr>`;
+              });
+
+              tableHtml += "</tbody></table>";
+              mealSection.innerHTML += tableHtml;
+            } else {
+              mealSection.innerHTML += "<p>No suggestions available</p>";
+            }
+
+            document.getElementById("results").appendChild(mealSection);
+          });
+        } catch (error) {
+          console.error("Error fetching diet plan:", error);
         }
-
-        // Calculate the required daily intake of carbohydrates, protein, and fat based on the calorie intake
-        let required_carbs = Math.round(
-          ((carb_ratio / 100) * calories_to_maintain_weight) / 4
-        ); // 4 calories per gram of carbohydrates
-        let required_protein = Math.round(
-          ((protein_ratio / 100) * calories_to_maintain_weight) / 4
-        ); // 4 calories per gram of protein
-        let required_fat = Math.round(
-          ((fat_ratio / 100) * calories_to_maintain_weight) / 9
-        ); // 9 calories per gram of fat
-
-        // Display results
-        personalInfoResults.innerHTML = `
-    <h2>Hey, we have calculated few metrics to analyze your health!</h2>
-
-
-        <p>Activity Level: ${activityLevel}</p>
-        <p>BMI: ${BMI.toFixed(2)}</p>
-        <p>BMR: ${BMR.toFixed(2)} kcal/day</p>
-        <p>BMI Tags: ${BMITags}</p>
-        <p>Calories to maintain weight: ${calories_to_maintain_weight}</p>
-        <p>Required daily intake of carbohydrates: ${required_carbs} grams</p>
-        <p>Required daily intake of protein: ${required_protein} grams</p>
-        <p>Required daily intake of fat: ${required_fat} grams</p>
-
-        <h4>Based on your personal information, we can create a customized meal plan to help you achieve your health goals.</h4>
-
-    `;
-
-        personalInfoResults.style.display = "block";
-        planMyDietDiv.style.display = "block";
-      });
-
-      const planMyDietButton = document.querySelector("#plan-my-diet-button");
-
-      planMyDietButton.addEventListener("click", () => {
-        // TODO: implement diet planning algorithm
-      });
-    </script>
-    <script>
-      // Logout button click event
-      document.getElementById("logoutButton").addEventListener("click", (e) => {
-        e.preventDefault();
-        // Remove the token from localStorage
-        localStorage.removeItem("token");
-
-        // Redirect to the login page or perform any other necessary actions
-        window.location.href = "/";
       });
     </script>
   </body>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diet Plan</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Make sure styles.css exists -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            margin-right: 10px;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .meal-section {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <h1>Diet Plan Generator</h1>
+    <form id="dietForm">
+        <label for="dietType">Diet Type:</label>
+        <select id="dietType">
+            <option value="0">Vegetarian</option>
+            <option value="1">Non-Vegetarian</option>
+        </select>
+        <label for="weightGoal">Weight Goal:</label>
+        <select id="weightGoal">
+            <option value="gain">Gain</option>
+            <option value="lose">Lose</option>
+            <option value="healthy">Healthy</option>
+        </select>
+        <button type="submit">Get Diet Plan</button>
+    </form>
+    <div id="results"></div>
+
+    <script>
+        document.getElementById('dietForm').addEventListener('submit', async function (event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            const dietType = document.getElementById('dietType').value;
+            const weightGoal = document.getElementById('weightGoal').value;
+
+            try {
+                const response = await fetch(`http://127.0.0.1:8000/get_diet_plan/?diet_type=${dietType}&weight_goal=${weightGoal}`);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+
+                // Clear previous results
+                document.getElementById('results').innerHTML = '';
+
+                // Display results in separate sections for each meal
+                const mealTypes = ['breakfast', 'lunch', 'dinner'];
+                mealTypes.forEach(meal => {
+                    const suggestions = data.suggestions[meal];
+                    const mealSection = document.createElement('div');
+                    mealSection.className = 'meal-section';
+
+                    const mealHeading = document.createElement('h2');
+                    mealHeading.textContent = meal.charAt(0).toUpperCase() + meal.slice(1);
+                    mealSection.appendChild(mealHeading);
+
+                    if (suggestions.length > 0) {
+                        let tableHtml = '<table><thead><tr><th>Food Items</th><th>Calories</th><th>Proteins</th><th>Fats</th><th>Carbohydrates</th></tr></thead><tbody>';
+                        suggestions.forEach(item => {
+                            tableHtml += `<tr>
+                                <td>${item.Food_items}</td>
+                                <td>${item.Calories}</td>
+                                <td>${item.Proteins}</td>
+                                <td>${item.Fats}</td>
+                                <td>${item.Carbohydrates}</td>
+                            </tr>`;
+                        });
+                        tableHtml += '</tbody></table>';
+                        mealSection.innerHTML += tableHtml;
+                    } else {
+                        mealSection.innerHTML += `<p>No suggestions available</p>`;
+                    }
+
+                    document.getElementById('results').appendChild(mealSection);
+                });
+            } catch (error) {
+                console.error('Error fetching diet plan:', error);
+            }
+        });
+    </script>
+</body>
+</html>
