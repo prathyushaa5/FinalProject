@@ -1,0 +1,89 @@
+.footer {
+  background-color: #fff; /* or use a background image like in your main section */
+  padding: 60px 0;
+}
+
+.footer .outer {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer .inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.footer .bg {
+  background-size: cover;
+  background-position: center;
+}
+
+.footer .info-content {
+  text-align: center;
+  padding: 20px;
+}
+
+.footer h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.footer p {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.footer .tag-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.footer .tag-container span {
+  margin: 10px;
+  font-size: 14px;
+  color: #333;
+}
+
+.footer .box-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+
+.footer .box {
+  width: 30%;
+}
+
+.footer .box h3 {
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.footer .box a {
+  display: block;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.footer .box a:hover {
+  color: #007bff;
+}
+
+.footer .share a {
+  margin-right: 10px;
+  font-size: 20px;
+  color: #333;
+}
+
+.footer .credit {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 14px;
+}
+
+.footer .credit a {
+  color: #007bff;
+}
