@@ -2,38 +2,40 @@ const express = require('express');
 const session = require('express-session');
 const app = express();
 
-var cors = require('cors');
+const cors = require('cors');
 const conn = require('./config/db');
 
-app.use(cors());
-//app.use(cors({origin:"http://18.191.166.16:8080", credentials:true}));
+// Configure CORS to allow requests from your frontend
+app.use(cors({
+  origin: 'http://localhost:8080', // Replace with your frontend's origin
+  credentials: true // If your frontend makes requests with credentials (like cookies or sessions)
+}));
 
-app.get('/',(req,res) => res.send('API Running'));
+app.get('/', (req, res) => res.send('API Running'));
 
+// Connect to database
 conn.connectDB();
 
-// Init Middleware
+// Init Middleware for parsing JSON
 app.use(express.json());
 
-app.get('/test_api',async function(req,res){
-    await connection.query('SELECT * from users', async function(error,results){
-        if(error){
+app.get('/test_api', async function(req, res) {
+    await conn.query('SELECT * from users', async function(error, results) {
+        if (error) {
             res.writeHead(200, {
-                'Content-Type': 'text-plain'
+                'Content-Type': 'text/plain'
             });
             res.send(error.code);
-        }else{
-            res.writeHead(200,{
-                'Content-Type': 'text/plain'
+        } else {
+            res.writeHead(200, {
+                'Content-Type': 'application/json'
             });
             res.end(JSON.stringify(results));
         }
     });
 });
 
-
-
-//Defining Routes
+// Define Routes
 app.use('/api', require('./routes/UserRoute'));
 app.use('/exercise', require('./routes/ExerciseRoute'));
 app.use('/email', require('./routes/EmailRoute'));

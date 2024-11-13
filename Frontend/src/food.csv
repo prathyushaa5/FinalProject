@@ -1,4 +1,4 @@
-Food_items,Breakfast,Lunch,Dinner,VegNovVeg,Calories,Fats,Proteins,Iron,Calcium,Sodium,Potassium,Carbohydrates,Fibre,VitaminD,Sugars
+Food_items,Breakfast,Lunch,Dinner,VegNonVeg,Calories,Fats,Proteins,Iron,Calcium,Sodium,Potassium,Carbohydrates,Fibre,VitaminD,Sugars
 Asparagus Cooked,0,1,1, ,22,0.2,2.4,0.91,23,14,224,4.1,2,0,1.3
 Avocados,1,0,0,0,160,15,2,0.55,12,7,485,8.5,6.7,0,0.7
 Bananas,1,0,0,0,89,0.3,1.1,0.26,5,1,358,23,2.6,0,12
@@ -79,6 +79,7 @@ Nachos,1,1,1,0,350,22,4.3,0.75,63,313,362,35,3.2,0,2.2
 Chicken Popcorn,0,1,1,1,351,22,18,1.42,32,1140,288,21,1,0,0
 Turkey cooked,0,1,1,1,203,10,27,1.52,28,78,294,0,0,8,0
 Oyster cooked,0,1,1,1,159,4,29,4.9,6,81,409,0,0,0,0
+Beef sticks,1,0,0,1,550,50,22,3.4,68,1531,257,5.4,0,0,0
 Banana Chips,1,0,0,0,519,34,2.3,1.25,18,6,536,58,7.7,0,35
 Honey,1,0,1,0,304,0,0.3,0.42,6,4,52,82,0.2,0,82
 Chocolate Icecream,0,0,1,0,216,11,3.8,0.93,109,76,249,28,1.2,0,25
