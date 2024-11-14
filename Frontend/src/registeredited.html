@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="./css/register.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+  </head>
+  <body>
+    <h2>Sign in/up Form</h2>
+    <div class="container" id="container">
+      <!-- Sign-Up Form -->
+      <div class="form-container sign-up-container">
+        <form id="register-form">
+          <h1>Create Account</h1>
+          <!-- <div class="social-container">
+            <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+            <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+          <span>or use your email for registration</span> -->
+
+          <!-- Username Input -->
+          <input type="text" id="username" placeholder="Username" required />
+          <p
+            id="username-error-message"
+            class="errmsg"
+            style="display: none; color: red"
+          >
+            Invalid Username. Should contain minimum 5 characters
+          </p>
+          <!-- <p id="username-label-message" class="lblmsg minimal">
+            Username should be between 5-15 characters
+          </p> -->
+
+          <!-- Email Input -->
+          <input type="email" id="email" placeholder="Email" required />
+          <p
+            id="email-error-message"
+            class="errmsg"
+            style="display: none; color: red"
+          >
+            Invalid Email
+          </p>
+
+          <!-- Password Input -->
+          <input
+            type="password"
+            id="password"
+            placeholder="Password"
+            required
+          />
+          <button class="btn bg-white text-muted" id="show-password">
+            <span class="far fa-eye-slash"></span>
+          </button>
+          <!-- <p id="password-label-message" class="lblmsg minimal">
+            Password must be at least 8 characters, including one uppercase, one lowercase, one digit, and one special character.
+          </p> -->
+          <p id="password-strength-message" class="errmsg"></p>
+
+          <!-- Register Button -->
+          <button type="submit">Sign Up</button>
+          <p id="error-message2" style="display: none; color: red">
+            User Already Exists
+          </p>
+        </form>
+      </div>
+
+      <!-- Sign-In Form -->
+      <div class="form-container sign-in-container">
+        <form action="#" id="login-form">
+          <h1>Sign in</h1>
+          <!-- <div class="social-container">
+            <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+            <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+          </div> -->
+          <!-- <span>or use your account</span> -->
+          <input
+            type="text"
+            placeholder="Username or Email"
+            id="username"
+            name="username"
+            required
+          />
+
+          <input
+            type="password"
+            placeholder="Password"
+            id="password"
+            name="password"
+            required
+          />
+          <a href="#">Forgot your password?</a>
+          <button type="submit">Sign In</button>
+        </form>
+        <p id="error-message" style="display: none; color: red">
+          Incorrect credentials
+        </p>
+      </div>
+
+      <div class="overlay-container">
+        <div class="overlay">
+          <div class="overlay-panel overlay-left">
+            <h1>Welcome Back!</h1>
+            <p>
+              To keep connected with us please login with your personal info
+            </p>
+            <button class="ghost" id="signIn">Sign In</button>
+          </div>
+          <div class="overlay-panel overlay-right">
+            <h1>Hello, Friend!</h1>
+            <p>Enter your personal details and start your journey with us</p>
+            <button class="ghost" id="signUp">Sign Up</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>
+        Created by
+        <a target="_blank" href="https://florin-pop.com">Gen&Zen Team</a>.
+      </p>
+    </footer>
+
+    <script src="./js/register.js"></script>
+    <script src="./js/signup.js"></script>
+    <script src="./js/login.js"></script>
+  </body>
+</html>
