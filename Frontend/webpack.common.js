@@ -9,68 +9,68 @@ module.exports = {
       filename: "index.html",
     }),
     new HtmlWebpackPlugin({
-      template: './src/contact.html',
-      filename: 'contact.html'
+      template: "./src/contact.html",
+      filename: "contact.html",
     }),
     new HtmlWebpackPlugin({
-      template: './src/login.html',
-      filename: 'login.html'
+      template: "./src/login.html",
+      filename: "login.html",
     }),
     new HtmlWebpackPlugin({
-      template: './src/templatecopy.html',
-      filename: 'temp.html'
+      template: "./src/templatecopy.html",
+      filename: "temp.html",
     }),
     new HtmlWebpackPlugin({
-      template: './src/dashboard.html',
-      filename: 'dashboard.html'
+      template: "./src/dashboard.html",
+      filename: "dashboard.html",
     }),
     new HtmlWebpackPlugin({
-      template: './src/register.html',
-      filename: 'register.html'
+      template: "./src/register.html",
+      filename: "register.html",
     }),
     new HtmlWebpackPlugin({
-      template: './src/user_activity.html',
-      filename: 'user_activity.html'
+      template: "./src/user_activity.html",
+      filename: "user_activity.html",
     }),
     new HtmlWebpackPlugin({
-      template: './src/user_activity_graph.html',
-      filename: 'user_activity_graph.html'
+      template: "./src/user_activity_graph.html",
+      filename: "user_activity_graph.html",
     }),
     new HtmlWebpackPlugin({
-      template: './src/pri.html',
-      filename: 'pri.html'
+      template: "./src/pri.html",
+      filename: "pri.html",
     }),
     new HtmlWebpackPlugin({
-      template: './src/yash.html',
-      filename: 'yash.html'
+      template: "./src/yash.html",
+      filename: "yash.html",
     }),
     new HtmlWebpackPlugin({
-      template: './src/bmi.html',
-      filename: 'bmi.html'
+      template: "./src/bmi.html",
+      filename: "bmi.html",
     }),
     new HtmlWebpackPlugin({
-      template: './src/about.html',
-      filename: 'about.html'
+      template: "./src/about.html",
+      filename: "about.html",
     }),
     new HtmlWebpackPlugin({
-      template: './src/blog.html',
-      filename: 'blog.html'
+      template: "./src/blog.html",
+      filename: "blog.html",
     }),
     new HtmlWebpackPlugin({
-      template: './src/bmi.html',
-      filename: 'bmi.html'
+      template: "./src/bmi.html",
+      filename: "bmi.html",
     }),
     new HtmlWebpackPlugin({
-      template: './src/aboutus.html',
-      filename: 'aboutus.html'
+      template: "./src/aboutus.html",
+      filename: "aboutus.html",
     }),
     new HtmlWebpackPlugin({
-      template: './src/contactus.html',
-      filename: 'contactus.html'
+      template: "./src/contactus.html",
+      filename: "contactus.html",
     }),
     new HtmlWebpackPlugin({
-      template: './src/iindex.html',
-      filename: 'iindex.html'
+      template: "./src/iindex.html",
+      filename: "iindex.html",
     }),
   ],
   devServer: {

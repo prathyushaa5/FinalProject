@@ -24,17 +24,22 @@
   },
   "homepage": "https://github.com/yashwanth6/295A_HPE#readme",
   "devDependencies": {
+    "babel-loader": "^9.2.1",
+    "css-loader": "^7.1.2",
     "eslint": "^8.32.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-import": "^2.27.4",
     "eslint-plugin-prettier": "^4.2.1",
-    "html-webpack-plugin": "^5.5.0",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.6.3",
+    "mini-css-extract-plugin": "^2.9.2",
     "prettier": "^2.8.3",
+    "style-loader": "^4.0.0",
     "tailwindcss": "^3.2.4",
     "webpack": "^5.96.1",
     "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^4.11.1",
+    "webpack-dev-server": "^4.15.2",
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
@@ -62,5 +67,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://18.191.166.16:5000/"
+  "proxy": "http://localhost:5000/"
 }

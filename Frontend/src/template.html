@@ -1,49 +1,109 @@
-<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/x-icon" href="./img/ai.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home Page</title>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- Tailwind CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css" />
-    <!-- Swiper CSS -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
-    />
-    <!-- Ionicons CDN -->
-    <script
-      type="module"
-      src="https://cdn.jsdelivr.net/npm/ionicons@7.1.1/dist/ionicons/ionicons.esm.js"
-    ></script>
-    <script
-      nomodule
-      src="https://cdn.jsdelivr.net/npm/ionicons@7.1.1/dist/ionicons/ionicons.js"
-    ></script>
     <!-- Font Awesome -->
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
     />
-    <!-- Favicon -->
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@6.0.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@6.0.0/dist/ionicons/ionicons.js"
+    ></script>
     <link
-      id="favicon"
-      rel="shortcut icon"
-      href="./favicon-16x16.png"
-      type="image/x-png"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      rel="stylesheet"
     />
     <style>
-      /* template code starts */
-      @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&family=Permanent+Marker&family=Tilt+Neon&display=swap");
+      :root {
+        /**
+   * colors
+   */
+
+        --st-patricks-blue: hsl(236, 57%, 28%);
+        --amaranth-purple: hsl(335, 88%, 38%);
+        --royal-blue-dark: hsl(231, 68%, 21%);
+        --chrome-yellow: hsl(39, 100%, 52%);
+        --space-cadet-1: hsl(230, 41%, 25%);
+        --space-cadet-2: hsl(230, 59%, 16%);
+        --winter-sky_50: hsla(335, 87%, 53%, 0.5);
+        --purple-navy: hsl(236, 26%, 43%);
+        --ksu-purple: hsl(275, 54%, 33%);
+        --winter-sky: hsl(335, 87%, 53%);
+        --razzmatazz: hsl(335, 87%, 51%);
+        --platinum: hsl(0, 0%, 90%);
+        --black_70: hsla(0, 0%, 0%, 0.7);
+        --rajah: hsl(29, 99%, 67%);
+        --white: hsl(0, 0%, 100%);
+
+        --gradient-1: linear-gradient(
+          90deg,
+          var(--royal-blue-dark) 0,
+          var(--ksu-purple) 51%,
+          var(--royal-blue-dark)
+        );
+        --gradient-2: linear-gradient(90deg, var(--razzmatazz), var(--rajah));
+
+        /**
+   * typography
+   */
+
+        --ff-source-sans-pro: "Source Sans Pro", sans-serif;
+        --ff-poppins: "Poppins", sans-serif;
+
+        --fs-1: 4.2rem;
+        --fs-2: 3.8rem;
+        --fs-3: 3.2rem;
+        --fs-4: 2.5rem;
+        --fs-5: 2.4rem;
+        --fs-6: 2rem;
+        --fs-7: 1.8rem;
+        --fs-8: 1.5rem;
+
+        --fw-500: 500;
+        --fw-600: 600;
+        --fw-700: 700;
+
+        /**
+   * border radius
+   */
+
+        --radius-4: 4px;
+        --radius-12: 12px;
+
+        /**
+   * spacing
+   */
+
+        --section-padding: 60px;
+
+        /**
+   * transition
+   */
+
+        --transition-1: 0.15s ease;
+        --transition-2: 0.35s ease;
+        --cubic-in: cubic-bezier(0.51, 0.03, 0.64, 0.28);
+        --cubic-out: cubic-bezier(0.33, 0.85, 0.56, 1.02);
+
+        /**
+   * shadow
+   */
+
+        --shadow: 0 5px 20px 1px hsla(220, 63%, 33%, 0.1);
+      }
+
+      /*-----------------------------------*\
+  #RESET
+\*-----------------------------------*/
 
       *,
       *::before,
@@ -53,1369 +113,1805 @@
         box-sizing: border-box;
       }
 
-      section {
-        height: 100%;
-        width: 100%;
-        top: 0;
-        position: fixed;
-        visibility: hidden;
-      }
-
-      section .outer,
-      section .inner {
-        width: 100%;
-        height: 100%;
-        overflow-y: hidden;
-      }
-
-      section .bg {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: absolute;
-        height: 100%;
-        width: 100%;
-        top: 0;
-      }
-
-      /* HOME */
-
-      .home {
-        position: relative;
-        display: flex;
-        align-items: center;
-        min-height: 100vh;
-        background: rgb(72, 182, 153);
-        background-image: linear-gradient(
-          90deg,
-          rgba(72, 182, 153, 0.8) 10%,
-          rgba(56, 143, 168, 0.8) 48%,
-          rgba(94, 73, 214, 0.8) 98%
-        );
-      }
-
-      .home > img {
-        position: absolute;
-        right: 3%;
-        bottom: 0;
-        width: 100%;
-        max-width: 900px;
-        z-index: 5;
-      }
-
-      .home-content {
-        position: absolute;
-        left: 7%;
-        font-family: "Nunito", sans-serif;
-        width: min(500px, 100%);
-        color: #fff;
-        z-index: 5;
-      }
-
-      .home-content > h1 {
-        font-family: inherit;
-        font-size: 3rem;
-        font-weight: 700;
-        margin-bottom: 20px;
-      }
-
-      .music-note-icon {
-        color: #fff;
-        font-size: 3rem;
-      }
-
-      .home-content > p {
-        font-family: inherit;
-        font-size: 1.2rem;
-        font-weight: 600;
-        line-height: 1.5;
-        margin-bottom: 30px;
-      }
-
-      /* HOME - SCROLL */
-
-      .scroll {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        -ms-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%);
-        overflow-x: hidden;
-        scrollbar-width: none;
-        width: 100%;
-      }
-
-      .scroll p {
-        font-family: "Tilt Neon", sans-serif;
-        font-size: 9rem;
-        font-weight: 500;
-        background: rgba(255, 255, 255, 0.3);
-        color: transparent;
-        background-size: contain;
-        background-clip: text;
-        -webkit-background-clip: text;
-        line-height: 80%;
-      }
-
-      .scroll p:nth-child(1) {
-        animation: scrolling-rtl 25s infinite linear;
-        margin-bottom: 210px;
-      }
-
-      .scroll p:nth-child(2) {
-        animation: scrolling-ltr 25s infinite linear;
-      }
-
-      @keyframes scrolling-rtl {
-        0% {
-          transform: translateX(100%);
-        }
-
-        100% {
-          transform: translateX(-100%);
-        }
-      }
-
-      @keyframes scrolling-ltr {
-        0% {
-          transform: translateX(-100%);
-        }
-
-        100% {
-          transform: translateX(100%);
-        }
-      }
-
-      /* HOME - LINKS */
-
-      .links {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 10px;
-      }
-
-      .links li {
-        list-style-type: none;
-        text-decoration: none;
-      }
-
-      .links li a {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: #6f66c7;
-        border-radius: 50%;
-        padding: 15px;
-        color: #fff;
-        transition: background-color 0.2s linear;
-      }
-
-      .links li a .icon {
-        color: #fff;
-        font-size: 1.3rem;
-      }
-
-      .links li a:hover {
-        background-color: #257381;
-      }
-
-      .links li a:hover .icon {
-        animation: slide-icon 1s linear 1;
-      }
-
-      @keyframes slide-icon {
-        49% {
-          transform: translateX(-18px);
-          opacity: 0;
-        }
-        50% {
-          transform: translateX(18px);
-        }
-        80% {
-          transform: translateX(0);
-          opacity: 1;
-        }
-      }
-
-      .mouse-move {
-        position: absolute;
-        max-width: 70px;
-        bottom: 25px;
-        left: 50%;
-        -ms-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%);
-        animation: mouse-move 1.5s linear infinite;
-      }
-
-      @keyframes mouse-move {
-        0%,
-        50%,
-        100% {
-          transform: translateY(0);
-        }
-
-        12.5%,
-        37.5% {
-          transform: translateY(3px);
-        }
-
-        25% {
-          transform: translateY(8px);
-        }
-      }
-
-      /* CONTENT */
-
-      .content {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        width: 100%;
-        background: #fff;
-        background-image: radial-gradient(
-            at 46.6% 46.9%,
-            hsl(267, 50%, 84%) 0px,
-            transparent 50%
-          ),
-          radial-gradient(at 28.5% 71%, hsl(312, 73%, 85%) 0px, transparent 50%),
-          radial-gradient(
-            at 65.9% 75.2%,
-            hsl(146, 68%, 88%) 0px,
-            transparent 50%
-          );
-      }
-
-      .swiper {
-        width: 100%;
-        padding-top: 50px;
-        padding-bottom: 50px;
-      }
-
-      .swiper-slide {
-        display: grid;
-        grid-template-rows: 4fr 1fr;
-        max-width: 350px;
-        object-fit: cover;
-        padding: 15px;
-        border-radius: 10px;
-        background-color: #eaeaea;
-        box-shadow: 0 0.5px 0 1px rgba(255, 255, 255, 0.23) inset,
-          0 1px 0 0 rgba(255, 255, 255, 0.66) inset,
-          0 4px 16px rgba(0, 0, 0, 0.12);
-        user-select: none;
-      }
-
-      .swiper-slide img {
-        width: 100%;
-        aspect-ratio: 1/1;
-        object-fit: cover;
-        border-radius: 5px;
-        filter: saturate(0.9) contrast(0.85) brightness(1.05);
-        margin-bottom: 15px;
-      }
-
-      .title {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        font-family: "Permanent Marker", cursive;
-        transform: rotate(355deg);
-      }
-
-      .swiper-pagination {
-        --swiper-pagination-color: #7f31ac;
-        --swiper-pagination-bullet-size: 10px;
-        --swiper-pagination-bullet-horizontal-gap: 5px;
-      }
-
-      /* INFO */
-
-      .info {
-        display: -ms-flexbox;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        gap: 150px;
-        width: 100%;
-        min-height: 100vh;
-        font-family: "Nunito", sans-serif;
-        background-image: linear-gradient(
-          45deg,
-          #e09ad6 0%,
-          #c3af31 30%,
-          #efdf79 60%,
-          #6ec99f 100%
-        );
-      }
-
-      .info img {
-        width: 100%;
-        max-width: 400px;
-        filter: drop-shadow(0 0 0.8rem #6ec99f);
-        transform: rotate(-25deg);
-      }
-
-      .info img:hover {
-        animation: rotating 1s ease 1 reverse;
-      }
-
-      @keyframes rotating {
-        0% {
-          transform: rotate(360deg);
-        }
-
-        100% {
-          transform: rotate(0deg);
-        }
-      }
-
-      .info-content {
-        display: flex;
-        flex-direction: column;
-        gap: 35px;
-        padding: 40px 50px;
-        background: rgba(255, 255, 255, 0.9);
-        backdrop-filter: blur(70px);
-        border-radius: 20px;
-        width: min(500px, 100%);
-        box-shadow: 0 0.5px 0 1px rgba(255, 255, 255, 0.23) inset,
-          0 1px 0 0 rgba(255, 255, 255, 0.66) inset,
-          0 4px 16px rgba(0, 0, 0, 0.12);
-      }
-
-      .info-content h1 {
-        font-size: 2.5rem;
-        font-weight: 800;
-        line-height: 1;
-        letter-spacing: 1.4;
-        color: #6ec99f;
-        text-align: center;
-      }
-
-      .info-content p {
-        font-size: 1.1rem;
-        font-weight: 500;
-        color: #4b5563;
-        text-align: center;
-      }
-
-      .tag-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 10px;
-      }
-
-      .tag-container span {
-        font-size: 1rem;
-        font-weight: 500;
-        border-radius: 5px;
-        background: linear-gradient(
-          90deg,
-          #e09ad6 0%,
-          #e4b49b 20%,
-          #ede302 50%,
-          #6ec99f 80%
-        );
-        color: #4b5563;
-        padding: 5px 8px;
-      }
-
-      @media (max-width: 1500px) {
-        .home > img {
-          max-width: 600px;
-        }
-
-        .scroll p {
-          font-size: 7rem;
-        }
-
-        .scroll p:nth-child(1) {
-          margin-bottom: 300px;
-        }
-      }
-
-      @media (max-width: 1200px) {
-        .home > img {
-          right: 2%;
-          max-width: 500px;
-        }
-
-        .home-content {
-          width: min(400px, 100%);
-        }
-
-        .home-content > h1 {
-          font-size: 2.7rem;
-        }
-
-        .music-note-icon {
-          font-size: 3rem;
-        }
-
-        .home-content > p {
-          font-size: 1.1rem;
-        }
-
-        .scroll p {
-          font-size: 6rem;
-        }
-      }
-
-      @media (max-width: 1000px) {
-        .home-content {
-          width: min(350px, 100%);
-        }
-
-        .info {
-          gap: 100px;
-          padding: 20px;
-        }
-
-        .info img {
-          max-width: 300px;
-        }
-
-        .info-content h1 {
-          font-size: 2rem;
-        }
-
-        .info-content p {
-          font-size: 1rem;
-        }
-
-        .scroll p {
-          font-size: 5rem;
-        }
-
-        .tag-container {
-          gap: 10px;
-        }
-      }
-
-      @media (max-width: 900px) {
-        .home > img {
-          right: 2%;
-          max-width: 400px;
-        }
-
-        .home-content {
-          top: 10%;
-        }
-
-        .music-note-icon {
-          font-size: 2rem;
-        }
-
-        .home-content > p {
-          font-size: 1.1rem;
-          margin-bottom: 30px;
-        }
-
-        .scroll p {
-          font-size: 4rem;
-        }
-
-        .scroll p:nth-child(1) {
-          margin-bottom: 200px;
-        }
-
-        .info-content {
-          gap: 15px;
-          padding: 30px 30px;
-        }
-      }
-
-      @media (max-width: 800px) {
-        .home > img {
-          max-width: 350px;
-        }
-
-        .info {
-          flex-direction: column;
-          padding: 50px 20px;
-        }
-
-        .info {
-          gap: 70px;
-          padding: 20px;
-        }
-
-        .info img {
-          max-width: 250px;
-        }
-
-        .info-content h1 {
-          font-size: 1.5rem;
-        }
-
-        .info-content p {
-          font-size: 0.8rem;
-        }
-
-        .tag-container span {
-          font-size: 0.8rem;
-        }
-      }
-
-      @media (max-width: 660px) {
-        .home > img {
-          right: 3%;
-          max-width: 300px;
-        }
-
-        .home-content {
-          margin-right: 30px;
-        }
-
-        .home-content > h1 {
-          font-size: 2.5rem;
-        }
-
-        .scroll p {
-          font-size: 3rem;
-        }
-      }
-
-      @media (max-width: 500px) {
-        .home > img {
-          max-width: 250px;
-        }
-
-        .home-content > h1 {
-          font-size: 2rem;
-        }
-
-        .scroll p {
-          font-size: 2rem;
-        }
-
-        .scroll p:nth-child(1) {
-          margin-bottom: 90px;
-        }
-
-        .links li a {
-          padding: 10px;
-        }
-
-        .links li a .icon {
-          font-size: 1rem;
-        }
-
-        .info {
-          gap: 40px;
-        }
-
-        .info img {
-          margin-top: 50px;
-          max-width: 190px;
-        }
-
-        .info-content {
-          gap: 20px;
-          padding: 30px 20px;
-          margin-bottom: 50px;
-        }
-      }
-
-      /* template code ends */
-
-      /* Register css starts */
-
-      @import url("https://fonts.googleapis.com/css?family=Montserrat:400,800");
-
-      * {
-        box-sizing: border-box;
-      }
-
-      body {
-        background: #f6f5f7;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        font-family: "Montserrat", sans-serif;
-        height: 100vh;
-        margin: 0;
-      }
-
-      h1 {
-        font-weight: bold;
-        margin: 0;
-        padding-bottom: 24px;
-      }
-
-      h2 {
-        text-align: center;
-      }
-
-      p {
-        font-size: 14px;
-        font-weight: 100;
-        line-height: 20px;
-        letter-spacing: 0.5px;
-        margin: 20px 0 30px;
-        word-wrap: break-word; /* Ensure text wraps within container */
-      }
-
-      span {
-        font-size: 12px;
-        word-wrap: break-word; /* Prevent overflow */
+      li {
+        list-style: none;
       }
 
       a {
-        color: #333;
-        font-size: 14px;
         text-decoration: none;
-        margin: 15px 0;
+      }
+
+      a,
+      img,
+      span,
+      input,
+      button,
+      ion-icon {
+        display: block;
+      }
+
+      button,
+      input {
+        background: none;
+        border: none;
+        font: inherit;
       }
 
       button {
-        border-radius: 20px;
-        border: 1px solid #ff4b2b;
-        background-color: #ff4b2b;
-        color: #ffffff;
-        font-size: 12px;
-        font-weight: bold;
-        padding: 12px 45px;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        transition: transform 80ms ease-in;
-      }
-
-      button:active {
-        transform: scale(0.95);
-      }
-
-      button:focus {
-        outline: none;
-      }
-
-      button.ghost {
-        background-color: transparent;
-        border-color: #ffffff;
-      }
-
-      form {
-        background-color: #ffffff;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        padding: 20px;
-        height: 100%;
-        text-align: center;
-        overflow: hidden;
+        cursor: pointer;
       }
 
       input {
-        background-color: #eee;
-        border: none;
-        padding: 12px 15px;
-        margin: 8px 0;
-        width: 90%;
-        border-radius: 5px;
-        font-size: 14px;
-        max-width: 100%;
+        width: 100%;
       }
+
+      ion-icon {
+        pointer-events: none;
+      }
+
+      img {
+        height: auto;
+      }
+
+      address {
+        font-style: normal;
+      }
+
+      html {
+        font-family: var(--ff-poppins);
+        font-size: 10px;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background-color: var(--white);
+        color: var(--purple-navy);
+        font-size: 1.6rem;
+      }
+
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background-color: hsl(0, 0%, 95%);
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background-color: hsl(0, 0%, 80%);
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background-color: hsl(0, 0%, 70%);
+      }
+
+      /*-----------------------------------*\
+  #REUSED STYLE
+\*-----------------------------------*/
 
       .container {
-        background-color: #fff;
-        border-radius: 10px;
-        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
-          0 10px 10px rgba(0, 0, 0, 0.22);
-        position: relative;
-        overflow: hidden;
-        width: 768px;
-        max-width: 100%;
-        min-height: 500px;
+        padding-inline: 15px;
       }
 
-      .form-container {
-        position: absolute;
-        top: 0;
-        height: 100%;
-        transition: all 0.6s ease-in-out;
-        padding: 20px;
-        box-sizing: border-box;
+      .h2,
+      .h3 {
+        font-family: var(--ff-source-sans-pro);
       }
 
-      .sign-in-container,
-      .sign-up-container {
-        position: absolute;
-        top: 0;
-        height: 100%;
-        width: 50%;
+      .btn {
+        background-image: var(--gradient-2);
+        background-size: 200%;
+        color: var(--white);
+        padding: 12px 35px;
+        font-size: var(--fs-8);
+        font-weight: var(--fw-500);
+        border-radius: 0 25px;
+        transition: var(--transition-2);
       }
 
-      .sign-up-container {
-        left: 0;
-        opacity: 0;
-        z-index: 1;
+      .btn:is(:hover, :focus) {
+        background-position: right;
       }
 
-      .container.right-panel-active .sign-up-container {
-        transform: translateX(100%);
-        opacity: 1;
-        z-index: 5;
-        animation: show 0.6s;
+      .w-100 {
+        width: 100%;
       }
 
-      .sign-in-container {
-        left: 0;
-        z-index: 2;
+      .banner-animation {
+        animation: waveAnim 2s linear infinite alternate;
       }
 
-      .container.right-panel-active .sign-in-container {
-        transform: translateX(100%);
-      }
-
-      @keyframes show {
-        0%,
-        49.99% {
-          opacity: 0;
-          z-index: 1;
+      @keyframes waveAnim {
+        0% {
+          transform: translate(0, 0) rotate(0);
         }
-        50%,
         100% {
-          opacity: 1;
-          z-index: 5;
+          transform: translate(2px, 2px) rotate(1deg);
         }
       }
 
-      .overlay-container {
-        position: absolute;
-        top: 0;
-        left: 50%;
-        width: 50%;
-        height: 100%;
-        overflow: hidden;
-        transition: transform 0.6s ease-in-out;
-        z-index: 100;
+      .section {
+        padding-block: var(--section-padding);
       }
 
-      .container.right-panel-active .overlay-container {
-        transform: translateX(-100%);
+      .section-title {
+        color: var(--st-patricks-blue);
+        font-size: var(--fs-3);
+        margin-block-end: 60px;
+        max-width: max-content;
+        margin-inline: auto;
+      }
+
+      .underline {
+        position: relative;
+      }
+
+      .underline::before {
+        content: "";
+        position: absolute;
+        bottom: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 70%;
+        height: 6px;
+        background-image: var(--gradient-2);
+        border-radius: 10px;
+      }
+
+      :is(.service-card, .features-card) .title {
+        color: var(--st-patricks-blue);
+        font-size: var(--fs-4);
+        font-weight: var(--fw-700);
+      }
+
+      :is(.service-card, .features-card, .blog-card) .text {
+        font-size: var(--fs-8);
+      }
+
+      .img-cover {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /*-----------------------------------*\
+  #HEADER
+\*-----------------------------------*/
+
+      .header .btn {
+        display: none;
+      }
+
+      .header {
+        --color: var(--white);
+
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding-block: 14px;
+        z-index: 4;
+        transition: var(--transition-1);
+      }
+
+      .header.active {
+        --color: var(--st-patricks-blue);
+
+        position: fixed;
+        background-color: var(--white);
+        box-shadow: 0 2px 30px hsla(0, 0%, 0%, 0.1);
+      }
+
+      .header .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 30px;
+      }
+
+      .logo {
+        color: var(--color);
+        font-family: var(--ff-source-sans-pro);
+        font-size: var(--fs-3);
+      }
+
+      .nav-open-btn {
+        color: var(--color);
+        font-size: 32px;
+        padding: 4px;
+      }
+
+      .navbar {
+        background-color: var(--white);
+        position: fixed;
+        top: 0;
+        left: -280px;
+        width: 100%;
+        max-width: 280px;
+        min-height: 100%;
+        padding: 20px;
+        visibility: hidden;
+        z-index: 2;
+        transition: 0.25s var(--cubic-in);
+      }
+
+      .navbar.active {
+        transform: translateX(280px);
+        visibility: visible;
+        transition: 0.5s var(--cubic-out);
+      }
+
+      .navbar-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-block: 10px 30px;
+      }
+
+      .navbar-top .logo {
+        color: var(--st-patricks-blue);
+        font-size: 4.2rem;
+        font-weight: var(--fw-700);
+      }
+
+      .nav-close-btn {
+        color: var(--space-cadet-1);
+        font-size: 2.8rem;
+        padding: 4px;
+      }
+
+      .navbar-item:not(:last-child) {
+        border-bottom: 1px solid var(--platinum);
+      }
+
+      .navbar-link {
+        color: var(--space-cadet-1);
+        font-size: var(--fs-8);
+        font-weight: var(--fw-600);
+        padding-block: 12px;
       }
 
       .overlay {
-        background: linear-gradient(to right, #ff4b2b, #ff416c);
-        color: #ffffff;
-        position: relative;
-        left: -100%;
-        height: 100%;
-        width: 200%;
+        position: fixed;
+        inset: 0;
+        background-color: var(--black_70);
+        z-index: 1;
+        opacity: 0;
+        pointer-events: none;
+        transition: var(--transition-2);
+      }
+
+      .overlay.active {
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      /*-----------------------------------*\
+  #HERO
+\*-----------------------------------*/
+
+      .hero {
+        background-image: url("https://raw.githubusercontent.com/codewithsadee/desinic/master/assets/images/hero-bg-bottom.png"),
+          url("https://raw.githubusercontent.com/codewithsadee/desinic/master/assets/images/hero-bg.png"),
+          var(--gradient-1);
+        background-repeat: no-repeat, no-repeat, no-repeat;
+        background-position: -280px bottom, center, center;
+        background-size: cover, cover, auto;
+        padding-block-start: 120px;
+        padding-block-end: var(--section-padding);
+      }
+
+      .hero-content {
+        margin-block-end: 50px;
+      }
+
+      .hero-subtitle {
+        color: var(--chrome-yellow);
+        font-family: var(--ff-source-sans-pro);
+        font-size: var(--fs-7);
+        margin-block-end: 15px;
+      }
+
+      .hero-title {
+        color: var(--white);
+        font-size: var(--fs-1);
+        margin-block-end: 20px;
+      }
+
+      .hero-text {
+        color: var(--white);
+        font-size: var(--fs-8);
+        margin-block-end: 30px;
+      }
+
+      /*-----------------------------------*\
+  #ABOUT
+\*-----------------------------------*/
+
+      .about-banner {
+        margin-block-end: 30px;
+      }
+
+      .about .section-title {
+        margin-inline: 0;
+      }
+
+      .about .underline::before {
+        left: 0;
         transform: translateX(0);
-        transition: transform 0.6s ease-in-out;
       }
 
-      .container.right-panel-active .overlay {
-        transform: translateX(50%);
+      .about-text {
+        font-size: var(--fs-8);
+        margin-block-end: 20px;
       }
 
-      .overlay-panel {
-        position: absolute;
+      .stats-list {
+        display: grid;
+        gap: 30px;
+      }
+
+      .stats-card {
+        text-align: center;
+        padding: 15px;
+        box-shadow: var(--shadow);
+        border-radius: var(--radius-12);
+      }
+
+      .stats-title {
+        color: var(--st-patricks-blue);
+        font-size: var(--fs-2);
+        font-weight: var(--fw-700);
+      }
+
+      .stats-text {
+        font-size: var(--fs-8);
+      }
+
+      /*-----------------------------------*\
+  #SERVICE
+\*-----------------------------------*/
+      .service-list {
+        display: grid;
+        gap: 30px;
+      }
+
+      .service-card {
+        padding: 30px;
+        box-shadow: var(--shadow);
+        border-radius: var(--radius-12);
+      }
+
+      .service-card .card-icon {
+        background-image: url("https://raw.githubusercontent.com/codewithsadee/desinic/master/assets/images/service-banner-pattern.png");
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-color: hsla(335, 87%, 53%, 0.12);
+        aspect-ratio: 1 / 1;
+        max-width: 165px;
+        display: grid;
+        place-content: center;
+        margin-inline: auto;
+        transition: var(--transition-1);
+      }
+
+      .service-card:hover .card-icon {
+        background-color: var(--winter-sky);
+      }
+
+      .service-card .card-icon ion-icon {
+        font-size: 5rem;
+        color: var(--winter-sky);
+        --ionicon-stroke-width: 20px;
+        transition: var(--transition-1);
+      }
+
+      .service-card:hover .card-icon ion-icon {
+        color: var(--white);
+      }
+
+      .service-card .title {
+        text-align: center;
+        margin-block-end: 15px;
+      }
+
+      .service-card .text {
+        text-align: center;
+        margin-block-end: 20px;
+      }
+
+      .service-card .card-btn {
+        margin-inline: auto;
+        padding: 15px;
+        border: 1px solid var(--winter-sky);
+        border-radius: 50%;
+        color: var(--winter-sky);
+        transition: var(--transition-1);
+      }
+
+      .service-card .card-btn:is(:hover, :focus) {
+        color: var(--white);
+        background-color: var(--winter-sky);
+      }
+
+      /*-----------------------------------*\
+  #FEATURE
+\*-----------------------------------*/
+
+      .features-list > li:first-child {
+        margin-block-end: 30px;
+      }
+
+      .features-card {
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+      }
+
+      .features-card .icon {
+        background-image: var(--gradient-1);
+        background-size: 200%;
+        color: var(--white);
+        min-width: max-content;
+        max-width: max-content;
+        font-size: 36px;
+        padding: 22px;
+        border-radius: 50%;
+      }
+
+      .features-card .icon ion-icon {
+        --ionicon-stroke-width: 20px;
+      }
+
+      .features-card .title {
+        margin-block-end: 10px;
+      }
+
+      .features-banner {
+        margin-block: 40px;
+      }
+
+      .features-banner > img {
+        max-width: max-content;
+        margin-inline: auto;
+      }
+
+      /*-----------------------------------*\
+  #BLOG
+\*-----------------------------------*/
+
+      .blog {
+        padding-block-end: 120px;
+      }
+
+      .blog-list {
+        display: grid;
+        gap: 30px;
+      }
+
+      .blog-card {
+        padding: 20px;
+        box-shadow: var(--shadow);
+        border-radius: var(--radius-12);
+      }
+
+      .blog-card .banner {
+        border-radius: var(--radius-12);
+        overflow: hidden;
+        margin-block-end: 15px;
+      }
+
+      .blog-card .banner img {
+        transition: var(--transition-2);
+      }
+
+      .blog-card .banner a:is(:hover, :focus) img {
+        transform: scale(1.1);
+      }
+
+      .blog-card .title {
+        color: var(--st-patricks-blue);
+        font-size: var(--fs-6);
+        line-height: 1.2;
+        margin-block-end: 15px;
+      }
+
+      .blog-card .title > a {
+        color: inherit;
+      }
+
+      .blog-card .title > a:is(:hover, :focus) {
+        color: var(--razzmatazz);
+      }
+
+      .blog-card .text {
+        margin-block-end: 15px;
+      }
+
+      .blog-card .meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 15px;
+        font-size: var(--fs-8);
+        color: var(--purple-navy);
+        font-weight: var(--fw-500);
+        padding-block-end: 10px;
+      }
+
+      .blog-card .meta ion-icon {
+        color: var(--winter-sky);
+        font-size: 22px;
+        --ionicon-stroke-width: 35px;
+      }
+
+      .publish-date,
+      .comment {
         display: flex;
         align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        padding: 0 40px;
-        text-align: center;
-        top: 0;
-        height: 100%;
-        width: 50%;
-        transform: translateX(0);
-        transition: transform 0.6s ease-in-out;
+        gap: 8px;
       }
 
-      .overlay-left {
-        transform: translateX(-20%);
+      .comment {
+        color: inherit;
+        margin-inline-start: auto;
       }
 
-      .container.right-panel-active .overlay-left {
-        transform: translateX(0);
+      /*-----------------------------------*\
+  #FOOTER
+\*-----------------------------------*/
+
+      .footer {
+        font-size: var(--fs-8);
       }
 
-      .overlay-right {
-        right: 0;
-        transform: translateX(0);
+      .footer a {
+        color: inherit;
       }
 
-      .container.right-panel-active .overlay-right {
-        transform: translateX(20%);
+      .footer-top {
+        background-image: url("https://raw.githubusercontent.com/codewithsadee/desinic/master/assets/images/footer-bg.png"),
+          var(--gradient-1);
+        background-repeat: no-repeat;
+        background-size: auto, 200%;
+        background-position: center, center;
+        color: var(--white);
       }
 
-      .social-container {
-        margin: 20px 0;
+      .footer-brand {
+        margin-block-end: 30px;
       }
 
-      .social-container a {
-        border: 1px solid #dddddd;
-        border-radius: 50%;
-        display: inline-flex;
-        justify-content: center;
+      .footer-brand .logo {
+        font-weight: var(--fw-700);
+        margin-block-end: 15px;
+      }
+
+      .footer-brand .text {
+        font-size: var(--fs-8);
+        margin-block-end: 20px;
+      }
+
+      .social-list {
+        display: flex;
+        justify-content: flex-start;
         align-items: center;
-        margin: 0 5px;
-        height: 40px;
-        width: 40px;
+        gap: 10px;
       }
 
-      .error-message {
-        font-size: 12px;
-        color: red;
-        margin-top: 10px;
-        word-wrap: break-word; /* Ensure error messages wrap */
-        max-width: 100%;
+      .footer-top .social-link {
+        background-color: var(--white);
+        color: var(--winter-sky);
+        font-size: 18px;
+        padding: 8px;
+        border-radius: 50%;
       }
 
-      @media (max-width: 768px) {
+      .footer-top .social-link:is(:hover, :focus) {
+        background-image: var(--gradient-2);
+        color: var(--white);
+      }
+
+      .footer-list:not(:last-child) {
+        margin-block-end: 25px;
+      }
+
+      .footer-list-title {
+        font-family: var(--ff-source-sans-pro);
+        font-size: var(--fs-5);
+        font-weight: var(--fw-700);
+        margin-block-end: 15px;
+      }
+
+      .footer-link {
+        padding-block: 5px;
+      }
+
+      :is(.footer-link, .footer-item-link):not(address):is(:hover, :focus) {
+        text-decoration: underline;
+      }
+
+      .footer-item {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 10px;
+        padding-block: 10px;
+      }
+
+      .footer-item-icon {
+        background-image: var(--gradient-2);
+        padding: 13px;
+        border-radius: 50%;
+      }
+
+      .footer-bottom {
+        background-color: var(--space-cadet-2);
+        padding: 20px;
+        text-align: center;
+        color: var(--white);
+      }
+
+      .copyright-link {
+        display: inline-block;
+        text-decoration: underline;
+      }
+
+      .copyright-link:is(:hover, :focus) {
+        text-decoration: none;
+      }
+
+      /*-----------------------------------*\
+  #GO TO TOP
+\*-----------------------------------*/
+
+      .go-top {
+        position: fixed;
+        bottom: 0;
+        right: 15px;
+        background-color: var(--winter-sky);
+        color: var(--white);
+        font-size: 2rem;
+        padding: 14px;
+        border-radius: var(--radius-4);
+        box-shadow: -3px 3px 15px var(--winter-sky_50);
+        z-index: 2;
+        visibility: hidden;
+        opacity: 0;
+        transition: var(--transition-1);
+      }
+
+      .go-top.active {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(-15px);
+      }
+
+      /*-----------------------------------*\
+  #MEDIA QUERIES
+\*-----------------------------------*/
+
+      /**
+ * responsive for larger than 550px screen
+ */
+
+      @media (min-width: 550px) {
+        /**
+   * REUSED STYLE
+   */
         .container {
-          width: 100%;
+          max-width: 550px;
+          margin-inline: auto;
+        }
+
+        .section-title {
+          --fs-3: 3.6rem;
+        }
+
+        /**
+   * HEADER
+   */
+
+        .header .btn {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          margin-inline-start: auto;
+        }
+
+        /**
+   * ABOUT
+   */
+
+        .stats-list {
+          grid-template-columns: repeat(3, 1fr);
+        }
+
+        /**
+   * BLOG
+   */
+
+        .blog-card {
+          display: grid;
+          grid-template-columns: 0.75fr 1fr;
+          gap: 20px;
+          padding: 30px;
+        }
+
+        .blog-card .banner {
+          margin-block-end: 0;
+        }
+
+        .blog-card .banner a {
+          height: 100%;
+        }
+
+        /**
+   * FOOTER
+   */
+
+        .footer-brand,
+        .footer-list:not(:last-child) {
+          margin-block-end: 0;
+        }
+
+        .footer-top .container {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 30px 50px;
+        }
+      }
+
+      /**
+ * responsive for larger than 768px screen
+ */
+
+      @media (min-width: 768px) {
+        /**
+   * REUSED STYLE
+   */
+
+        .container {
+          max-width: 720px;
+        }
+        /**
+   * HERO
+   */
+
+        .hero {
           min-height: 600px;
+          display: grid;
+          place-items: center;
         }
-        .sign-in-container,
-        .sign-up-container {
-          width: 100%;
+
+        .hero-content {
+          margin-block-end: 0;
         }
-        .overlay-container {
+
+        .hero .container {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          align-items: center;
+          gap: 30px;
+        }
+
+        /**
+   * SERVICE
+   */
+
+        .service-list {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        /**
+   * FEATURES
+   */
+
+        .features-list > li:first-child {
+          margin-block-end: 0;
+        }
+
+        .features-list {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 25px;
+        }
+
+        /**
+   * FOOTER
+   */
+
+        .footer-top .container {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      /**
+ * responsive for larger than 992px screen
+ */
+
+      @media (min-width: 992px) {
+        /**
+   * CUSTOM PROPERTY
+   */
+
+        :root {
+          /**
+     * typography
+     */
+
+          --fs-1: 5.4rem;
+        }
+
+        /**
+   * REUSED STYLE
+   */
+
+        .container {
+          max-width: 950px;
+        }
+
+        /**
+   * HEADER
+   */
+
+        .header {
+          padding-block: 20px;
+        }
+
+        .overlay,
+        .nav-open-btn,
+        .navbar-top {
           display: none;
         }
-      }
-      /* Register css ends */
 
-      /* Navbar css starts */
-
-      /* navbar starts */
-      header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 1000;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 1.7rem 10%;
-        height: 4.5rem;
-        background: linear-gradient(
-          135deg,
-          rgba(255, 255, 255, 0.1),
-          rgba(255, 255, 255, 0)
-        );
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.18);
-        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-        /* background-color: #fff; */
-        /* box-shadow: 0 1px 4px rgba(146, 161, 176, 0.3); */
-      }
-
-      /* grid */
-
-      /* grid code ends */
-
-      .heading {
-        font-size: 3.5rem;
-        color: rgb(32, 32, 32);
-        font-weight: 800;
-        text-align: center;
-      }
-      .heading span {
-        color: rgb(115, 3, 167);
-      }
-      header .logo {
-        font-size: 1.9rem;
-        font-weight: 800;
-        text-decoration: none;
-        color: #0e2431;
-      }
-      header .logo i {
-        font-size: 2.2rem;
-      }
-      header .logo:hover {
-        color: #fc8c05;
-      }
-      header .navbar ul {
-        list-style: none;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-      header .navbar li {
-        margin-left: 2.5rem;
-      }
-      header .navbar ul li a {
-        font-size: 1.57rem;
-        color: #0e2431;
-        font-weight: 600;
-        text-decoration: none;
-        letter-spacing: 0.04rem;
-        transition: 0.2s;
-      }
-      header .navbar ul li a.active,
-      header .navbar ul li a:hover {
-        color: #011aff;
-        border-bottom: 0.2rem solid #011aff;
-        padding: 0.5rem 0;
-      }
-      /* navbar ends */
-
-      /* hamburger icon starts*/
-      #menu {
-        font-size: 3rem;
-        cursor: pointer;
-        color: rgb(24, 2, 63);
-        display: none;
-      }
-      @media (max-width: 768px) {
-        #menu {
-          display: block;
+        .navbar,
+        .navbar.active {
+          all: unset;
+          margin-inline-start: auto;
         }
-        header .navbar {
-          position: fixed;
-          top: 6.5rem;
-          right: -120%;
-          width: 75%;
+
+        .header .btn {
+          margin-inline-start: 0;
+        }
+
+        .navbar-list {
+          display: flex;
+          gap: 25px;
+        }
+
+        .navbar-item:not(:last-child) {
+          border-bottom: none;
+        }
+
+        .navbar-link {
+          color: var(--color);
+        }
+
+        /**
+   * HERO
+   */
+
+        .hero {
+          min-height: 700px;
+        }
+
+        /**
+   * ABOUT
+   */
+
+        .about .container {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 30px;
+        }
+
+        /**
+   * SERVICE
+   */
+
+        .service-list {
+          grid-template-columns: repeat(3, 1fr);
+        }
+
+        /**
+   * FEATURES
+   */
+
+        .features-list {
+          grid-template-columns: 1fr;
+        }
+
+        .features .container {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 30px;
+        }
+
+        .features .section-title {
+          grid-column: 1 / 4;
+        }
+
+        .features-banner {
+          margin-block: 0;
+          display: grid;
+          place-items: center;
+        }
+
+        /**
+   * FOOTER
+   */
+
+        .footer-top .container {
+          grid-template-columns: repeat(4, 1fr);
+        }
+
+        .footer-brand {
+          grid-column: 1 / 5;
+        }
+
+        .footer-brand .text {
+          max-width: 45ch;
+        }
+      }
+
+      /**
+ * responsive for larger than 1200px screen
+ */
+
+      @media (min-width: 1200px) {
+        /**
+   * REUSED STYLE
+   */
+
+        .container {
+          max-width: 1200px;
+        }
+
+        .section-title {
+          --fs-3: 4.6rem;
+        }
+
+        /**
+   * HERO
+   */
+
+        .hero {
+          min-height: 800px;
+        }
+
+        /**
+   * BLOG
+   */
+
+        .blog-list {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .blog-card {
           height: 100%;
-          text-align: left;
-          align-items: flex-start;
-          background-color: #0e0f31;
         }
-        header .navbar ul {
-          flex-flow: column;
-          padding: 1rem;
+
+        .blog-card .content {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
         }
-        header .navbar ul li {
-          text-align: center;
-          width: 100%;
-          margin: 1rem 0;
-          border-radius: 0.5rem;
-          width: 26rem;
+
+        /**
+   * FOOTER
+   */
+
+        .footer-top .container {
+          grid-template-columns: 1fr 0.5fr 0.7fr 0.5fr 1fr;
         }
-        header .navbar ul li a {
-          display: block;
-          padding: 1rem;
-          text-align: left;
-          color: #fff;
-          font-size: 2rem;
-        }
-        header .navbar ul li a.active,
-        header .navbar ul li a:hover {
-          padding: 1rem;
-          color: #fff;
-          border-radius: 0.5rem;
-          border-bottom: 0.5rem solid #011aff;
-        }
-        .fa-times {
-          transform: rotate(180deg);
-        }
-        header .navbar.nav-toggle {
-          right: 0;
+
+        .footer-brand {
+          grid-column: auto;
         }
       }
-      /* hamburger icon ends */
-      /* Navbar css sends */
+
+      @import url("https://fonts.googleapis.com/css?family=Montserrat:600|Open+Sans");
+
+      #section-ser p {
+        font-size: 1.5rem;
+        margin: 1rem 0;
+        line-height: 1.5;
+      }
+
+      #section-ser {
+        max-width: 1000px;
+        margin: 0 auto;
+        text-align: center;
+        padding: 30px;
+      }
+
+      #section-sec h3 {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 600;
+        color: #333;
+        font-size: 1.825rem;
+        margin: 1.3rem 0;
+      }
+
+      .section-lead {
+        max-width: 600px;
+        margin: 1rem auto 1.5rem;
+      }
+
+      .service a {
+        color: #5b7abb;
+        display: block;
+      }
+
+      .service h3 {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 600;
+        color: #56ceba;
+        font-size: 2rem;
+        margin: 1rem 0 0.6rem;
+      }
+
+      .services-grid {
+        display: flex;
+        align-items: center;
+      }
+
+      .service {
+        background: #fff;
+        margin: 20px;
+        padding: 20px;
+        border-radius: 4px;
+        text-align: center;
+        flex: 1;
+        display: flex;
+        flex-wrap: wrap;
+        border: 2px solid #e7e7e7;
+        transition: all 0.3s ease;
+      }
+
+      .service:hover {
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.08);
+      }
+
+      .service i {
+        font-size: 3.45rem;
+        margin: 1rem 0;
+      }
+
+      .service1 i,
+      .service1 h3,
+      .service1 .cta {
+        color: #42b7ca;
+      }
+
+      .service1:hover {
+        border: 2px solid #42b7ca;
+      }
+
+      .service2 i,
+      .service2 h3,
+      .service2 .cta {
+        color: #425fca;
+      }
+
+      .service2:hover {
+        border: 2px solid #425fca;
+      }
+
+      .service3 i,
+      .service3 h3,
+      .service3 .cta {
+        color: #9c42ca;
+      }
+
+      .service3:hover {
+        border: 2px solid #9c42ca;
+      }
+
+      .service .cta span {
+        font-size: 0.6rem;
+      }
+
+      .service > * {
+        flex: 1 1 100%;
+      }
+
+      .service .cta {
+        align-self: flex-end;
+      }
+
+      @media all and (max-width: 900px) {
+        .services-grid {
+          flex-direction: column;
+        }
+      }
     </style>
   </head>
-  <body>
-    <!-- navbar starts -->
-    <header>
-      <a href="index.html" class="logo"><i class="fa-solid fa-p"></i>Zen&Gen</a>
+  <body id="top">
+    <!-- 
+        - #HEADER
+      -->
 
-      <div id="menu" class="fas fa-bars"></div>
-      <nav class="navbar">
-        <ul>
-          <li><a class="active" href="index.html">Home</a></li>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="blog.html">Blog</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a href="login.html" class="getstarted">Login</a></li>
-          <i class="bi bi-list mobile-nav-toggle"></i>
-        </ul>
-      </nav>
+    <header class="header" data-header>
+      <div class="container">
+        <div class="overlay" data-overlay></div>
+
+        <a href="#">
+          <h1 class="logo">Zen&Gen</h1>
+        </a>
+
+        <nav class="navbar" data-navbar>
+          <div class="navbar-top">
+            <a href="#" class="logo">Zen&Gen</a>
+
+            <button
+              class="nav-close-btn"
+              aria-label="Close Menu"
+              data-nav-close-btn
+            >
+              <ion-icon name="close-outline"></ion-icon>
+            </button>
+          </div>
+
+          <ul class="navbar-list">
+            <li class="navbar-item">
+              <a href="#home" class="navbar-link" data-navbar-link>Home</a>
+            </li>
+
+            <li class="navbar-item">
+              <a href="#section-ser" class="navbar-link" data-navbar-link
+                >Services</a
+              >
+            </li>
+
+            <li class="navbar-item">
+              <a href="#features" class="navbar-link" data-navbar-link
+                >Features</a
+              >
+            </li>
+
+            <li class="navbar-item">
+              <a href="#blog" class="navbar-link" data-navbar-link>Blog</a>
+            </li>
+
+            <li class="navbar-item">
+              <a href="#footer" class="navbar-link" data-navbar-link
+                >Contact Us</a
+              >
+            </li>
+            <li class="navbar-item">
+              <a href="about.html" class="navbar-link" data-navbar-link
+                >About Us</a
+              >
+            </li>
+          </ul>
+        </nav>
+
+        <a href="login.html" class="btn">
+          <ion-icon
+            name="chevron-forward-outline"
+            aria-hidden="true"
+          ></ion-icon>
+
+          <span>Login</span>
+        </a>
+
+        <button class="nav-open-btn" aria-label="Open Menu" data-nav-open-btn>
+          <ion-icon name="menu-outline"></ion-icon>
+        </button>
+      </div>
     </header>
 
-    <!-- navbar ends -->
-    <section>
-      <div class="outer">
-        <div class="inner">
-          <div class="bg home">
-            <div class="scroll">
-              <p>Welcome to Zen&Gen</p>
-              <p>Balance Your Body. Elevate Your Life.</p>
+    <main>
+      <article>
+        <!-- 
+            - #HERO
+          -->
+
+        <section class="hero" id="home">
+          <div class="container">
+            <div class="hero-content">
+              <p class="hero-subtitle">Zen&Gen</p>
+
+              <h2 class="h2 hero-title">Welcome to Zen&Gen</h2>
+
+              <p class="hero-text">
+                Your path to fitness and wellness! We've crafted the perfect
+                blend of AI-enhanced nutrition plans and tailored workouts to
+                help you achieve your health goals. Embrace a balanced lifestyle
+                and unleash your best self with Zen&Gen!
+              </p>
+
+              <!-- <button class="btn">Learn More</button> -->
             </div>
 
-            <img src="\img\gym.png" alt="" />
-            <div class="home-content">
-              <h1>
-                Zen&Gen
-                <ion-icon
-                  class="fitness-icon"
-                  name="barbell-outline"
-                ></ion-icon>
-              </h1>
-              <p>
-                Welcome to Zen&Gen, your path to fitness and wellness! We've
-                crafted the perfect blend of AI-enhanced nutrition plans and
-                tailored workouts to help you achieve your health goals. Embrace
-                a balanced lifestyle and unleash your best self with Zen&Gen!
+            <figure class="hero-banner">
+              <img
+                src="\img\pic4.png"
+                width="694"
+                height="529"
+                loading="lazy"
+                alt="hero-banner"
+                class="w-100 banner-animation"
+              />
+            </figure>
+          </div>
+        </section>
+
+        <!-- 
+            - #ABOUT
+          -->
+
+        <!-- <section class="section about" id="about">
+          <div class="container">
+            <figure class="about-banner">
+              <img
+                src="https://github.com/codewithsadee/desinic/blob/master/assets/images/about-banner.png?raw=true"
+                width="700"
+                height="532"
+                loading="lazy"
+                alt="about banner"
+                class="w-100 banner-animation"
+              />
+            </figure>
+
+            <div class="about-content">
+              <h2 class="h2 section-title underline">Why Our Agency</h2>
+
+              <p class="about-text">
+                In dictum aliquam turpis lacinia iaculis. Fusce vel malesuada
+                magna. Nulla vel maximus risus. Donec volutpat metus lacinia
+                risus accumsan, ac bibendum libero efficitur. Pellentesque nec
+                nisi sit amet magna tempus hendrerit ut a odio.
               </p>
-              <ul class="links">
-                <li>
-                  <a href="#"
-                    ><ion-icon class="icon" name="logo-apple"></ion-icon
-                  ></a>
+
+              <p class="about-text">
+                Praesent rhoncus commodo tortor, id pulvinar nisl blandit at.
+                Nulla facilisi. Quisque turpis ante, vehicula condimentum arcu.
+              </p>
+
+              <ul class="stats-list">
+                <li class="stats-card">
+                  <p class="h3 stats-title">9875</p>
+
+                  <p class="stats-text">Satisfied Clients</p>
                 </li>
-                <li>
-                  <a href="#"
-                    ><ion-icon class="icon" name="logo-google"></ion-icon
-                  ></a>
+
+                <li class="stats-card">
+                  <p class="h3 stats-title">7894</p>
+
+                  <p class="stats-text">Project Lunched</p>
                 </li>
-                <li>
-                  <a href="#"
-                    ><ion-icon class="icon" name="logo-youtube"></ion-icon
-                  ></a>
-                </li>
-                <li>
-                  <a href="#"
-                    ><ion-icon class="icon" name="logo-instagram"></ion-icon
-                  ></a>
+
+                <li class="stats-card">
+                  <p class="h3 stats-title">65</p>
+
+                  <p class="stats-text">Years Completed</p>
                 </li>
               </ul>
             </div>
           </div>
-        </div>
-      </div>
+        </section> -->
 
-      <img class="mouse-move" src="\img\mouse.png" alt="" />
-    </section>
+        <!-- 
+            - #SERVICE
+          -->
 
-    <section>
-      <div class="outer">
-        <div class="inner">
-          <div class="bg content">
-            <div class="swiper">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                  <img src="\img\squats.gif" />
-                  <div class="title">
-                    <h2>Squats</h2>
-                    <p>Strengthen Your Legs & Core</p>
+        <section id="section-ser">
+          <h2 class="h2 section-title underline">Our Services</h2>
+          <div class="services-grid">
+            <div class="service service1">
+              <i class="fas fa-dumbbell"></i>
+              <h3 class="h3 title">Gym Classes</h3>
+              <p>
+                Achieve your fitness goals with our professional gym classes
+                designed for all levels. From strength training to cardio
+                sessions, our expert trainers ensure a personalized experience
+                tailored to your needs.
+              </p>
+            </div>
+
+            <div class="service service2">
+              <i class="fas fa-chart-line"></i>
+              <h3 class="h3 title">Activity Tracker</h3>
+              <p>
+                Stay motivated and monitor your progress with our advanced
+                activity tracker. Track your daily steps, workouts, and calories
+                burned to keep your fitness journey on the right path.
+              </p>
+            </div>
+
+            <div class="service service3">
+              <i class="fas fa-utensils"></i>
+              <h3 class="h3 title">Diet Recommendation</h3>
+              <p>
+                Fuel your body with a personalized diet plan crafted by experts.
+                Whether you're aiming for weight loss, muscle gain, or healthy
+                maintenance, our recommendations ensure balanced nutrition for
+                optimal results.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 
+            - #FEATURES
+          -->
+
+        <section class="section features" id="features">
+          <div class="container">
+            <h2 class="h2 section-title underline">Exercises</h2>
+
+            <ul class="features-list">
+              <li>
+                <div class="features-card">
+                  <div class="icon">
+                    <ion-icon name="body"></ion-icon>
+                  </div>
+
+                  <div class="content">
+                    <h3 class="h3 title">Squats</h3>
+
+                    <p class="text">
+                      Squats are a compound exercise that works multiple muscle
+                      groups including the glutes, quads, and hamstrings.
+                    </p>
                   </div>
                 </div>
+              </li>
 
-                <div class="swiper-slide">
-                  <img src="\img\pushups.gif" />
-                  <div class="title">
-                    <h2>Push-Ups</h2>
-                    <p>Build Upper Body Strength & Endurance</p>
+              <li>
+                <div class="features-card">
+                  <div class="icon">
+                    <ion-icon name="heart-outline"></ion-icon>
+                  </div>
+
+                  <div class="content">
+                    <h3 class="h3 title">Push Ups</h3>
+
+                    <p class="text">
+                      Push ups are a bodyweight exercise that primarily work the
+                      chest, shoulders, and triceps.
+                    </p>
                   </div>
                 </div>
+              </li>
+            </ul>
 
-                <div class="swiper-slide">
-                  <img src="\img\jumpingjacks.gif" />
-                  <div class="title">
-                    <h2>Jumping Jacks</h2>
-                    <p>Boost Cardio & Full-Body Fitness</p>
+            <figure class="features-banner">
+              <img
+                src="\img\pic3.png"
+                width="369"
+                height="318"
+                loading="lazy"
+                alt="Features Banner"
+                class="w-100 banner-animation"
+              />
+            </figure>
+
+            <ul class="features-list">
+              <li>
+                <div class="features-card">
+                  <div class="icon">
+                    <ion-icon name="walk-outline"></ion-icon>
+                  </div>
+
+                  <div class="content">
+                    <h3 class="h3 title">Jumping Jacks</h3>
+
+                    <p class="text">
+                      Jumping jacks are a cardio exercise that works the entire
+                      body, including the legs, arms, and core.
+                    </p>
                   </div>
                 </div>
+              </li>
 
-                <div class="swiper-slide">
-                  <img src="\img\dumbbell.avif" />
-                  <div class="title">
-                    <h2>Dumbbell High Curls</h2>
-                    <p>Target Biceps & Enhance Arm Strength</p>
+              <li>
+                <div class="features-card">
+                  <div class="icon">
+                    <ion-icon name="barbell-outline"></ion-icon>
+                  </div>
+
+                  <div class="content">
+                    <h3 class="h3 title">Dumbbell High Curls</h3>
+
+                    <p class="text">
+                      Dumbbell high curls are an isolation exercise that
+                      specifically target the bicep muscles.
+                    </p>
                   </div>
                 </div>
-              </div>
-              <div class="swiper-pagination"></div>
-            </div>
+              </li>
+            </ul>
           </div>
+        </section>
+
+        <!-- 
+            - #BLOG
+          -->
+
+        <section class="section blog" id="blog">
+          <div class="container">
+            <h2 class="h2 section-title underline">Fitness Blog & Tips</h2>
+
+            <ul class="blog-list">
+              <li>
+                <div class="blog-card">
+                  <figure class="banner">
+                    <a href="#">
+                      <img
+                        src="\img\pic5.webp"
+                        width="750"
+                        height="350"
+                        loading="lazy"
+                        alt="Top 5 Morning Workouts to Boost Your Energy"
+                        class="img-cover"
+                      />
+                    </a>
+                  </figure>
+
+                  <div class="content">
+                    <h3 class="h3 title">
+                      <a href="#">
+                        Top 5 Morning Workouts to Boost Your Energy
+                      </a>
+                    </h3>
+
+                    <p class="text">
+                      Kickstart your day with these effective morning workouts
+                      designed to improve your strength and stamina.
+                    </p>
+
+                    <div class="meta">
+                      <div class="publish-date">
+                        <ion-icon name="time-outline"></ion-icon>
+                        <time datetime="2024-11-20">20 November, 2024</time>
+                      </div>
+
+                      <button class="comment" aria-label="Comment">
+                        <ion-icon name="chatbubble-outline"></ion-icon>
+                        <data value="25">25</data>
+                      </button>
+
+                      <button class="share" aria-label="Share">
+                        <ion-icon name="share-social-outline"></ion-icon>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              <li>
+                <div class="blog-card">
+                  <figure class="banner">
+                    <a href="#">
+                      <img
+                        src="\img\pic6.webp"
+                        width="750"
+                        height="350"
+                        loading="lazy"
+                        alt="Healthy Meal Plans for Weight Management"
+                        class="img-cover"
+                      />
+                    </a>
+                  </figure>
+
+                  <div class="content">
+                    <h3 class="h3 title">
+                      <a href="#"> Healthy Meal Plans for Weight Management </a>
+                    </h3>
+
+                    <p class="text">
+                      Discover balanced diet plans to help you maintain, lose,
+                      or gain weight effectively.
+                    </p>
+
+                    <div class="meta">
+                      <div class="publish-date">
+                        <ion-icon name="time-outline"></ion-icon>
+                        <time datetime="2024-11-18">18 November, 2024</time>
+                      </div>
+
+                      <button class="comment" aria-label="Comment">
+                        <ion-icon name="chatbubble-outline"></ion-icon>
+                        <data value="18">18</data>
+                      </button>
+
+                      <button class="share" aria-label="Share">
+                        <ion-icon name="share-social-outline"></ion-icon>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              <li>
+                <div class="blog-card">
+                  <figure class="banner">
+                    <a href="#">
+                      <img
+                        src="\img\pic7.webp"
+                        width="750"
+                        height="350"
+                        loading="lazy"
+                        alt="The Role of Fitness in Mental Health"
+                        class="img-cover"
+                      />
+                    </a>
+                  </figure>
+
+                  <div class="content">
+                    <h3 class="h3 title">
+                      <a href="#"> The Role of Fitness in Mental Health </a>
+                    </h3>
+
+                    <p class="text">
+                      Learn how regular physical activity can enhance your
+                      mental well-being and reduce stress.
+                    </p>
+
+                    <div class="meta">
+                      <div class="publish-date">
+                        <ion-icon name="time-outline"></ion-icon>
+                        <time datetime="2024-11-15">15 November, 2024</time>
+                      </div>
+
+                      <button class="comment" aria-label="Comment">
+                        <ion-icon name="chatbubble-outline"></ion-icon>
+                        <data value="30">30</data>
+                      </button>
+
+                      <button class="share" aria-label="Share">
+                        <ion-icon name="share-social-outline"></ion-icon>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              <li>
+                <div class="blog-card">
+                  <figure class="banner">
+                    <a href="#">
+                      <img
+                        src="\img\pic1.webp"
+                        width="750"
+                        height="350"
+                        loading="lazy"
+                        alt="Yoga Poses to Improve Flexibility"
+                        class="img-cover"
+                      />
+                    </a>
+                  </figure>
+
+                  <div class="content">
+                    <h3 class="h3 title">
+                      <a href="#"> Yoga Poses to Improve Flexibility </a>
+                    </h3>
+
+                    <p class="text">
+                      Enhance your flexibility with these simple yet effective
+                      yoga poses perfect for beginners and experts alike.
+                    </p>
+
+                    <div class="meta">
+                      <div class="publish-date">
+                        <ion-icon name="time-outline"></ion-icon>
+                        <time datetime="2024-11-10">10 November, 2024</time>
+                      </div>
+
+                      <button class="comment" aria-label="Comment">
+                        <ion-icon name="chatbubble-outline"></ion-icon>
+                        <data value="12">12</data>
+                      </button>
+
+                      <button class="share" aria-label="Share">
+                        <ion-icon name="share-social-outline"></ion-icon>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </section>
+      </article>
+    </main>
+
+    <!-- 
+        - #FOOTER
+      -->
+
+    <footer class="footer" id="footer">
+      <div class="footer-top section">
+        <div class="container">
+          <div class="footer-brand">
+            <a href="#" class="logo">Zen&Gen</a>
+
+            <p class="text">
+              Your path to fitness and wellness! We've crafted the perfect blend
+              of AI-enhanced nutrition plans and tailored workouts to help you
+              achieve your health goals. Embrace a balanced lifestyle and
+              unleash your best self with Zen&Gen!
+            </p>
+
+            <ul class="social-list">
+              <li>
+                <a href="#" class="social-link">
+                  <ion-icon name="logo-facebook"></ion-icon>
+                </a>
+              </li>
+
+              <li>
+                <a href="#" class="social-link">
+                  <ion-icon name="logo-instagram"></ion-icon>
+                </a>
+              </li>
+
+              <li>
+                <a href="#" class="social-link">
+                  <ion-icon name="logo-twitter"></ion-icon>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <ul class="footer-list">
+            <li>
+              <p class="footer-list-title">Our links</p>
+            </li>
+
+            <li>
+              <a href="#" class="footer-link">Home</a>
+            </li>
+
+            <li>
+              <a href="#aboutus" class="footer-link">About Us</a>
+            </li>
+
+            <li>
+              <a href="#section-ser" class="footer-link">Services</a>
+            </li>
+
+            <li>
+              <a href="#" class="footer-link">Team</a>
+            </li>
+
+            <li>
+              <a href="#" class="footer-link">Blog</a>
+            </li>
+          </ul>
+
+          <ul class="footer-list">
+            <li>
+              <p class="footer-list-title">Our Services</p>
+            </li>
+
+            <li style="padding-bottom: 10px">Gym Classes</li>
+
+            <li style="padding-bottom: 10px">Activity Tracker</li>
+
+            <li style="padding-bottom: 10px">Diet Recommendation</li>
+          </ul>
+
+          <ul class="footer-list">
+            <li>
+              <p class="footer-list-title">Other links</p>
+            </li>
+            <li>
+              <a
+                href="https://github.com/MrPrajwal12/MajorProject_"
+                class="footer-link"
+                >Support</a
+              >
+            </li>
+          </ul>
+
+          <ul class="footer-list">
+            <li>
+              <p class="footer-list-title">Contact Us</p>
+            </li>
+
+            <li class="footer-item">
+              <div class="footer-item-icon">
+                <ion-icon name="call"></ion-icon>
+              </div>
+
+              <div>
+                <a href="#" class="footer-item-link">+248-421-4313</a>
+                <a href="#" class="footer-item-link">+248-687-1365</a>
+              </div>
+            </li>
+
+            <li class="footer-item">
+              <div class="footer-item-icon">
+                <ion-icon name="mail"></ion-icon>
+              </div>
+
+              <div>
+                <a href="#" class="footer-item-link">contactus@zenandgen.com</a>
+                <a href="#" class="footer-item-link">help@zenandgen.com</a>
+              </div>
+            </li>
+
+            <li class="footer-item">
+              <div class="footer-item-icon">
+                <ion-icon name="location"></ion-icon>
+              </div>
+
+              <address class="footer-item-link">Vamanjoor, Mangalore</address>
+            </li>
+          </ul>
         </div>
       </div>
-    </section>
 
-    <section>
-      <div class="outer">
-        <div class="inner">
-          <div class="bg info">
-            <img src="\img\image1.jpg" alt="" />
-            <div class="info-content">
-              <h1>Features</h1>
-              <p>
-                Our app uses advanced AI and deep learning models like MoveNet
-                to provide real-time human pose estimation. This allows for more
-                precise and interactive fitness experiences, helping you improve
-                your posture and performance.
-              </p>
-              <div class="tag-container">
-                <span>Real-Time Pose Estimation</span>
-                <span>AI-Enhanced Accuracy</span>
-                <span>Interactive Fitness</span>
-                <span>Efficient & Reliable</span>
-                <span>Cutting-Edge Technology</span>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="footer-bottom">
+        <p class="copyright">
+          &copy; 2024 <a href="#" class="copyright-link">Zen&Gen</a>. All Right
+          Reserved
+        </p>
       </div>
-    </section>
-    <section>
-      <div class="outer">
-        <div class="inner">
-          <div class="bg info">
-            <img src="\img\image1.jpg" alt="" />
-            <div class="info-content">
-              <h1>Customizable Workout Plans</h1>
-              <p>
-                We offer tailored workout plans based on your fitness goals and
-                level. Whether you're a beginner or advanced, our app adjusts
-                your routine to ensure a balanced and effective workout.
-              </p>
-              <div class="tag-container">
-                <span>Flexible Progression</span>
-                <span>Effective & Tailored</span>
-                <span>Fitness Goals Focused</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section>
-      <div class="outer">
-        <div class="inner">
-          <div class="bg info">
-            <img src="\img\image1.jpg" alt="" />
-            <div class="info-content">
-              <h1>Detailed Exercise Instructions</h1>
-              <p>
-                Our AI system offers real-time feedback on exercise form,
-                helping you maintain proper posture and avoid injury. Get
-                step-by-step guidance tailored to your fitness level.
-              </p>
-              <div class="tag-container">
-                <span>AI-Powered Coaching</span>
-                <span>Real-Time Feedback</span>
-                <span>Form & Posture Correction</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section>
-      <div class="outer">
-        <div class="inner">
-          <div class="bg info">
-            <img src="\img\image1.jpg" alt="" />
-            <div class="info-content">
-              <h1>Progress Tracking & Analytics</h1>
-              <p>
-                Track your workout progress with detailed analytics. See how
-                your performance improves over time with graphs and data
-                visualizations to stay motivated.
-              </p>
-              <div class="tag-container">
-                <span>Track Progress</span>
-                <span>Data-Driven Insights</span>
-                <span>Performance Visuals</span>
-                <span>Goal-Oriented Analytics</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    </footer>
 
-    <!-- <section class="footer-section">
-      <div class="outer">
-        <div class="inner">
-          <div class="bg info">
-            <footer>
-              <div class="waves">
-                <div class="wave" id="wave1"></div>
-                <div class="wave" id="wave2"></div>
-                <div class="wave" id="wave3"></div>
-                <div class="wave" id="wave4"></div>
-              </div>
-              <ul class="social_icon">
-                <li>
-                  <a href="#"><ion-icon name="logo-facebook"></ion-icon></a>
-                </li>
-                <li>
-                  <a href="#"><ion-icon name="logo-twitter"></ion-icon></a>
-                </li>
-                <li>
-                  <a href="#"><ion-icon name="logo-linkedin"></ion-icon></a>
-                </li>
-                <li>
-                  <a href="#"><ion-icon name="logo-instagram"></ion-icon></a>
-                </li>
-              </ul>
+    <!-- 
+        - #GO TO TOP
+      -->
 
-              <ul class="menu">
-                <li><a href="about.html">Home</a></li>
-                <li><a href="blog.html">About Us</a></li>
-                <li><a href="contact.html">Blog</a></li>
-                <li><a href="login.html">Contact</a></li>
-              </ul>
-              <p class="par">&copy2024 Zen&Gen Team | All Rights Reserved</p>
-            </footer>
-          </div>
-        </div>
-      </div>
-    </section> -->
-
-    <!-- GSAP -->
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/Observer.min.js"></script>
-
-    <!-- Swiper JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-
-    <!-- Custom JavaScript -->
+    <a href="#top" class="go-top active" aria-label="Go To Top" data-go-top>
+      <ion-icon name="arrow-up-outline"></ion-icon>
+    </a>
     <script>
-      $(document).ready(function () {
-        $("#menu").click(function () {
-          $(this).toggleClass("fa-times");
-          $(".navbar").toggleClass("nav-toggle");
+      "use strict";
+
+      /**
+       * navbar toggle
+       */
+
+      const navOpenBtn = document.querySelector("[data-nav-open-btn]");
+      const navbar = document.querySelector("[data-navbar]");
+      const navCloseBtn = document.querySelector("[data-nav-close-btn]");
+      const overlay = document.querySelector("[data-overlay]");
+
+      const elemArr = [navCloseBtn, overlay, navOpenBtn];
+
+      for (let i = 0; i < elemArr.length; i++) {
+        elemArr[i].addEventListener("click", function () {
+          navbar.classList.toggle("active");
+          overlay.classList.toggle("active");
         });
-
-        $(window).on("scroll load", function () {
-          $("#menu").removeClass("fa-times");
-          $(".navbar").removeClass("nav-toggle");
-
-          if (window.scrollY > 60) {
-            document.querySelector("#scroll-top").classList.add("active");
-          } else {
-            document.querySelector("#scroll-top").classList.remove("active");
-          }
-
-          // scroll spy
-          $("section").each(function () {
-            let height = $(this).height();
-            let offset = $(this).offset().top - 200;
-            let top = $(window).scrollTop();
-            let id = $(this).attr("id");
-
-            if (top > offset && top < offset + height) {
-              $(".navbar ul li a").removeClass("active");
-              $(".navbar").find(`[href="#${id}"]`).addClass("active");
-            }
-          });
-        });
-
-        // smooth scrolling
-        $('a[href*="#"]').on("click", function (e) {
-          e.preventDefault();
-          $("html, body").animate(
-            {
-              scrollTop: $($(this).attr("href")).offset().top,
-            },
-            500,
-            "linear"
-          );
-        });
-      });
-    </script>
-    <script>
-      // GSAP
-
-      gsap.registerPlugin(Observer);
-
-      console.clear();
-
-      let sections = document.querySelectorAll("section"),
-        background = document.querySelectorAll(".bg"),
-        outerWrappers = gsap.utils.toArray(".outer"),
-        innerWrappers = gsap.utils.toArray(".inner"),
-        currentIndex = -1,
-        wrap = gsap.utils.wrap(0, sections.length - 1),
-        animating;
-
-      let clamp = gsap.utils.clamp(0, sections.length - 1);
-
-      gsap.set(outerWrappers, { yPercent: 100 });
-      gsap.set(innerWrappers, { yPercent: -100 });
-
-      function gotoSection(index, direction) {
-        index = clamp(index); // make sure it's valid
-
-        // If they are the same, it's either the first or last slide
-        if (index === currentIndex) {
-          return;
-        }
-
-        animating = true;
-        let fromTop = direction === -1,
-          dFactor = fromTop ? -1 : 1,
-          tl = gsap.timeline({
-            defaults: { duration: 1.25, ease: "power1.inOut" },
-            onComplete: () => (animating = false),
-          });
-        if (currentIndex >= 0) {
-          // The first time this function runs, current is -1
-          gsap.set(sections[currentIndex], { zIndex: 0 });
-          tl.to(background[currentIndex], { yPercent: -15 * dFactor }).set(
-            sections[currentIndex],
-            { autoAlpha: 0 }
-          );
-        }
-        gsap.set(sections[index], { autoAlpha: 1, zIndex: 1 });
-        tl.fromTo(
-          [outerWrappers[index], innerWrappers[index]],
-          { yPercent: (i) => (i ? -100 * dFactor : 100 * dFactor) },
-          { yPercent: 0 },
-          0
-        ).fromTo(
-          background[index],
-          { yPercent: 15 * dFactor },
-          { yPercent: 0 },
-          0
-        );
-
-        currentIndex = index;
-        return tl;
       }
 
-      Observer.create({
-        type: "wheel, pointer",
-        wheelSpeed: -1,
-        onDown: () => {
-          !animating && gotoSection(currentIndex - 1, -1);
-        },
-        onUp: () => {
-          !animating && gotoSection(currentIndex + 1, 1);
-        },
-        tolerance: 200,
-        allowClicks: true,
-        preventDefault: true,
-      });
+      /**
+       * toggle navbar & overlay when click any navbar-link
+       */
 
-      gotoSection(0, 1).progress(1);
+      const navbarLinks = document.querySelectorAll("[data-navbar-link]");
 
-      // SWIPER
+      for (let i = 0; i < navbarLinks.length; i++) {
+        navbarLinks[i].addEventListener("click", function () {
+          navbar.classList.toggle("active");
+          overlay.classList.toggle("active");
+        });
+      }
 
-      var swiper = new Swiper(".swiper", {
-        effect: "coverflow",
-        grabCursor: true,
-        centeredSlides: true,
-        initialSlide: 1,
-        slidesPerView: "auto",
-        coverflowEffect: {
-          rotate: 50,
-          stretch: 0,
-          depth: 100,
-          modifier: 1,
-          slideShadows: false,
-        },
-        pagination: {
-          el: ".swiper-pagination",
-        },
+      /**
+       * header & go-top-btn active
+       * when window scroll down to 400px
+       */
+
+      const header = document.querySelector("[data-header]");
+      const goTopBtn = document.querySelector("[data-go-top]");
+
+      window.addEventListener("scroll", function () {
+        if (window.scrollY >= 400) {
+          header.classList.add("active");
+          goTopBtn.classList.add("active");
+        } else {
+          header.classList.remove("active");
+          goTopBtn.classList.remove("active");
+        }
       });
     </script>
   </body>
