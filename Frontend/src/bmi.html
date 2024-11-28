@@ -109,6 +109,24 @@
         padding: 0;
         width: 100%;
       }
+      .btn {
+        background-image: linear-gradient(
+          90deg,
+          var(--razzmatazz),
+          var(--rajah)
+        );
+        background-size: 200%;
+        color:#fff;
+        padding: 12px 35px;
+        font-size: 1.5rem;
+        font-weight: 500;
+        border-radius: 0 25px;
+        transition: 0.35s ease;
+      }
+
+      .btn:is(:hover, :focus) {
+        background-position: right;
+      }
 
       .logout-button {
         background-color: red;
@@ -377,35 +395,34 @@
         z-index: 1;
       }
 
+      form {
+        margin-top: 10px;
+      }
+
+      form input,
+      form select {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
+
+      form button {
+        background-color: #d9232d;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      form button:hover {
+        background-color: #e1444d;
+      }
 
       form {
-  margin-top: 10px;
-}
-
-form input, form select {
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-
-form button {
-  background-color: #d9232d;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-form button:hover {
-  background-color: #e1444d;
-}
-
-
-form {
         background-color: #fff;
         border-radius: 8px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -422,7 +439,7 @@ form {
 
       h2 {
         font-family: "Raleway", sans-serif;
-        color: #d9232d;
+        color: #fff;
       }
 
       table {
@@ -431,7 +448,8 @@ form {
         background-color: #f9f9f9;
       }
 
-      table th, table td {
+      table th,
+      table td {
         padding: 12px;
         text-align: left;
         border: 1px solid #ddd;
@@ -479,8 +497,20 @@ form {
       button:hover {
         background-color: #e1444d;
       }
-      section{
-        margin-top:100px;
+      section {
+        margin-top: 100px;
+      }
+      .hero {
+        padding: 10%;
+        background-image: linear-gradient(
+          90deg,
+          hsl(231, 68%, 21%) 0,
+          hsl(275, 54%, 33%) 51%,
+          hsl(231, 68%, 21%)
+        );
+      }
+      form{
+        padding: 10%;
       }
     </style>
     <script>
@@ -700,7 +730,7 @@ form {
     />
   </head>
 
-  <body style="height: 100%">
+  <body style="height: 100%" class="hero">
     <header id="header" class="fixed-top d-flex align-items-center">
       <div class="container d-flex align-items-center">
         <h1 class="logo me-auto"><a href="index.html">Zen&Gen</a></h1>
@@ -715,143 +745,151 @@ form {
             <li><a href="user_activity.html"> Activities</a></li>
             <li><a href="bmi.html">Diet Plan Generator</a></li>
             <li><a href="user_activity_graph.html"> Activity Graphs</a></li>
-            <button id="logoutButton" class="logout-button">Logout</button>
+            <button id="logoutButton" class="logout-button btn">Logout</button>
           </ul>
           <i class="bi bi-list mobile-nav-toggle"></i>
         </nav>
       </div>
-    </header><div class="container">
-  <!-- BMI and BMR Form -->
-  <section>
-    <h2>Enter Personal Information for BMI Calculation</h2>
-    <form id="personal-info-form">
-      <label for="age">Age:</label>
-      <input type="number" id="age" name="age" required />
+    </header>
+    <div class="container">
+      <!-- BMI and BMR Form -->
+      <section>
+        <h2>Enter Personal Information for BMI Calculation</h2>
+        <form id="personal-info-form">
+          <label for="age">Age:</label>
+          <input type="number" id="age" name="age" required />
 
-      <label for="weight">Weight (kg):</label>
-      <input type="number" id="weight" name="weight" step="0.01" required />
+          <label for="weight">Weight (kg):</label>
+          <input type="number" id="weight" name="weight" step="0.01" required />
 
-      <label for="height">Height (m):</label>
-      <input type="number" id="height" name="height" step="0.01" required />
+          <label for="height">Height (m):</label>
+          <input type="number" id="height" name="height" step="0.01" required />
 
-      <label for="gender">Gender:</label>
-      <select id="gender" name="gender" required>
-        <option value="male">Male</option>
-        <option value="female">Female</option>
-        <option value="other">Other</option>
-      </select>
+          <label for="gender">Gender:</label>
+          <select id="gender" name="gender" required>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+          </select>
 
-      <button type="submit">Calculate BMI and BMR</button>
-    </form>
-    <div id="personal-info-results" style="display: none"></div>
-  </section>
+          <button type="submit">Calculate BMI and BMR</button>
+        </form>
+        <div id="personal-info-results" style="display: none"></div>
+      </section>
 
-  <!-- Diet Plan Form -->
-  <section>
-    <h2>Diet Plan Generator</h2>
-    <form id="dietForm">
-      <label for="dietType">Diet Type:</label>
-      <select id="dietType">
-        <option value="0">Vegetarian</option>
-        <option value="1">Non-Vegetarian</option>
-      </select>
+      <!-- Diet Plan Form -->
+      <section>
+        <h2>Diet Plan Generator</h2>
+        <form id="dietForm">
+          <label for="dietType">Diet Type:</label>
+          <select id="dietType">
+            <option value="0">Vegetarian</option>
+            <option value="1">Non-Vegetarian</option>
+          </select>
 
-      <label for="weightGoal">Weight Goal:</label>
-      <select id="weightGoal">
-        <option value="gain">Gain</option>
-        <option value="lose">Lose</option>
-        <option value="healthy">Healthy</option>
-      </select>
+          <label for="weightGoal">Weight Goal:</label>
+          <select id="weightGoal">
+            <option value="gain">Gain</option>
+            <option value="lose">Lose</option>
+            <option value="healthy">Healthy</option>
+          </select>
 
-      <button type="submit">Get Diet Plan</button>
-    </form>
-    <div id="results"></div>
-  </section>
-</div>
+          <button type="submit">Get Diet Plan</button>
+        </form>
+        <div id="results"></div>
+      </section>
+    </div>
 
-<button class="back-to-top" onclick="scrollToTop()">
-  <i class="fas fa-arrow-up"></i>
-</button>
+    <button class="back-to-top" onclick="scrollToTop()">
+      <i class="fas fa-arrow-up"></i>
+    </button>
 
-<script>
-  // Scroll to Top
-  window.addEventListener("scroll", () => {
-    document.querySelector(".back-to-top").style.display =
-      window.pageYOffset > 200 ? "block" : "none";
-  });
+    <script>
+      // Scroll to Top
+      window.addEventListener("scroll", () => {
+        document.querySelector(".back-to-top").style.display =
+          window.pageYOffset > 200 ? "block" : "none";
+      });
 
-  function scrollToTop() {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }
+      function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
 
-  // BMI and BMR Calculation
-  document.getElementById("personal-info-form").addEventListener("submit", function (event) {
-  event.preventDefault();
+      // BMI and BMR Calculation
+      document
+        .getElementById("personal-info-form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
 
-  const age = parseFloat(document.getElementById("age").value);
-  const weight = parseFloat(document.getElementById("weight").value);
-  const height = parseFloat(document.getElementById("height").value);
-  const gender = document.getElementById("gender").value;
+          const age = parseFloat(document.getElementById("age").value);
+          const weight = parseFloat(document.getElementById("weight").value);
+          const height = parseFloat(document.getElementById("height").value);
+          const gender = document.getElementById("gender").value;
 
-  // Convert height to meters if entered in centimeters
-  const heightInMeters = height / 100;
+          // Convert height to meters if entered in centimeters
+          const heightInMeters = height / 100;
 
-  // Calculate BMI
-  const BMI = weight / (heightInMeters * heightInMeters);
+          // Calculate BMI
+          const BMI = weight / (heightInMeters * heightInMeters);
 
-  // Calculate BMR based on gender
-  const BMR = gender === "male"
-    ? 10 * weight + 6.25 * height - 5 * age + 5
-    : 10 * weight + 6.25 * height - 5 * age - 161;
+          // Calculate BMR based on gender
+          const BMR =
+            gender === "male"
+              ? 10 * weight + 6.25 * height - 5 * age + 5
+              : 10 * weight + 6.25 * height - 5 * age - 161;
 
-  // Determine BMI category
-  let bmiCategory;
-  if (BMI < 18.5) bmiCategory = "Underweight";
-  else if (BMI < 25) bmiCategory = "Normal weight";
-  else if (BMI < 30) bmiCategory = "Overweight";
-  else bmiCategory = "Obese";
+          // Determine BMI category
+          let bmiCategory;
+          if (BMI < 18.5) bmiCategory = "Underweight";
+          else if (BMI < 25) bmiCategory = "Normal weight";
+          else if (BMI < 30) bmiCategory = "Overweight";
+          else bmiCategory = "Obese";
 
-  // Display results
-  document.getElementById("personal-info-results").innerHTML = `
+          // Display results
+          document.getElementById("personal-info-results").innerHTML = `
     <h2>BMI and BMR Results</h2>
     <p><strong>BMI:</strong> ${BMI.toFixed(2)} (${bmiCategory})</p>
     <p><strong>BMR:</strong> ${BMR.toFixed(2)} kcal/day</p>
   `;
-  document.getElementById("personal-info-results").style.display = "block";
-});
+          document.getElementById("personal-info-results").style.display =
+            "block";
+        });
 
-  // Diet Plan Fetching
-  document.getElementById("dietForm").addEventListener("submit", async function (event) {
-        event.preventDefault();
+      // Diet Plan Fetching
+      document
+        .getElementById("dietForm")
+        .addEventListener("submit", async function (event) {
+          event.preventDefault();
 
-        const dietType = document.getElementById("dietType").value;
-        const weightGoal = document.getElementById("weightGoal").value;
+          const dietType = document.getElementById("dietType").value;
+          const weightGoal = document.getElementById("weightGoal").value;
 
-        try {
-          const response = await fetch(
-            `http://127.0.0.1:8000/get_diet_plan/?diet_type=${dietType}&weight_goal=${weightGoal}`
-          );
-          if (!response.ok) {
-            throw new Error("Network response was not ok");
-          }
+          try {
+            const response = await fetch(
+              `http://127.0.0.1:8000/get_diet_plan/?diet_type=${dietType}&weight_goal=${weightGoal}`
+            );
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
 
-          const data = await response.json();
-          document.getElementById("results").innerHTML = ""; // Clear previous results
-          const mealTypes = ["breakfast", "lunch", "dinner"];
+            const data = await response.json();
+            document.getElementById("results").innerHTML = ""; // Clear previous results
+            const mealTypes = ["breakfast", "lunch", "dinner"];
 
-          mealTypes.forEach((meal) => {
-            const suggestions = data.suggestions[meal];
-            const mealSection = document.createElement("div");
-            mealSection.className = "meal-section";
+            mealTypes.forEach((meal) => {
+              const suggestions = data.suggestions[meal];
+              const mealSection = document.createElement("div");
+              mealSection.className = "meal-section";
 
-            // Add a heading for each meal
-            const mealHeading = document.createElement("h2");
-            mealHeading.textContent = meal.charAt(0).toUpperCase() + meal.slice(1);
-            mealSection.appendChild(mealHeading);
+              // Add a heading for each meal
+              const mealHeading = document.createElement("h2");
+              mealHeading.textContent =
+                meal.charAt(0).toUpperCase() + meal.slice(1);
+              mealSection.appendChild(mealHeading);
 
-            // Check if there are suggestions for the meal
-            if (suggestions && suggestions.length > 0) {
-              let tableHtml = `
+              // Check if there are suggestions for the meal
+              if (suggestions && suggestions.length > 0) {
+                let tableHtml = `
                 <table>
                   <thead>
                     <tr>
@@ -864,8 +902,8 @@ form {
                   </thead>
                   <tbody>`;
 
-              suggestions.forEach((item) => {
-                tableHtml += `
+                suggestions.forEach((item) => {
+                  tableHtml += `
                   <tr>
                     <td>${item.Food_items}</td>
                     <td>${item.Calories}</td>
@@ -873,20 +911,20 @@ form {
                     <td>${item.Fats}</td>
                     <td>${item.Carbohydrates}</td>
                   </tr>`;
-              });
+                });
 
-              tableHtml += "</tbody></table>";
-              mealSection.innerHTML += tableHtml;
-            } else {
-              mealSection.innerHTML += "<p>No suggestions available</p>";
-            }
+                tableHtml += "</tbody></table>";
+                mealSection.innerHTML += tableHtml;
+              } else {
+                mealSection.innerHTML += "<p>No suggestions available</p>";
+              }
 
-            document.getElementById("results").appendChild(mealSection);
-          });
-        } catch (error) {
-          console.error("Error fetching diet plan:", error);
-        }
-      });
+              document.getElementById("results").appendChild(mealSection);
+            });
+          } catch (error) {
+            console.error("Error fetching diet plan:", error);
+          }
+        });
     </script>
   </body>
 </html>

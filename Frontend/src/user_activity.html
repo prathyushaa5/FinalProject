@@ -13,9 +13,20 @@
       @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
       body {
         font-family: "Open Sans", sans-serif;
-        color: #444444;
+        color: #fff;
       }
-
+      .hero {
+        padding-top: 10%;
+        background-image: linear-gradient(
+          90deg,
+          hsl(231, 68%, 21%) 0,
+          hsl(275, 54%, 33%) 51%,
+          hsl(231, 68%, 21%)
+        );
+      }
+      .table {
+        color: #fff;
+      }
       a {
         text-decoration: none;
         color: #d9232d;
@@ -33,6 +44,8 @@
       h5,
       h6 {
         font-family: "Raleway", sans-serif;
+        color: #fff;
+        font-size: larger;
       }
 
       /*--------------------------------------------------------------
@@ -594,7 +607,7 @@
     />
   </head>
 
-  <body style="height: 100%">
+  <body style="height: 100%" class="hero">
     <header id="header" class="fixed-top d-flex align-items-center">
       <div class="container d-flex align-items-center">
         <h1 class="logo me-auto"><a href="index.html">Zen&Gen</a></h1>
@@ -622,7 +635,7 @@
 
     <div class="container mt-5">
       <h2 style="text-align: center">Activities Performed</h2>
-      <table class="table">
+      <table class="table" style="color: #fff;">
         <thead>
           <tr>
             <th>Exercise</th>
