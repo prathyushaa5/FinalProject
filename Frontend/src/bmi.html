@@ -1,895 +1,1021 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Activity</title>
-    <link rel="icon" type="image/x-icon" href="./img/ai.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-    />
-    <style>
-      /* 1st change */
-      @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
-      body {
-        font-family: "Open Sans", sans-serif;
-        color: #444444;
-      }
 
-      a {
-        text-decoration: none;
-        color: #d9232d;
-      }
+<head>
+  <title>Activity</title>
+  <link rel="icon" type="image/x-icon" href="./img/ai.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+  <style>
+    /* 1st change */
+    @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+    :root {
+      /**
+   * colors
+   */
 
-      a:hover {
-        color: #e24d55;
-        text-decoration: none;
-      }
+      --st-patricks-blue: hsl(236, 57%, 28%);
+      --amaranth-purple: hsl(335, 88%, 38%);
+      --royal-blue-dark: hsl(231, 68%, 21%);
+      --chrome-yellow: hsl(39, 100%, 52%);
+      --space-cadet-1: hsl(230, 41%, 25%);
+      --space-cadet-2: hsl(230, 59%, 16%);
+      --winter-sky_50: hsla(335, 87%, 53%, 0.5);
+      --purple-navy: hsl(236, 26%, 43%);
+      --ksu-purple: hsl(275, 54%, 33%);
+      --winter-sky: hsl(335, 87%, 53%);
+      --razzmatazz: hsl(335, 87%, 51%);
+      --platinum: hsl(0, 0%, 90%);
+      --black_70: hsla(0, 0%, 0%, 0.7);
+      --rajah: hsl(29, 99%, 67%);
+      --white: hsl(0, 0%, 100%);
 
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6 {
-        font-family: "Raleway", sans-serif;
-      }
+      --gradient-1: linear-gradient(90deg,
+          var(--royal-blue-dark) 0,
+          var(--ksu-purple) 51%,
+          var(--royal-blue-dark));
+      --gradient-2: linear-gradient(90deg, var(--razzmatazz), var(--rajah));
 
-      /*--------------------------------------------------------------
+      /**
+   * typography
+   */
+
+      --ff-source-sans-pro: "Source Sans Pro", sans-serif;
+      --ff-poppins: "Poppins", sans-serif;
+
+      --fs-1: 4.2rem;
+      --fs-2: 3.8rem;
+      --fs-3: 3.2rem;
+      --fs-4: 2.5rem;
+      --fs-5: 2.4rem;
+      --fs-6: 2rem;
+      --fs-7: 1.8rem;
+      --fs-8: 1.5rem;
+
+      --fw-500: 500;
+      --fw-600: 600;
+      --fw-700: 700;
+
+      /**
+   * border radius
+   */
+
+      --radius-4: 4px;
+      --radius-12: 12px;
+
+      /**
+   * spacing
+   */
+
+      --section-padding: 60px;
+
+      /**
+   * transition
+   */
+
+      --transition-1: 0.15s ease;
+      --transition-2: 0.35s ease;
+      --cubic-in: cubic-bezier(0.51, 0.03, 0.64, 0.28);
+      --cubic-out: cubic-bezier(0.33, 0.85, 0.56, 1.02);
+
+      /**
+   * shadow
+   */
+
+      --shadow: 0 5px 20px 1px hsla(220, 63%, 33%, 0.1);
+    }
+
+    body {
+      font-family: "Open Sans", sans-serif;
+      color: #444444;
+    }
+
+    a {
+      text-decoration: none;
+      color: #d9232d;
+    }
+
+    a:hover {
+      color: #e24d55;
+      text-decoration: none;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: "Raleway", sans-serif;
+    }
+
+    /*--------------------------------------------------------------
       # Back to top button
       --------------------------------------------------------------*/
-      .back-to-top {
-        position: fixed;
-        visibility: hidden;
-        opacity: 0;
-        right: 15px;
-        bottom: 15px;
-        z-index: 996;
-        background: #d9232d;
-        width: 40px;
-        height: 40px;
-        border-radius: 4px;
-        transition: all 0.4s;
-      }
+    .back-to-top {
+      position: fixed;
+      visibility: hidden;
+      opacity: 0;
+      right: 15px;
+      bottom: 15px;
+      z-index: 996;
+      background: #d9232d;
+      width: 40px;
+      height: 40px;
+      border-radius: 4px;
+      transition: all 0.4s;
+    }
 
-      .back-to-top i {
-        font-size: 28px;
-        color: #fff;
-        line-height: 0;
-      }
+    .back-to-top i {
+      font-size: 28px;
+      color: #fff;
+      line-height: 0;
+    }
 
-      .back-to-top:hover {
-        background: #e1444d;
-        color: #fff;
-      }
+    .back-to-top:hover {
+      background: #e1444d;
+      color: #fff;
+    }
 
-      .back-to-top.active {
-        visibility: visible;
-        opacity: 1;
-      }
+    .back-to-top.active {
+      visibility: visible;
+      opacity: 1;
+    }
 
-      /*--------------------------------------------------------------
+    /*--------------------------------------------------------------
       # Header
       --------------------------------------------------------------*/
-      #header {
-        background: white;
-        transition: all 0.5s;
-        z-index: 997;
-        padding: 20px 0;
-      }
+    #header {
+      /* background: white; */
+      transition: all 0.5s;
+      z-index: 997;
+      padding: 20px 0;
+      position:absolute;
+    }
 
-      #header.header-scrolled {
-        box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
-        padding: 12px 0;
-      }
+    #header.header-scrolled {
+      box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+      padding: 12px 0;
+    }
 
-      #header.header-inner-pages {
-        box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
-      }
+    #header.header-inner-pages {
+      box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+    }
 
-      #header .logo {
-        font-size: 28px;
-        margin: 0;
-        padding: 0;
-        line-height: 1;
-        font-weight: 700;
-        text-transform: uppercase;
-      }
+    #header .logo {
+      color: white;
+      font-size: 30px;
+      margin: 0;
+      padding: 0;
+      line-height: 1;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
 
-      #header .logo a {
-        color: #556270;
-      }
+    #header .logo a {
+      color: white;
+      text-decoration: none;
+    }
 
-      #header .logo img {
-        max-height: 40px;
-      }
+    #header .logo a:hover {
+      text-shadow: 2px 2px#556270;
+    }
 
-      /* 1st change ends here */
-      .navbar {
-        padding: 0;
-        width: 100%;
-      }
-      .btn {
-        background-image: linear-gradient(
-          90deg,
+    #header .logo img {
+      max-height: 40px;
+      filter: invert(1);
+    }
+
+    #header .btn {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-inline-start: auto;
+    }
+
+    #header .btn {
+      margin-inline-start: 0;
+    }
+
+    /* 1st change ends here */
+    #header .navbar {
+      padding: 0;
+      width: 100%;
+      justify-content: end;
+    }
+
+    .btn {
+      background-image: linear-gradient(90deg,
           var(--razzmatazz),
-          var(--rajah)
-        );
-        background-size: 200%;
-        color:#fff;
-        padding: 12px 35px;
-        font-size: 1.5rem;
-        font-weight: 500;
-        border-radius: 0 25px;
-        transition: 0.35s ease;
+          var(--rajah));
+      background-size: 200%;
+      color: #fff;
+      padding: 12px 35px;
+      font-size: 1.5rem;
+      font-weight: 500;
+      border-radius: 0 25px;
+      transition: 0.35s ease;
+    }
+
+    .btn:is(:hover, :focus) {
+      background-position: right;
+    }
+
+    .logout-button {
+      background-color: red;
+      color: white;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      position: absolute;
+      top: 50%;
+      right: 16px;
+      transform: translateY(-50%);
+    }
+
+    .navbar ul {
+      margin: 0;
+      padding-right: 20px;
+      display: flex;
+      list-style: none;
+      align-items: center;
+    }
+
+    .navbar li {
+      position: relative;
+    }
+
+    .navbar a,
+    .navbar a:focus {
+      display: flex;
+      align-items: center;
+      padding: 10px 0 10px 30px;
+      font-family: var(--ff-poppins);
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--white);
+      font-family: var(--fw-700);
+      white-space: nowrap;
+
+    }
+
+    .navbar a i,
+    .navbar a:focus i {
+      font-size: 12px;
+      line-height: 0;
+      margin-left: 5px;
+    }
+
+    .navbar a:hover,
+    .navbar .active,
+    .navbar .active:focus,
+    .navbar li:hover>a {
+      color:var(--white);
+      text-decoration: none;
+      text-shadow: 2px 2px#556270;
+    }
+
+    .navbar .getstarted,
+    .navbar .getstarted:focus {
+      background: #d9232d;
+      padding: 8px 25px;
+      margin-left: 30px;
+      border-radius: 4px;
+      font-weight: 400;
+      color: #fff;
+    }
+
+    .navbar .getstarted:hover,
+    .navbar .getstarted:focus:hover {
+      color: #fff;
+      background: #e1444d;
+    }
+
+    .navbar .dropdown ul {
+      display: block;
+      position: absolute;
+      left: 14px;
+      top: calc(100% + 30px);
+      margin: 0;
+      padding: 10px 0;
+      z-index: 99;
+      opacity: 0;
+      visibility: hidden;
+      background: #fff;
+      box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
+      transition: 0.3s;
+    }
+
+    .navbar .dropdown ul li {
+      min-width: 200px;
+    }
+
+    .navbar .dropdown ul a {
+      padding: 10px 20px;
+      font-size: 15px;
+      text-transform: none;
+      font-weight: 400;
+    }
+
+    .navbar .dropdown ul a i {
+      font-size: 12px;
+    }
+
+    .navbar .dropdown ul a:hover,
+    .navbar .dropdown ul .active:hover,
+    .navbar .dropdown ul li:hover>a {
+      color: #d9232d;
+    }
+
+    .navbar .dropdown:hover>ul {
+      opacity: 1;
+      top: 100%;
+      visibility: visible;
+    }
+
+    .navbar .dropdown .dropdown ul {
+      top: 0;
+      left: calc(100% - 30px);
+      visibility: hidden;
+    }
+
+    .navbar .dropdown .dropdown:hover>ul {
+      opacity: 1;
+      top: 0;
+      left: 100%;
+      visibility: visible;
+    }
+
+    .navbar .btn {
+      background-image: var(--gradient-2);
+      background-size: 100%;
+      color: var(--white);
+      padding: 2px 20px;
+      font-size: 20px;
+      font-weight: var(--fw-500);
+      border-radius: 0 25px;
+      transition: var(--transition-2);
+    }
+
+    .navbar .btn:hover {
+      background-position: right;
+      color:var(--white);
+      text-decoration: none;
+      text-shadow: 2px 2px#556270;
+    }
+
+    .w-100 {
+      width: 100%;
+    }
+
+    .banner-animation {
+      animation: waveAnim 2s linear infinite alternate;
+    }
+
+    @media (max-width: 1366px) {
+      .navbar .dropdown .dropdown ul {
+        left: -90%;
       }
 
-      .btn:is(:hover, :focus) {
-        background-position: right;
+      .navbar .dropdown .dropdown:hover>ul {
+        left: -100%;
       }
+    }
+    
 
-      .logout-button {
-        background-color: red;
-        color: white;
-        padding: 8px 16px;
-        border: none;
-        border-radius: 4px;
-        position: absolute;
-        top: 50%;
-        right: 16px;
-        transform: translateY(-50%);
+    /* Second Change */
+    /**
+      * Mobile Navigation 
+      */
+    .mobile-nav-toggle {
+      color: #556270;
+      font-size: 28px;
+      cursor: pointer;
+      display: none;
+      line-height: 0;
+      transition: 0.5s;
+    }
+
+    .mobile-nav-toggle.bi-x {
+      color: #fff;
+    }
+
+    @media (max-width: 991px) {
+      .mobile-nav-toggle {
+        display: block;
       }
 
       .navbar ul {
-        margin: 0;
-        padding: 0;
-        display: flex;
-        list-style: none;
-        align-items: center;
-      }
-
-      .navbar li {
-        position: relative;
-      }
-
-      .navbar a,
-      .navbar a:focus {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 10px 0 10px 30px;
-        font-family: "Poppins", sans-serif;
-        font-size: 15px;
-        font-weight: 500;
-        color: #556270;
-        white-space: nowrap;
-        transition: 0.3s;
-      }
-
-      .navbar a i,
-      .navbar a:focus i {
-        font-size: 12px;
-        line-height: 0;
-        margin-left: 5px;
-      }
-
-      .navbar a:hover,
-      .navbar .active,
-      .navbar .active:focus,
-      .navbar li:hover > a {
-        color: #d9232d;
-      }
-
-      .navbar .getstarted,
-      .navbar .getstarted:focus {
-        background: #d9232d;
-        padding: 8px 25px;
-        margin-left: 30px;
-        border-radius: 4px;
-        font-weight: 400;
-        color: #fff;
-      }
-
-      .navbar .getstarted:hover,
-      .navbar .getstarted:focus:hover {
-        color: #fff;
-        background: #e1444d;
-      }
-
-      .navbar .dropdown ul {
-        display: block;
-        position: absolute;
-        left: 14px;
-        top: calc(100% + 30px);
-        margin: 0;
-        padding: 10px 0;
-        z-index: 99;
-        opacity: 0;
-        visibility: hidden;
-        background: #fff;
-        box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
-        transition: 0.3s;
-      }
-
-      .navbar .dropdown ul li {
-        min-width: 200px;
-      }
-
-      .navbar .dropdown ul a {
-        padding: 10px 20px;
-        font-size: 15px;
-        text-transform: none;
-        font-weight: 400;
-      }
-
-      .navbar .dropdown ul a i {
-        font-size: 12px;
-      }
-
-      .navbar .dropdown ul a:hover,
-      .navbar .dropdown ul .active:hover,
-      .navbar .dropdown ul li:hover > a {
-        color: #d9232d;
-      }
-
-      .navbar .dropdown:hover > ul {
-        opacity: 1;
-        top: 100%;
-        visibility: visible;
-      }
-
-      .navbar .dropdown .dropdown ul {
-        top: 0;
-        left: calc(100% - 30px);
-        visibility: hidden;
-      }
-
-      .navbar .dropdown .dropdown:hover > ul {
-        opacity: 1;
-        top: 0;
-        left: 100%;
-        visibility: visible;
-      }
-
-      @media (max-width: 1366px) {
-        .navbar .dropdown .dropdown ul {
-          left: -90%;
-        }
-
-        .navbar .dropdown .dropdown:hover > ul {
-          left: -100%;
-        }
-      }
-      /* Second Change */
-      /**
-      * Mobile Navigation 
-      */
-      .mobile-nav-toggle {
-        color: #556270;
-        font-size: 28px;
-        cursor: pointer;
         display: none;
-        line-height: 0;
-        transition: 0.5s;
       }
+    }
 
-      .mobile-nav-toggle.bi-x {
-        color: #fff;
-      }
+    .navbar-mobile {
+      position: fixed;
+      overflow: hidden;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      background: rgba(63, 73, 83, 0.9);
+      transition: 0.3s;
+      z-index: 999;
+    }
 
-      @media (max-width: 991px) {
-        .mobile-nav-toggle {
-          display: block;
-        }
+    .navbar-mobile .mobile-nav-toggle {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+    }
 
-        .navbar ul {
-          display: none;
-        }
-      }
+    .navbar-mobile ul {
+      display: block;
+      position: absolute;
+      top: 55px;
+      right: 15px;
+      bottom: 15px;
+      left: 15px;
+      padding: 10px 0;
+      background-color: #fff;
+      overflow-y: auto;
+      transition: 0.3s;
+    }
 
-      .navbar-mobile {
-        position: fixed;
-        overflow: hidden;
-        top: 0;
-        right: 0;
-        left: 0;
-        bottom: 0;
-        background: rgba(63, 73, 83, 0.9);
-        transition: 0.3s;
-        z-index: 999;
-      }
+    .navbar-mobile a,
+    .navbar-mobile a:focus {
+      padding: 10px 20px;
+      font-size: 15px;
+      color: #556270;
+    }
 
-      .navbar-mobile .mobile-nav-toggle {
-        position: absolute;
-        top: 15px;
-        right: 15px;
-      }
+    .navbar-mobile a:hover,
+    .navbar-mobile .active,
+    .navbar-mobile li:hover>a {
+      color: #d9232d;
+    }
 
-      .navbar-mobile ul {
-        display: block;
-        position: absolute;
-        top: 55px;
-        right: 15px;
-        bottom: 15px;
-        left: 15px;
-        padding: 10px 0;
-        background-color: #fff;
-        overflow-y: auto;
-        transition: 0.3s;
-      }
+    .navbar-mobile .getstarted,
+    .navbar-mobile .getstarted:focus {
+      margin: 15px;
+    }
 
-      .navbar-mobile a,
-      .navbar-mobile a:focus {
-        padding: 10px 20px;
-        font-size: 15px;
-        color: #556270;
-      }
+    .navbar-mobile .dropdown ul {
+      position: static;
+      display: none;
+      margin: 10px 20px;
+      padding: 10px 0;
+      z-index: 99;
+      opacity: 1;
+      visibility: visible;
+      background: #fff;
+      box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
+    }
 
-      .navbar-mobile a:hover,
-      .navbar-mobile .active,
-      .navbar-mobile li:hover > a {
-        color: #d9232d;
-      }
+    .navbar-mobile .dropdown ul li {
+      min-width: 200px;
+    }
 
-      .navbar-mobile .getstarted,
-      .navbar-mobile .getstarted:focus {
-        margin: 15px;
-      }
+    .navbar-mobile .dropdown ul a {
+      padding: 10px 20px;
+    }
 
-      .navbar-mobile .dropdown ul {
-        position: static;
-        display: none;
-        margin: 10px 20px;
-        padding: 10px 0;
-        z-index: 99;
-        opacity: 1;
-        visibility: visible;
-        background: #fff;
-        box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
-      }
+    .navbar-mobile .dropdown ul a i {
+      font-size: 12px;
+    }
 
-      .navbar-mobile .dropdown ul li {
-        min-width: 200px;
-      }
+    .navbar-mobile .dropdown ul a:hover,
+    .navbar-mobile .dropdown ul .active:hover,
+    .navbar-mobile .dropdown ul li:hover>a {
+      color: #d9232d;
+    }
 
-      .navbar-mobile .dropdown ul a {
-        padding: 10px 20px;
-      }
+    .navbar-mobile .dropdown>.dropdown-active {
+      display: block;
+    }
 
-      .navbar-mobile .dropdown ul a i {
-        font-size: 12px;
-      }
+    /* Second change ends here */
+    /* Popup overlay is default */
+    .popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      background-color: white;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0px 0px 5px gray;
+    }
 
-      .navbar-mobile .dropdown ul a:hover,
-      .navbar-mobile .dropdown ul .active:hover,
-      .navbar-mobile .dropdown ul li:hover > a {
-        color: #d9232d;
-      }
+    .popup-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1;
+    }
 
-      .navbar-mobile .dropdown > .dropdown-active {
-        display: block;
-      }
-      /* Second change ends here */
-      /* Popup overlay is default */
-      .popup {
-        display: none;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 1;
-        background-color: white;
-        padding: 20px;
-        border-radius: 5px;
-        box-shadow: 0px 0px 5px gray;
-      }
+    form {
+      margin-top: 10px;
+    }
 
-      .popup-overlay {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        z-index: 1;
-      }
+    form input,
+    form select {
+      background-color: #ffffff;
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
 
-      form {
-        margin-top: 10px;
-      }
+    form button {
+      background-color: #d9232d;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
 
-      form input,
-      form select {
-        width: 100%;
-        padding: 10px;
-        margin: 10px 0;
-        border-radius: 5px;
-        border: 1px solid #ccc;
-      }
+    form button:hover {
+      background-color: #e1444d;
+    }
 
-      form button {
-        background-color: #d9232d;
-        color: white;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-      }
+    form {
+      background-color: #f7f2f2;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin-bottom: 30px;
+    }
 
-      form button:hover {
-        background-color: #e1444d;
-      }
+    .meal-section {
+      background-color: #fff;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
 
-      form {
-        background-color: #fff;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        margin-bottom: 30px;
-      }
+    h2 {
+      font-family: "Raleway", sans-serif;
+      color: #fff;
+    }
 
-      .meal-section {
-        background-color: #fff;
-        padding: 20px;
-        margin-bottom: 20px;
-        border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #f9f9f9;
+    }
 
-      h2 {
-        font-family: "Raleway", sans-serif;
-        color: #fff;
-      }
+    table th,
+    table td {
+      padding: 12px;
+      text-align: left;
+      border: 1px solid #ddd;
+    }
 
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        background-color: #f9f9f9;
-      }
+    table th {
+      background-color: #f1f1f1;
+      color: #555;
+    }
 
-      table th,
-      table td {
-        padding: 12px;
-        text-align: left;
-        border: 1px solid #ddd;
-      }
+    table td {
+      background-color: #fff;
+      color: #333;
+    }
 
-      table th {
-        background-color: #f1f1f1;
-        color: #555;
-      }
+    table tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
 
-      table td {
-        background-color: #fff;
-        color: #333;
-      }
+    table tr:hover {
+      background-color: #f0f0f0;
+    }
 
-      table tr:nth-child(even) {
-        background-color: #f2f2f2;
-      }
+    .meal-section p {
+      font-size: 16px;
+      color: #888;
+      font-style: italic;
+    }
 
-      table tr:hover {
-        background-color: #f0f0f0;
-      }
+    #results {
+      margin-top: 20px;
+    }
 
-      .meal-section p {
-        font-size: 16px;
-        color: #888;
-        font-style: italic;
-      }
+    button {
+      background-color: #d9232d;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
 
-      #results {
-        margin-top: 20px;
-      }
+    button:hover {
+      background-color: #e1444d;
+    }
 
-      button {
-        background-color: #d9232d;
-        color: white;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 16px;
-        transition: background-color 0.3s;
-      }
+    section {
+      margin-top: 100px;
+    }
 
-      button:hover {
-        background-color: #e1444d;
-      }
-      section {
-        margin-top: 100px;
-      }
-      .hero {
-        padding: 10%;
-        background-image: linear-gradient(
-          90deg,
+    .hero {
+      padding: 10%;
+      background-image: linear-gradient(90deg,
           hsl(231, 68%, 21%) 0,
           hsl(275, 54%, 33%) 51%,
-          hsl(231, 68%, 21%)
+          hsl(231, 68%, 21%));
+    }
+
+    form {
+      padding: 10%;
+    }
+  </style>
+  <script>
+    (function (factory) {
+      typeof define === "function" && define.amd
+        ? define(factory)
+        : factory();
+    })(function () {
+      "use strict";
+
+      /**
+       * The code was extracted from:
+       * https://github.com/davidchambers/Base64.js
+       */
+
+      var chars =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+
+      function InvalidCharacterError(message) {
+        this.message = message;
+      }
+
+      InvalidCharacterError.prototype = new Error();
+      InvalidCharacterError.prototype.name = "InvalidCharacterError";
+
+      function polyfill(input) {
+        var str = String(input).replace(/=+$/, "");
+        if (str.length % 4 == 1) {
+          throw new InvalidCharacterError(
+            "'atob' failed: The string to be decoded is not correctly encoded."
+          );
+        }
+        for (
+          // initialize result and counters
+          var bc = 0, bs, buffer, idx = 0, output = "";
+          // get next character
+          (buffer = str.charAt(idx++));
+          // character found in table? initialize bit storage and add its ascii value;
+          ~buffer &&
+            ((bs = bc % 4 ? bs * 64 + buffer : buffer),
+              // and if not first of each 4 characters,
+              // convert the first 8 bits to one ascii character
+              bc++ % 4)
+            ? (output += String.fromCharCode(255 & (bs >> ((-2 * bc) & 6))))
+            : 0
+        ) {
+          // try to find character in table (0-63, not found => -1)
+          buffer = chars.indexOf(buffer);
+        }
+        return output;
+      }
+
+      var atob =
+        (typeof window !== "undefined" &&
+          window.atob &&
+          window.atob.bind(window)) ||
+        polyfill;
+
+      function b64DecodeUnicode(str) {
+        return decodeURIComponent(
+          atob(str).replace(/(.)/g, function (m, p) {
+            var code = p.charCodeAt(0).toString(16).toUpperCase();
+            if (code.length < 2) {
+              code = "0" + code;
+            }
+            return "%" + code;
+          })
         );
       }
-      form{
-        padding: 10%;
+
+      function base64_url_decode(str) {
+        var output = str.replace(/-/g, "+").replace(/_/g, "/");
+        switch (output.length % 4) {
+          case 0:
+            break;
+          case 2:
+            output += "==";
+            break;
+          case 3:
+            output += "=";
+            break;
+          default:
+            throw new Error("base64 string is not of the correct length");
+        }
+
+        try {
+          return b64DecodeUnicode(output);
+        } catch (err) {
+          return atob(output);
+        }
       }
-    </style>
-    <script>
-      (function (factory) {
-        typeof define === "function" && define.amd
-          ? define(factory)
-          : factory();
-      })(function () {
-        "use strict";
 
-        /**
-         * The code was extracted from:
-         * https://github.com/davidchambers/Base64.js
-         */
+      function InvalidTokenError(message) {
+        this.message = message;
+      }
 
-        var chars =
-          "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+      InvalidTokenError.prototype = new Error();
+      InvalidTokenError.prototype.name = "InvalidTokenError";
 
-        function InvalidCharacterError(message) {
-          this.message = message;
-        }
-
-        InvalidCharacterError.prototype = new Error();
-        InvalidCharacterError.prototype.name = "InvalidCharacterError";
-
-        function polyfill(input) {
-          var str = String(input).replace(/=+$/, "");
-          if (str.length % 4 == 1) {
-            throw new InvalidCharacterError(
-              "'atob' failed: The string to be decoded is not correctly encoded."
-            );
-          }
-          for (
-            // initialize result and counters
-            var bc = 0, bs, buffer, idx = 0, output = "";
-            // get next character
-            (buffer = str.charAt(idx++));
-            // character found in table? initialize bit storage and add its ascii value;
-            ~buffer &&
-            ((bs = bc % 4 ? bs * 64 + buffer : buffer),
-            // and if not first of each 4 characters,
-            // convert the first 8 bits to one ascii character
-            bc++ % 4)
-              ? (output += String.fromCharCode(255 & (bs >> ((-2 * bc) & 6))))
-              : 0
-          ) {
-            // try to find character in table (0-63, not found => -1)
-            buffer = chars.indexOf(buffer);
-          }
-          return output;
-        }
-
-        var atob =
-          (typeof window !== "undefined" &&
-            window.atob &&
-            window.atob.bind(window)) ||
-          polyfill;
-
-        function b64DecodeUnicode(str) {
-          return decodeURIComponent(
-            atob(str).replace(/(.)/g, function (m, p) {
-              var code = p.charCodeAt(0).toString(16).toUpperCase();
-              if (code.length < 2) {
-                code = "0" + code;
-              }
-              return "%" + code;
-            })
+      function jwtDecode(token, options) {
+        if (typeof token !== "string") {
+          throw new InvalidTokenError(
+            "Invalid token specified: must be a string"
           );
         }
 
-        function base64_url_decode(str) {
-          var output = str.replace(/-/g, "+").replace(/_/g, "/");
-          switch (output.length % 4) {
-            case 0:
-              break;
-            case 2:
-              output += "==";
-              break;
-            case 3:
-              output += "=";
-              break;
-            default:
-              throw new Error("base64 string is not of the correct length");
-          }
+        options = options || {};
+        var pos = options.header === true ? 0 : 1;
 
-          try {
-            return b64DecodeUnicode(output);
-          } catch (err) {
-            return atob(output);
-          }
+        var part = token.split(".")[pos];
+        if (typeof part !== "string") {
+          throw new InvalidTokenError(
+            "Invalid token specified: missing part #" + (pos + 1)
+          );
         }
 
-        function InvalidTokenError(message) {
-          this.message = message;
+        try {
+          var decoded = base64_url_decode(part);
+        } catch (e) {
+          throw new InvalidTokenError(
+            "Invalid token specified: invalid base64 for part #" +
+            (pos + 1) +
+            " (" +
+            e.message +
+            ")"
+          );
         }
 
-        InvalidTokenError.prototype = new Error();
-        InvalidTokenError.prototype.name = "InvalidTokenError";
-
-        function jwtDecode(token, options) {
-          if (typeof token !== "string") {
-            throw new InvalidTokenError(
-              "Invalid token specified: must be a string"
-            );
-          }
-
-          options = options || {};
-          var pos = options.header === true ? 0 : 1;
-
-          var part = token.split(".")[pos];
-          if (typeof part !== "string") {
-            throw new InvalidTokenError(
-              "Invalid token specified: missing part #" + (pos + 1)
-            );
-          }
-
-          try {
-            var decoded = base64_url_decode(part);
-          } catch (e) {
-            throw new InvalidTokenError(
-              "Invalid token specified: invalid base64 for part #" +
-                (pos + 1) +
-                " (" +
-                e.message +
-                ")"
-            );
-          }
-
-          try {
-            return JSON.parse(decoded);
-          } catch (e) {
-            throw new InvalidTokenError(
-              "Invalid token specified: invalid json for part #" +
-                (pos + 1) +
-                " (" +
-                e.message +
-                ")"
-            );
-          }
+        try {
+          return JSON.parse(decoded);
+        } catch (e) {
+          throw new InvalidTokenError(
+            "Invalid token specified: invalid json for part #" +
+            (pos + 1) +
+            " (" +
+            e.message +
+            ")"
+          );
         }
-
-        /*
-         * Expose the function on the window object
-         */
-
-        //use amd or just through the window object.
-        if (window) {
-          if (typeof window.define == "function" && window.define.amd) {
-            window.define("jwt_decode", function () {
-              return jwtDecode;
-            });
-          } else if (window) {
-            window.jwt_decode = jwtDecode;
-          }
-        }
-      });
-      //# sourceMappingURL=jwt-decode.js.map
-    </script>
-    <script>
-      // Retrieve the token from local storage
-      const token = localStorage.getItem("token");
-      // Check if the user is authenticated
-      fetch("http://localhost:5000/api/auth", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          "x-auth-token": token,
-        },
-      })
-        .then((response) => {
-          console.log(response);
-          if (response.ok) {
-            // User is authenticated, proceed with the dashboard content
-            console.log("User is authenticated");
-
-            // Verify the token
-            try {
-              const decodedToken = jwt_decode(token);
-              // The decodedToken variable now contains the decoded token payload
-
-              // Perform any necessary checks or validations on the decoded token
-              // For example, you can check the expiration date, user ID, or any other relevant information
-
-              // If the token is valid and meets your criteria, allow access to the dashboard
-              // Otherwise, redirect the user to the login page or display an error message
-              console.log("Token verification successful:", decodedToken);
-            } catch (error) {
-              // Error occurred while decoding or verifying the token
-              // Redirect the user to the login page or display an error message
-              console.error("Token verification failed:", error);
-              window.location.href = "http://localhost:8080/login.html";
-            }
-
-            // Here you can add your specific dashboard content and functionality
-          } else {
-            // User is not authenticated, redirect to the login page or handle accordingly
-            console.log("User is not authenticated");
-            window.location.href = "http://localhost:8080/login.html";
-          }
-        })
-        .catch((error) => {
-          console.error("Error checking authentication:", error);
-          // Handle error if necessary
-        });
-    </script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <!-- Bootstrap CSS -->
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-    />
-    <!-- Font Awesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-    />
-  </head>
-
-  <body style="height: 100%" class="hero">
-    <header id="header" class="fixed-top d-flex align-items-center">
-      <div class="container d-flex align-items-center">
-        <h1 class="logo me-auto"><a href="index.html">Zen&Gen</a></h1>
-
-        <a href="index.html" class="logo me-auto">
-          <img src="\img\yoga.svg" alt="" class="img-fluid" />
-        </a>
-
-        <nav id="navbar" class="navbar">
-          <ul>
-            <li><a href="dashboard.html">Exercises</a></li>
-            <li><a href="user_activity.html"> Activities</a></li>
-            <li><a href="bmi.html">Diet Plan Generator</a></li>
-            <li><a href="user_activity_graph.html"> Activity Graphs</a></li>
-            <button id="logoutButton" class="logout-button btn">Logout</button>
-          </ul>
-          <i class="bi bi-list mobile-nav-toggle"></i>
-        </nav>
-      </div>
-    </header>
-    <div class="container">
-      <!-- BMI and BMR Form -->
-      <section>
-        <h2>Enter Personal Information for BMI Calculation</h2>
-        <form id="personal-info-form">
-          <label for="age">Age:</label>
-          <input type="number" id="age" name="age" required />
-
-          <label for="weight">Weight (kg):</label>
-          <input type="number" id="weight" name="weight" step="0.01" required />
-
-          <label for="height">Height (m):</label>
-          <input type="number" id="height" name="height" step="0.01" required />
-
-          <label for="gender">Gender:</label>
-          <select id="gender" name="gender" required>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="other">Other</option>
-          </select>
-
-          <button type="submit">Calculate BMI and BMR</button>
-        </form>
-        <div id="personal-info-results" style="display: none"></div>
-      </section>
-
-      <!-- Diet Plan Form -->
-      <section>
-        <h2>Diet Plan Generator</h2>
-        <form id="dietForm">
-          <label for="dietType">Diet Type:</label>
-          <select id="dietType">
-            <option value="0">Vegetarian</option>
-            <option value="1">Non-Vegetarian</option>
-          </select>
-
-          <label for="weightGoal">Weight Goal:</label>
-          <select id="weightGoal">
-            <option value="gain">Gain</option>
-            <option value="lose">Lose</option>
-            <option value="healthy">Healthy</option>
-          </select>
-
-          <button type="submit">Get Diet Plan</button>
-        </form>
-        <div id="results"></div>
-      </section>
-    </div>
-
-    <button class="back-to-top" onclick="scrollToTop()">
-      <i class="fas fa-arrow-up"></i>
-    </button>
-
-    <script>
-      // Scroll to Top
-      window.addEventListener("scroll", () => {
-        document.querySelector(".back-to-top").style.display =
-          window.pageYOffset > 200 ? "block" : "none";
-      });
-
-      function scrollToTop() {
-        window.scrollTo({ top: 0, behavior: "smooth" });
       }
 
-      // BMI and BMR Calculation
-      document
-        .getElementById("personal-info-form")
-        .addEventListener("submit", function (event) {
-          event.preventDefault();
+      /*
+       * Expose the function on the window object
+       */
 
-          const age = parseFloat(document.getElementById("age").value);
-          const weight = parseFloat(document.getElementById("weight").value);
-          const height = parseFloat(document.getElementById("height").value);
-          const gender = document.getElementById("gender").value;
+      //use amd or just through the window object.
+      if (window) {
+        if (typeof window.define == "function" && window.define.amd) {
+          window.define("jwt_decode", function () {
+            return jwtDecode;
+          });
+        } else if (window) {
+          window.jwt_decode = jwtDecode;
+        }
+      }
+    });
+    //# sourceMappingURL=jwt-decode.js.map
+  </script>
+  <script>
+    // Retrieve the token from local storage
+    const token = localStorage.getItem("token");
+    // Check if the user is authenticated
+    fetch("http://localhost:5000/api/auth", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "x-auth-token": token,
+      },
+    })
+      .then((response) => {
+        console.log(response);
+        if (response.ok) {
+          // User is authenticated, proceed with the dashboard content
+          console.log("User is authenticated");
 
-          // Convert height to meters if entered in centimeters
-          const heightInMeters = height / 100;
+          // Verify the token
+          try {
+            const decodedToken = jwt_decode(token);
+            // The decodedToken variable now contains the decoded token payload
 
-          // Calculate BMI
-          const BMI = weight / (heightInMeters * heightInMeters);
+            // Perform any necessary checks or validations on the decoded token
+            // For example, you can check the expiration date, user ID, or any other relevant information
 
-          // Calculate BMR based on gender
-          const BMR =
-            gender === "male"
-              ? 10 * weight + 6.25 * height - 5 * age + 5
-              : 10 * weight + 6.25 * height - 5 * age - 161;
+            // If the token is valid and meets your criteria, allow access to the dashboard
+            // Otherwise, redirect the user to the login page or display an error message
+            console.log("Token verification successful:", decodedToken);
+          } catch (error) {
+            // Error occurred while decoding or verifying the token
+            // Redirect the user to the login page or display an error message
+            console.error("Token verification failed:", error);
+            window.location.href = "http://localhost:8080/login.html";
+          }
 
-          // Determine BMI category
-          let bmiCategory;
-          if (BMI < 18.5) bmiCategory = "Underweight";
-          else if (BMI < 25) bmiCategory = "Normal weight";
-          else if (BMI < 30) bmiCategory = "Overweight";
-          else bmiCategory = "Obese";
+          // Here you can add your specific dashboard content and functionality
+        } else {
+          // User is not authenticated, redirect to the login page or handle accordingly
+          console.log("User is not authenticated");
+          window.location.href = "http://localhost:8080/login.html";
+        }
+      })
+      .catch((error) => {
+        console.error("Error checking authentication:", error);
+        // Handle error if necessary
+      });
+  </script>
+  
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-          // Display results
-          document.getElementById("personal-info-results").innerHTML = `
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+</head>
+
+<body style="height: 100%" class="hero">
+  <header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center">
+      <h1 class="logo me-auto"><a href="index.html">Zen&Gen</a></h1>
+
+      <a href="index.html" class="logo me-auto">
+        <img src="\img\yoga.svg" alt="" class="img-fluid" />
+      </a>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a href="dashboard.html">Exercises</a></li>
+          <li><a href="user_activity.html"> Activities</a></li>
+          <li><a href="bmi.html">Diet Plan Generator</a></li>
+          <li><a href="user_activity_graph.html"> Activity Graphs</a></li>
+          <!-- <button id="logoutButton" class="logout-button btn">Logout</button> -->
+        </ul>
+        <button id="logoutButton" class="btn">
+          <ion-icon name="chevron-forward-outline" aria-hidden="true"></ion-icon>
+
+          <span>Logout</span>
+        </button>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav>
+    </div>
+  </header>
+  <div class="container">
+    <!-- BMI and BMR Form -->
+    <section>
+      <h2>Enter Personal Information for BMI Calculation</h2>
+      <form id="personal-info-form">
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required />
+
+        <label for="weight">Weight (kg):</label>
+        <input type="number" id="weight" name="weight" step="0.01" required />
+
+        <label for="height">Height (m):</label>
+        <input type="number" id="height" name="height" step="0.01" required />
+
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender" required>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="other">Other</option>
+        </select>
+
+        <button type="submit">Calculate BMI and BMR</button>
+      </form>
+      <div id="personal-info-results" style="display: none"></div>
+    </section>
+
+    <!-- Diet Plan Form -->
+    <section>
+      <h2>Diet Plan Generator</h2>
+      <form id="dietForm">
+        <label for="dietType">Diet Type:</label>
+        <select id="dietType">
+          <option value="0">Vegetarian</option>
+          <option value="1">Non-Vegetarian</option>
+        </select>
+
+        <label for="weightGoal">Weight Goal:</label>
+        <select id="weightGoal">
+          <option value="gain">Gain</option>
+          <option value="lose">Lose</option>
+          <option value="healthy">Healthy</option>
+        </select>
+
+        <button type="submit">Get Diet Plan</button>
+      </form>
+      <div id="results"></div>
+    </section>
+  </div>
+
+  <button class="back-to-top" onclick="scrollToTop()">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <script>
+    // Scroll to Top
+    window.addEventListener("scroll", () => {
+      document.querySelector(".back-to-top").style.display =
+        window.pageYOffset > 200 ? "block" : "none";
+    });
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    // BMI and BMR Calculation
+    document
+      .getElementById("personal-info-form")
+      .addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const age = parseFloat(document.getElementById("age").value);
+        const weight = parseFloat(document.getElementById("weight").value);
+        const height = parseFloat(document.getElementById("height").value);
+        const gender = document.getElementById("gender").value;
+
+        // Convert height to meters if entered in centimeters
+        const heightInMeters = height / 100;
+
+        // Calculate BMI
+        const BMI = weight / (heightInMeters * heightInMeters);
+
+        // Calculate BMR based on gender
+        const BMR =
+          gender === "male"
+            ? 10 * weight + 6.25 * height - 5 * age + 5
+            : 10 * weight + 6.25 * height - 5 * age - 161;
+
+        // Determine BMI category
+        let bmiCategory;
+        if (BMI < 18.5) bmiCategory = "Underweight";
+        else if (BMI < 25) bmiCategory = "Normal weight";
+        else if (BMI < 30) bmiCategory = "Overweight";
+        else bmiCategory = "Obese";
+
+        // Display results
+        document.getElementById("personal-info-results").innerHTML = `
     <h2>BMI and BMR Results</h2>
     <p><strong>BMI:</strong> ${BMI.toFixed(2)} (${bmiCategory})</p>
     <p><strong>BMR:</strong> ${BMR.toFixed(2)} kcal/day</p>
   `;
-          document.getElementById("personal-info-results").style.display =
-            "block";
-        });
+        document.getElementById("personal-info-results").style.display =
+          "block";
+      });
 
-      // Diet Plan Fetching
-      document
-        .getElementById("dietForm")
-        .addEventListener("submit", async function (event) {
-          event.preventDefault();
+    // Diet Plan Fetching
+    document
+      .getElementById("dietForm")
+      .addEventListener("submit", async function (event) {
+        event.preventDefault();
 
-          const dietType = document.getElementById("dietType").value;
-          const weightGoal = document.getElementById("weightGoal").value;
+        const dietType = document.getElementById("dietType").value;
+        const weightGoal = document.getElementById("weightGoal").value;
 
-          try {
-            const response = await fetch(
-              `http://127.0.0.1:8000/get_diet_plan/?diet_type=${dietType}&weight_goal=${weightGoal}`
-            );
-            if (!response.ok) {
-              throw new Error("Network response was not ok");
-            }
+        try {
+          const response = await fetch(
+            `http://127.0.0.1:8000/get_diet_plan/?diet_type=${dietType}&weight_goal=${weightGoal}`
+          );
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
 
-            const data = await response.json();
-            document.getElementById("results").innerHTML = ""; // Clear previous results
-            const mealTypes = ["breakfast", "lunch", "dinner"];
+          const data = await response.json();
+          document.getElementById("results").innerHTML = ""; // Clear previous results
+          const mealTypes = ["breakfast", "lunch", "dinner"];
 
-            mealTypes.forEach((meal) => {
-              const suggestions = data.suggestions[meal];
-              const mealSection = document.createElement("div");
-              mealSection.className = "meal-section";
+          mealTypes.forEach((meal) => {
+            const suggestions = data.suggestions[meal];
+            const mealSection = document.createElement("div");
+            mealSection.className = "meal-section";
 
-              // Add a heading for each meal
-              const mealHeading = document.createElement("h2");
-              mealHeading.textContent =
-                meal.charAt(0).toUpperCase() + meal.slice(1);
-              mealSection.appendChild(mealHeading);
+            // Add a heading for each meal
+            const mealHeading = document.createElement("h2");
+            mealHeading.textContent =
+              meal.charAt(0).toUpperCase() + meal.slice(1);
+            mealSection.appendChild(mealHeading);
 
-              // Check if there are suggestions for the meal
-              if (suggestions && suggestions.length > 0) {
-                let tableHtml = `
+            // Check if there are suggestions for the meal
+            if (suggestions && suggestions.length > 0) {
+              let tableHtml = `
                 <table>
                   <thead>
                     <tr>
@@ -902,8 +1028,8 @@
                   </thead>
                   <tbody>`;
 
-                suggestions.forEach((item) => {
-                  tableHtml += `
+              suggestions.forEach((item) => {
+                tableHtml += `
                   <tr>
                     <td>${item.Food_items}</td>
                     <td>${item.Calories}</td>
@@ -911,20 +1037,32 @@
                     <td>${item.Fats}</td>
                     <td>${item.Carbohydrates}</td>
                   </tr>`;
-                });
+              });
 
-                tableHtml += "</tbody></table>";
-                mealSection.innerHTML += tableHtml;
-              } else {
-                mealSection.innerHTML += "<p>No suggestions available</p>";
-              }
+              tableHtml += "</tbody></table>";
+              mealSection.innerHTML += tableHtml;
+            } else {
+              mealSection.innerHTML += "<p>No suggestions available</p>";
+            }
 
-              document.getElementById("results").appendChild(mealSection);
-            });
-          } catch (error) {
-            console.error("Error fetching diet plan:", error);
-          }
-        });
-    </script>
-  </body>
+            document.getElementById("results").appendChild(mealSection);
+          });
+        } catch (error) {
+          console.error("Error fetching diet plan:", error);
+        }
+      });
+  </script>
+  <script>
+    // Logout button click event
+    document.getElementById("logoutButton").addEventListener("click", (e) => {
+      e.preventDefault();
+      // Remove the token from localStorage
+      localStorage.removeItem("token");
+
+      // Redirect to the login page or perform any other necessary actions
+      window.location.href = "/";
+    });
+  </script>
+</body>
+
 </html>
