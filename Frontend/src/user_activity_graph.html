@@ -2,19 +2,22 @@
 <html>
 
 <head>
-  <title>My Workouts</title>
+  <title>My Performance</title>
   <link rel="icon" type="image/x-icon" href="./img/ai.svg" />
 
   <meta charset="UTF-8">
   <!-- Bootstrap CDN link -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-</head>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-  :root {
+  <script type="module" src="https://unpkg.com/ionicons@6.0.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@6.0.0/dist/ionicons/ionicons.js"></script>
+  <style>
+    /* 1st change */
+    @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+    :root {
       /**
-   * colors
-   */
+  * colors
+  */
 
       --st-patricks-blue: hsl(236, 57%, 28%);
       --amaranth-purple: hsl(335, 88%, 38%);
@@ -31,7 +34,7 @@
       --black_70: hsla(0, 0%, 0%, 0.7);
       --rajah: hsl(29, 99%, 67%);
       --white: hsl(0, 0%, 100%);
-
+      --color: var(--white);
       --gradient-1: linear-gradient(90deg,
           var(--royal-blue-dark) 0,
           var(--ksu-purple) 51%,
@@ -39,8 +42,8 @@
       --gradient-2: linear-gradient(90deg, var(--razzmatazz), var(--rajah));
 
       /**
-   * typography
-   */
+  * typography
+  */
 
       --ff-source-sans-pro: "Source Sans Pro", sans-serif;
       --ff-poppins: "Poppins", sans-serif;
@@ -59,21 +62,21 @@
       --fw-700: 700;
 
       /**
-   * border radius
-   */
+  * border radius
+  */
 
       --radius-4: 4px;
       --radius-12: 12px;
 
       /**
-   * spacing
-   */
+  * spacing
+  */
 
       --section-padding: 60px;
 
       /**
-   * transition
-   */
+  * transition
+  */
 
       --transition-1: 0.15s ease;
       --transition-2: 0.35s ease;
@@ -81,268 +84,356 @@
       --cubic-out: cubic-bezier(0.33, 0.85, 0.56, 1.02);
 
       /**
-   * shadow
-   */
+  * shadow
+  */
 
       --shadow: 0 5px 20px 1px hsla(220, 63%, 33%, 0.1);
     }
-  body {
-    font-family: "Open Sans", sans-serif;
-    color: #444444;
-  }
 
-  a {
-    text-decoration: none;
-    color: #d9232d;
-  }
+    body {
+      font-family: "Open Sans", sans-serif;
+      color: #fff;
+    }
 
-  .hero {
-    padding-top: 10%;
-    background-image: linear-gradient(90deg,
-        hsl(231, 68%, 21%) 0,
-        hsl(275, 54%, 33%) 51%,
-        hsl(231, 68%, 21%));
-  }
+    .hero {
+      padding-top: 10%;
+      background-image: linear-gradient(90deg,
+          hsl(231, 68%, 21%) 0,
+          hsl(275, 54%, 33%) 51%,
+          hsl(231, 68%, 21%));
+    }
 
-  a:hover {
-    color: #e24d55;
-    text-decoration: none;
-  }
+    .table {
+      color: #fff;
+    }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: "Raleway", sans-serif;
-  }
+    a,
+    img,
+    span,
+    input,
+    button,
+    ion-icon {
+      display: block;
+    }
 
-  /*--------------------------------------------------------------
-        # Back to top button
-        --------------------------------------------------------------*/
-  .back-to-top {
-    position: fixed;
-    visibility: hidden;
-    opacity: 0;
-    right: 15px;
-    bottom: 15px;
-    z-index: 996;
-    background: #d9232d;
-    width: 40px;
-    height: 40px;
-    border-radius: 4px;
-    transition: all 0.4s;
-  }
+    li {
+      list-style: none;
+    }
 
-  .back-to-top i {
-    font-size: 28px;
-    color: #fff;
-    line-height: 0;
-  }
+    li a {
+      text-decoration: none;
+    }
 
-  .back-to-top:hover {
-    background: #e1444d;
-    color: #fff;
-  }
+    li a:hover {
+      color: white;
+      text-shadow: 2px 2px #556270;
+      text-decoration: none;
+    }
 
-  .back-to-top.active {
-    visibility: visible;
-    opacity: 1;
-  }
+    button,
+    input {
+      background: none;
+      border: none;
+      font: inherit;
+    }
 
-  /*--------------------------------------------------------------
-        # Header
-        --------------------------------------------------------------*/
-  #header {
-    /* background: white; */
-    transition: all 0.5s;
-    z-index: 997;
-    padding: 20px 0;
-    position: absolute;
-  }
+    a {
+      text-decoration: none;
+      color: #d9232d;
+    }
 
-  #header.header-scrolled {
-    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
-    padding: 12px 0;
-  }
+    a:hover {
+      color: #e24d55;
+      text-decoration: none;
+    }
 
-  #header.header-inner-pages {
-    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
-  }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: "Raleway", sans-serif;
+      color: #fff;
+      font-size: larger;
+    }
 
-  #header .logo {
-    color: white;
-    font-size: 30px;
-    margin: 0;
-    padding: 0;
-    line-height: 1;
-    font-weight: 700;
-    text-transform: uppercase;
-  }
+    /*--------------------------------------------------------------
+    # Back to top button
+    --------------------------------------------------------------*/
+    .back-to-top {
+      position: fixed;
+      visibility: hidden;
+      opacity: 0;
+      right: 15px;
+      bottom: 15px;
+      z-index: 996;
+      background: #d9232d;
+      width: 40px;
+      height: 40px;
+      border-radius: 4px;
+      transition: all 0.4s;
+    }
 
-  #header .logo a {
-    color: white;
-    text-decoration: none;
-  }
-  #header .logo a:hover {
+    .back-to-top i {
+      font-size: 28px;
+      color: #fff;
+      line-height: 0;
+    }
+
+    .back-to-top:hover {
+      background: #e1444d;
+      color: #fff;
+    }
+
+    .back-to-top.active {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    /*--------------------------------------------------------------
+    # Header
+    --------------------------------------------------------------*/
+    .header {
+      --color: var(--white);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding-block: 14px;
+      z-index: 4;
+      transition: var(--transition-1);
+    }
+
+    .header.active {
+      --color: var(--st-patricks-blue);
+      position: fixed;
+      background-color: var(--white);
+      box-shadow: 0 2px 30px hsla(0, 0%, 0%, 0.1);
+    }
+
+    .logo {
+      color: white;
+      font-size: 30px;
+      margin: 0;
+      padding: 0;
+      line-height: 1;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .logo a:hover {
+      text-decoration: none;
+    }
+
+    .header .logo a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .header .logo a:hover {
       text-shadow: 2px 2px#556270;
     }
 
-  #header .logo img {
-    max-height: 40px;
-    filter: invert(1);
-  }
+    .header .logo img {
+      max-height: 40px;
+      filter: invert(1);
 
-  #header .btn {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    margin-inline-start: auto;
-  }
+    }
 
-  #header .btn {
-    margin-inline-start: 0;
-  }
+    .header .btn {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-inline-start: auto;
+    }
 
-  /*--------------------------------------------------------------
-        # Navigation Menu
-        --------------------------------------------------------------*/
-  /**
-        * Desktop Navigation 
-        */
-  #header .navbar {
-    padding: 0;
-    width: 100%;
-    justify-content: end;
-  }
+    .header .btn {
+      margin-inline-start: 0;
+    }
 
-  .logout-button {
-    background-color: red;
-    color: white;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 4px;
-    position: absolute;
-    top: 50%;
-    right: 16px;
-    transform: translateY(-50%);
-  }
+    .header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 30px;
+      height: 60px;
+    }
 
-  .navbar ul {
-    margin: 0;
-    padding-right: 20px;
-    display: flex;
-    list-style: none;
-    align-items: center;
-  }
+    /* 1st change ends here */
+    .header .container {
+      justify-content: end;
+      padding: 0;
+      width: 100%;
 
-  .navbar li {
-    position: relative;
-  }
+    }
 
-  .navbar a,
-  .navbar a:focus {
-    display: flex;
-    align-items: center;
-    padding: 10px 0 10px 30px;
-    font-family: var(--ff-poppins);
-    font-size: 20px;
-    font-weight: 500;
-    color: var(--white);
-    font-family: var(--fw-700);
-    white-space: nowrap;
+    .navbar {
+      top: 0;
+      left: -280px;
+      width: 100%;
+      height: 500px;
+      max-width: 280px;
+      min-height: 100%;
+      padding: 20px;
+      visibility: hidden;
+      z-index: 2;
+      transition: 0.25s var(--cubic-in);
+    }
 
-  }
+    .navbar.active {
+      transform: translateX(280px);
+      visibility: visible;
+      transition: 0.5s var(--cubic-out);
+      background-color: var(--white);
+      position: fixed;
+      display: inline;
+    }
 
-  .navbar a i,
-  .navbar a:focus i {
-    font-size: 12px;
-    line-height: 0;
-    margin-left: 5px;
-  }
+    .navbar-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-block: 10px 30px;
+      margin-left: 30px;
+    }
 
-  .navbar a:hover,
-  .navbar .active,
-  .navbar .active:focus,
-  .navbar li:hover>a {
-    color: var(--white);
-    text-decoration: none;
-    text-shadow: 2px 2px#556270;
-  }
+    .navbar-top .logo {
+      color: var(--st-patricks-blue);
+      font-size: 2.2rem;
+      font-weight: var(--fw-700);
+    }
 
-  .navbar .getstarted,
-  .navbar .getstarted:focus {
-    background: #d9232d;
-    padding: 8px 25px;
-    margin-left: 30px;
-    border-radius: 4px;
-    font-weight: 400;
-    color: #fff;
-  }
+    .navbar-top .logo a {
+      text-decoration: none;
+    }
 
-  .navbar .getstarted:hover,
-  .navbar .getstarted:focus:hover {
-    color: #fff;
-    background: #e1444d;
-  }
+    .nav-close-btn {
+      color: var(--space-cadet-1);
+      font-size: 2.8rem;
+      padding: 4px;
+    }
 
-  .navbar .dropdown ul {
-    display: block;
-    position: absolute;
-    left: 14px;
-    top: calc(100% + 30px);
-    margin: 0;
-    padding: 10px 0;
-    z-index: 99;
-    opacity: 0;
-    visibility: hidden;
-    background: #fff;
-    box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
-    transition: 0.3s;
-  }
+    .navbar-item:not(:last-child) {
+      border-bottom: 1px solid var(--platinum);
+    }
 
-  .navbar .dropdown ul li {
-    min-width: 200px;
-  }
+    .navbar-item li a:hover {
+      text-decoration: none;
 
-  .navbar .dropdown ul a {
-    padding: 10px 20px;
-    font-size: 15px;
-    text-transform: none;
-    font-weight: 400;
-  }
+    }
 
-  .navbar .dropdown ul a i {
-    font-size: 12px;
-  }
+    .navbar-link {
+      color: var(--space-cadet-1);
+      font-size: var(--fs-8);
+      font-weight: var(--fw-600);
+      padding-block: 12px;
+    }
 
-  .navbar .dropdown ul a:hover,
-  .navbar .dropdown ul .active:hover,
-  .navbar .dropdown ul li:hover>a {
-    color: #d9232d;
-  }
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background-color: var(--black_70);
+      z-index: 1;
+      opacity: 0;
+      pointer-events: none;
+      transition: var(--transition-2);
+    }
 
-  .navbar .dropdown:hover>ul {
-    opacity: 1;
-    top: 100%;
-    visibility: visible;
-  }
+    .overlay.active {
+      opacity: 1;
+      pointer-events: all;
+    }
 
-  .navbar .dropdown .dropdown ul {
-    top: 0;
-    left: calc(100% - 30px);
-    visibility: hidden;
-  }
 
-  .navbar .dropdown .dropdown:hover>ul {
-    opacity: 1;
-    top: 0;
-    left: 100%;
-    visibility: visible;
-  }
+    @media (min-width: 768px) {
+      /**
+  * REUSED STYLE
+  */
 
-  .navbar .btn {
+      .header .container {
+        max-width: 720px;
+      }
+    }
+
+    @media (max-width: 1366px) {
+      /* .header .container{
+      max-width: 1069px;
+    } */
+    }
+
+    /* Second Change */
+    /**
+    * Mobile Navigation 
+    */
+
+    .nav-open-btn {
+      color: var(--color);
+      font-size: 32px;
+      padding: 4px;
+    }
+
+    @media (min-width: 992px) {
+      /**
+  * CUSTOM PROPERTY
+  */
+
+      :root {
+        /**
+   * typography
+   */
+
+        --fs-1: 5.4rem;
+      }
+
+      /**
+  * REUSED STYLE
+  */
+
+      .header .container {
+        max-width: 1069px;
+      }
+
+      /**
+  * HEADER
+  */
+
+      .header {
+        padding-block: 20px;
+      }
+
+      .overlay,
+      .nav-open-btn,
+      .navbar-top {
+        display: none;
+      }
+
+      .navbar,
+      .navbar.active {
+        all: unset;
+        margin-inline-start: auto;
+      }
+
+      .header .btn {
+        margin-inline-start: 0;
+      }
+
+      .navbar-list {
+        display: flex;
+        gap: 25px;
+      }
+
+      .navbar-item:not(:last-child) {
+        border-bottom: none;
+      }
+
+      .navbar-link {
+        color: var(--color);
+        font-size: 20px;
+      }
+    }
+
+    .header .btn {
       background-image: var(--gradient-2);
       background-size: 100%;
       color: var(--white);
@@ -353,9 +444,9 @@
       transition: var(--transition-2);
     }
 
-    .navbar .btn:hover {
+    .header .btn:hover {
       background-position: right;
-      color:var(--white);
+      color: var(--white);
       text-decoration: none;
       text-shadow: 2px 2px#556270;
     }
@@ -367,360 +458,257 @@
     .banner-animation {
       animation: waveAnim 2s linear infinite alternate;
     }
-  @media (max-width: 1366px) {
-    .navbar .dropdown .dropdown ul {
-      left: -90%;
+
+    .center {
+      text-align: center;
+      /* border: 3px solid green; */
+
     }
+  </style>
 
-    .navbar .dropdown .dropdown:hover>ul {
-      left: -100%;
-    }
-  }
+  <script>
 
-  /**
-        * Mobile Navigation 
-        */
-  .mobile-nav-toggle {
-    color: #556270;
-    font-size: 28px;
-    cursor: pointer;
-    display: none;
-    line-height: 0;
-    transition: 0.5s;
-  }
+    (function (factory) {
+      typeof define === 'function' && define.amd ? define(factory) :
+        factory();
+    })((function () {
+      'use strict';
 
-  .mobile-nav-toggle.bi-x {
-    color: #fff;
-  }
+      /**
+       * The code was extracted from:
+       * https://github.com/davidchambers/Base64.js
+       */
 
-  @media (max-width: 991px) {
-    .mobile-nav-toggle {
-      display: block;
-    }
+      var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
 
-    .navbar ul {
-      display: none;
-    }
-  }
+      function InvalidCharacterError(message) {
+        this.message = message;
+      }
 
-  .navbar-mobile {
-    position: fixed;
-    overflow: hidden;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    background: rgba(63, 73, 83, 0.9);
-    transition: 0.3s;
-    z-index: 999;
-  }
+      InvalidCharacterError.prototype = new Error();
+      InvalidCharacterError.prototype.name = "InvalidCharacterError";
 
-  .navbar-mobile .mobile-nav-toggle {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-  }
+      function polyfill(input) {
+        var str = String(input).replace(/=+$/, "");
+        if (str.length % 4 == 1) {
+          throw new InvalidCharacterError(
+            "'atob' failed: The string to be decoded is not correctly encoded."
+          );
+        }
+        for (
+          // initialize result and counters
+          var bc = 0, bs, buffer, idx = 0, output = "";
+          // get next character
+          (buffer = str.charAt(idx++));
+          // character found in table? initialize bit storage and add its ascii value;
+          ~buffer &&
+            ((bs = bc % 4 ? bs * 64 + buffer : buffer),
+              // and if not first of each 4 characters,
+              // convert the first 8 bits to one ascii character
+              bc++ % 4) ?
+            (output += String.fromCharCode(255 & (bs >> ((-2 * bc) & 6)))) :
+            0
+        ) {
+          // try to find character in table (0-63, not found => -1)
+          buffer = chars.indexOf(buffer);
+        }
+        return output;
+      }
 
-  .navbar-mobile ul {
-    display: block;
-    position: absolute;
-    top: 55px;
-    right: 15px;
-    bottom: 15px;
-    left: 15px;
-    padding: 10px 0;
-    background-color: #fff;
-    overflow-y: auto;
-    transition: 0.3s;
-  }
+      var atob = (typeof window !== "undefined" &&
+        window.atob &&
+        window.atob.bind(window)) ||
+        polyfill;
 
-  .navbar-mobile a,
-  .navbar-mobile a:focus {
-    padding: 10px 20px;
-    font-size: 15px;
-    color: #556270;
-  }
-
-  .navbar-mobile a:hover,
-  .navbar-mobile .active,
-  .navbar-mobile li:hover>a {
-    color: #d9232d;
-  }
-
-  .navbar-mobile .getstarted,
-  .navbar-mobile .getstarted:focus {
-    margin: 15px;
-  }
-
-  .navbar-mobile .dropdown ul {
-    position: static;
-    display: none;
-    margin: 10px 20px;
-    padding: 10px 0;
-    z-index: 99;
-    opacity: 1;
-    visibility: visible;
-    background: #fff;
-    box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
-  }
-
-  .navbar-mobile .dropdown ul li {
-    min-width: 200px;
-  }
-
-  .navbar-mobile .dropdown ul a {
-    padding: 10px 20px;
-  }
-
-  .navbar-mobile .dropdown ul a i {
-    font-size: 12px;
-  }
-
-  .navbar-mobile .dropdown ul a:hover,
-  .navbar-mobile .dropdown ul .active:hover,
-  .navbar-mobile .dropdown ul li:hover>a {
-    color: #d9232d;
-  }
-
-  .navbar-mobile .dropdown>.dropdown-active {
-    display: block;
-  }
-
-  .center {
-    text-align: center;
-    /* border: 3px solid green; */
-
-  }
-</style>
-<script>
-
-  (function (factory) {
-    typeof define === 'function' && define.amd ? define(factory) :
-      factory();
-  })((function () {
-    'use strict';
-
-    /**
-     * The code was extracted from:
-     * https://github.com/davidchambers/Base64.js
-     */
-
-    var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
-
-    function InvalidCharacterError(message) {
-      this.message = message;
-    }
-
-    InvalidCharacterError.prototype = new Error();
-    InvalidCharacterError.prototype.name = "InvalidCharacterError";
-
-    function polyfill(input) {
-      var str = String(input).replace(/=+$/, "");
-      if (str.length % 4 == 1) {
-        throw new InvalidCharacterError(
-          "'atob' failed: The string to be decoded is not correctly encoded."
+      function b64DecodeUnicode(str) {
+        return decodeURIComponent(
+          atob(str).replace(/(.)/g, function (m, p) {
+            var code = p.charCodeAt(0).toString(16).toUpperCase();
+            if (code.length < 2) {
+              code = "0" + code;
+            }
+            return "%" + code;
+          })
         );
       }
-      for (
-        // initialize result and counters
-        var bc = 0, bs, buffer, idx = 0, output = "";
-        // get next character
-        (buffer = str.charAt(idx++));
-        // character found in table? initialize bit storage and add its ascii value;
-        ~buffer &&
-          ((bs = bc % 4 ? bs * 64 + buffer : buffer),
-            // and if not first of each 4 characters,
-            // convert the first 8 bits to one ascii character
-            bc++ % 4) ?
-          (output += String.fromCharCode(255 & (bs >> ((-2 * bc) & 6)))) :
-          0
-      ) {
-        // try to find character in table (0-63, not found => -1)
-        buffer = chars.indexOf(buffer);
-      }
-      return output;
-    }
 
-    var atob = (typeof window !== "undefined" &&
-      window.atob &&
-      window.atob.bind(window)) ||
-      polyfill;
-
-    function b64DecodeUnicode(str) {
-      return decodeURIComponent(
-        atob(str).replace(/(.)/g, function (m, p) {
-          var code = p.charCodeAt(0).toString(16).toUpperCase();
-          if (code.length < 2) {
-            code = "0" + code;
-          }
-          return "%" + code;
-        })
-      );
-    }
-
-    function base64_url_decode(str) {
-      var output = str.replace(/-/g, "+").replace(/_/g, "/");
-      switch (output.length % 4) {
-        case 0:
-          break;
-        case 2:
-          output += "==";
-          break;
-        case 3:
-          output += "=";
-          break;
-        default:
-          throw new Error("base64 string is not of the correct length");
-      }
-
-      try {
-        return b64DecodeUnicode(output);
-      } catch (err) {
-        return atob(output);
-      }
-    }
-
-    function InvalidTokenError(message) {
-      this.message = message;
-    }
-
-    InvalidTokenError.prototype = new Error();
-    InvalidTokenError.prototype.name = "InvalidTokenError";
-
-    function jwtDecode(token, options) {
-      if (typeof token !== "string") {
-        throw new InvalidTokenError("Invalid token specified: must be a string");
-      }
-
-      options = options || {};
-      var pos = options.header === true ? 0 : 1;
-
-      var part = token.split(".")[pos];
-      if (typeof part !== "string") {
-        throw new InvalidTokenError("Invalid token specified: missing part #" + (pos + 1));
-      }
-
-      try {
-        var decoded = base64_url_decode(part);
-      } catch (e) {
-        throw new InvalidTokenError("Invalid token specified: invalid base64 for part #" + (pos + 1) + ' (' + e.message + ')');
-      }
-
-      try {
-        return JSON.parse(decoded);
-      } catch (e) {
-        throw new InvalidTokenError("Invalid token specified: invalid json for part #" + (pos + 1) + ' (' + e.message + ')');
-      }
-    }
-
-    /*
-     * Expose the function on the window object
-     */
-
-    //use amd or just through the window object.
-    if (window) {
-      if (typeof window.define == "function" && window.define.amd) {
-        window.define("jwt_decode", function () {
-          return jwtDecode;
-        });
-      } else if (window) {
-        window.jwt_decode = jwtDecode;
-      }
-    }
-
-  }));
-  //# sourceMappingURL=jwt-decode.js.map
-</script>
-<script>
-  // Retrieve the token from local storage
-  const token = localStorage.getItem('token');
-  // Check if the user is authenticated
-  fetch('http://localhost:5000/api/auth', {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      'x-auth-token': token
-    }
-  })
-    .then(response => {
-      console.log(response);
-      if (response.ok) {
-        // User is authenticated, proceed with the dashboard content
-        console.log('User is authenticated');
-
-
-
-        // Verify the token
-        try {
-          const decodedToken = jwt_decode(token);
-          // The decodedToken variable now contains the decoded token payload
-
-          // Perform any necessary checks or validations on the decoded token
-          // For example, you can check the expiration date, user ID, or any other relevant information
-
-          // If the token is valid and meets your criteria, allow access to the dashboard
-          // Otherwise, redirect the user to the login page or display an error message
-          console.log('Token verification successful:', decodedToken);
-        } catch (error) {
-          // Error occurred while decoding or verifying the token
-          // Redirect the user to the login page or display an error message
-          console.error('Token verification failed:', error);
-          window.location.href = 'http://localhost:8080/login.html';
+      function base64_url_decode(str) {
+        var output = str.replace(/-/g, "+").replace(/_/g, "/");
+        switch (output.length % 4) {
+          case 0:
+            break;
+          case 2:
+            output += "==";
+            break;
+          case 3:
+            output += "=";
+            break;
+          default:
+            throw new Error("base64 string is not of the correct length");
         }
 
-        // Here you can add your specific dashboard content and functionality
-      } else {
-        // User is not authenticated, redirect to the login page or handle accordingly
-        console.log('User is not authenticated');
-        window.location.href = 'http://localhost:8080/login.html';
+        try {
+          return b64DecodeUnicode(output);
+        } catch (err) {
+          return atob(output);
+        }
+      }
+
+      function InvalidTokenError(message) {
+        this.message = message;
+      }
+
+      InvalidTokenError.prototype = new Error();
+      InvalidTokenError.prototype.name = "InvalidTokenError";
+
+      function jwtDecode(token, options) {
+        if (typeof token !== "string") {
+          throw new InvalidTokenError("Invalid token specified: must be a string");
+        }
+
+        options = options || {};
+        var pos = options.header === true ? 0 : 1;
+
+        var part = token.split(".")[pos];
+        if (typeof part !== "string") {
+          throw new InvalidTokenError("Invalid token specified: missing part #" + (pos + 1));
+        }
+
+        try {
+          var decoded = base64_url_decode(part);
+        } catch (e) {
+          throw new InvalidTokenError("Invalid token specified: invalid base64 for part #" + (pos + 1) + ' (' + e.message + ')');
+        }
+
+        try {
+          return JSON.parse(decoded);
+        } catch (e) {
+          throw new InvalidTokenError("Invalid token specified: invalid json for part #" + (pos + 1) + ' (' + e.message + ')');
+        }
+      }
+
+      /*
+       * Expose the function on the window object
+       */
+
+      //use amd or just through the window object.
+      if (window) {
+        if (typeof window.define == "function" && window.define.amd) {
+          window.define("jwt_decode", function () {
+            return jwtDecode;
+          });
+        } else if (window) {
+          window.jwt_decode = jwtDecode;
+        }
+      }
+
+    }));
+    //# sourceMappingURL=jwt-decode.js.map
+  </script>
+  <script>
+    // Retrieve the token from local storage
+    const token = localStorage.getItem('token');
+    // Check if the user is authenticated
+    fetch('http://localhost:5000/api/auth', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-auth-token': token
       }
     })
-    .catch(error => {
-      console.error('Error checking authentication:', error);
-      // Handle error if necessary
-    });
-</script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      .then(response => {
+        console.log(response);
+        if (response.ok) {
+          // User is authenticated, proceed with the dashboard content
+          console.log('User is authenticated');
 
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<!-- Font Awesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+
+
+          // Verify the token
+          try {
+            const decodedToken = jwt_decode(token);
+            // The decodedToken variable now contains the decoded token payload
+
+            // Perform any necessary checks or validations on the decoded token
+            // For example, you can check the expiration date, user ID, or any other relevant information
+
+            // If the token is valid and meets your criteria, allow access to the dashboard
+            // Otherwise, redirect the user to the login page or display an error message
+            console.log('Token verification successful:', decodedToken);
+          } catch (error) {
+            // Error occurred while decoding or verifying the token
+            // Redirect the user to the login page or display an error message
+            console.error('Token verification failed:', error);
+            window.location.href = 'http://localhost:8080/login.html';
+          }
+
+          // Here you can add your specific dashboard content and functionality
+        } else {
+          // User is not authenticated, redirect to the login page or handle accordingly
+          console.log('User is not authenticated');
+          window.location.href = 'http://localhost:8080/login.html';
+        }
+      })
+      .catch(error => {
+        console.error('Error checking authentication:', error);
+        // Handle error if necessary
+      });
+  </script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 </head>
 
 <body style="height: 100%; color: #fff;" class="hero">
-  <header id="header" class="fixed-top d-flex align-items-center">
-    <div class="container d-flex align-items-center">
-
+  <header class="header" data-header>
+    <div class="container">
+      <div class="overlay" data-overlay></div>
       <h1 class="logo me-auto"><a href="index.html">Zen&Gen</a></h1>
 
       <a href="index.html" class="logo me-auto">
-        <img src="\img\yoga.svg" alt="" class="img-fluid" />
+        <img src="\img\yoga.svg" alt="" />
       </a>
 
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a href="dashboard.html">Exercises</a></li>
-          <li><a href="user_activity.html"> Activities</a></li>
-          <li><a href="bmi.html">Diet Plan Generator</a></li>
-          <li><a href="user_activity_graph.html"> Activity Graphs</a></li>
+      <nav class="navbar" data-navbar>
+        <div class="navbar-top">
+          <a href="#" class="logo">ZEN&GEN</a>
+
+          <button class="nav-close-btn" aria-label="Close Menu" data-nav-close-btn>
+            <ion-icon name="close-outline"></ion-icon>
+          </button>
+        </div>
+
+        <ul class="navbar-list">
+          <li class="navbar-item"><a href="dashboard.html" class="navbar-link" data-navbar-link>Exercises</a></li>
+          <li class="navbar-item"><a href="user_activity.html" class="navbar-link" data-navbar-link> Activities</a></li>
+          <li class="navbar-item"><a href="bmi.html" class="navbar-link" data-navbar-link>Diet Plan Generator</a></li>
+          <li class="navbar-item"><a href="user_activity_graph.html" class="navbar-link" data-navbar-link> Activity
+              Graphs</a></li>
           <!-- <button id="logoutButton" class="logout-button">Logout</button> -->
+
         </ul>
-        <button id="logoutButton" class="btn">
-          <ion-icon name="chevron-forward-outline" aria-hidden="true"></ion-icon>
 
-          <span>Logout</span>
-        </button>
-        <i class="bi bi-list mobile-nav-toggle"></i>
+        <!-- <i class="bi bi-list mobile-nav-toggle"></i> -->
+
       </nav>
+      <button id="logoutButton" class="btn">
+        <ion-icon name="chevron-forward-outline" aria-hidden="true"></ion-icon>
 
+        <span>Logout</span>
+      </button>
+      <button class="nav-open-btn" aria-label="Open Menu" data-nav-open-btn>
+        <ion-icon name="menu-outline"></ion-icon>
+      </button>
     </div>
   </header>
 
   <!-- My editing for   -->
-  <div class="row" style="margin-top: 45px;">
-    <div class="col-10 offset-1 col-md-8 offset-md-2">
-      <div class="container mt-5" style="margin-bottom: 2px;">
+  <div class="row" style="margin-top:0px;">
+    <div class="col-10 offset-1 col-md-8 offset-md-2" style="align-items: center;">
+      <div class="container ">
         <div class="center">
           <h2>My Workouts</h2>
         </div>
@@ -783,7 +771,37 @@
       // Redirect to the login page or perform any other necessary actions
       window.location.href = '/';
     });
+    "use strict";
 
+    /**
+     * navbar toggle
+     */
+    const navOpenBtn = document.querySelector("[data-nav-open-btn]");
+    const navbar = document.querySelector("[data-navbar]");
+    const navCloseBtn = document.querySelector("[data-nav-close-btn]");
+    const overlay = document.querySelector("[data-overlay]");
+
+    const elemArr = [navCloseBtn, overlay, navOpenBtn];
+
+    for (let i = 0; i < elemArr.length; i++) {
+      elemArr[i].addEventListener("click", function () {
+        navbar.classList.toggle("active");
+        overlay.classList.toggle("active");
+      });
+    }
+
+    /**
+     * toggle navbar & overlay when click any navbar-link
+     */
+
+    const navbarLinks = document.querySelectorAll("[data-navbar-link]");
+
+    for (let i = 0; i < navbarLinks.length; i++) {
+      navbarLinks[i].addEventListener("click", function () {
+        navbar.classList.toggle("active");
+        overlay.classList.toggle("active");
+      });
+    }
   </script>
   <!-- Bootstrap JavaScript dependencies -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>

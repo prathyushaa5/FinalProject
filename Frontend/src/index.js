@@ -4,66 +4,76 @@ import ScoreHandler from "./handlers/scoreHandler";
 import SettingsHandler from "./handlers/settingsHandler";
 
 document.addEventListener("DOMContentLoaded", async () => {
-  let webcamElem = document.getElementById("webcamBox");
-  const cnvPoseElem = document.getElementById("cnvPoseBox");
-  const parentWebcamElem = document.getElementById("parentWebcamBox");
+  const getElement = (id) => {
+    const element = document.getElementById(id);
+    if (!element) {
+      console.warn(`Element with ID "${id}" not found.`);
+    }
+    return element;
+  };
 
-  const loaderElem = document.getElementById("loaderBox");
-  const fpsElem = document.getElementById("fpsBox");
-  const countElem = document.getElementById("countBox");
-  const timerElem = document.getElementById("timerBox");
-  const delayElem = document.getElementById("delayBox");
-  const pauseBtnElem = document.getElementById("pauseBtn");
-  const resumeBtnElem = document.getElementById("resumeBtn");
-  const endWorkoutBtn = document.getElementById("endWorkoutBox");
-  const accessCamBtnElem = document.getElementById("accessCamBtn");
+  // Retrieve DOM elements
+  const elements = {
+    webcamElem: getElement("webcamBox"),
+    cnvPoseElem: getElement("cnvPoseBox"),
+    parentWebcamElem: getElement("parentWebcamBox"),
+    loaderElem: getElement("loaderBox"),
+    fpsElem: getElement("fpsBox"),
+    countElem: getElement("countBox"),
+    timerElem: getElement("timerBox"),
+    delayElem: getElement("delayBox"),
+    pauseBtnElem: getElement("pauseBtn"),
+    resumeBtnElem: getElement("resumeBtn"),
+    endWorkoutBtn: getElement("endWorkoutBox"),
+    accessCamBtnElem: getElement("accessCamBtn"),
+    chooseWOElem: getElement("chooseWOBox"),
+    formChooseWOElem: getElement("formChooseWOBox"),
+    accessCamElem: getElement("accessCamBox"),
+    titleWOElem: getElement("titleWOBox"),
+    confidenceElem: getElement("confidenceBox"),
+    resultElem: getElement("resultBox"),
+    resultRepElem: getElement("resultRepBox"),
+    resultTitleElem: getElement("resultTitleBox"),
+    resultOKBtnElem: getElement("resultOKBtn"),
+    uploadVideoBtnElem: getElement("uploadVideoBtn"),
+    goWebcamBtnElem: getElement("goWebcamBtn"),
+    settingsBtnElem: getElement("settingsBtn"),
+    settingsElem: getElement("settingsBox"),
+    saveSettingsBtnElem: getElement("saveSettingsBtn"),
+    cancelSettingsBtnElem: getElement("cancelSettingsBtn"),
+    segSettingsWOBtnElem: getElement("segSettingsWOBtn"),
+    segSettingsAdvBtnElem: getElement("segSettingsAdvBtn"),
+    bodySettingsWOElem: getElement("bodySettingsWOBox"),
+    bodySettingsAdvElem: getElement("bodySettingsAdvBox"),
+    scoresBtnElem: getElement("scoresBtn"),
+    scoresElem: getElement("scoresBox"),
+    scoresOKBtnElem: getElement("scoresOKBtn"),
+    segJourneyBtnElem: getElement("segJourneyBtn"),
+    segBestBtnElem: getElement("segBestBtn"),
+    bodyJourneyElem: getElement("bodyJourneyBox"),
+    bodyBestScoreElem: getElement("bodyBestScoreBox"),
+    helpElem: getElement("helpBox"),
+    helpBtnElem: getElement("helpBtn"),
+    segHowToUseBtnElem: getElement("segHowToUseBtn"),
+    segAboutBtnElem: getElement("segAboutBtn"),
+    bodyHowToUseElem: getElement("bodyHowToUseBox"),
+    bodyAboutElem: getElement("bodyAboutBox"),
+    helpOKBtnElem: getElement("helpOKBtn"),
+    developerModeElem: getElement("developerModeBox"),
+    imgDirectionSignElem: getElement("imgDirectionSignBox"),
+    goAdviceBtnElem: getElement("goAdviceBtn"),
+    adviceWrapElem: getElement("adviceWrapBox"),
+    sliderAdviceElem: getElement("sliderAdviceBox"),
+    sliderCameraElem: getElement("sliderCameraBox"),
+    recordKeypointsBtnElem: getElement("recordKeypointsBtn"),
+    pingRecordElem: getElement("pingRecordBox"),
+    restartBtnElem: getElement("restartBtn"),
+  };
 
-  const chooseWOElem = document.getElementById("chooseWOBox");
-  const formChooseWOElem = document.getElementById("formChooseWOBox");
-  const accessCamElem = document.getElementById("accessCamBox");
-  const titleWOElem = document.getElementById("titleWOBox");
-  const confidenceElem = document.getElementById("confidenceBox");
-  const resultElem = document.getElementById("resultBox");
-  const resultRepElem = document.getElementById("resultRepBox");
-  const resultTitleElem = document.getElementById("resultTitleBox");
-  const resultOKBtnElem = document.getElementById("resultOKBtn");
-  const uploadVideoBtnElem = document.getElementById("uploadVideoBtn");
-  const goWebcamBtnElem = document.getElementById("goWebcamBtn");
-
-  const settingsBtnElem = document.getElementById("settingsBtn");
-  const settingsElem = document.getElementById("settingsBox");
-  const saveSettingsBtnElem = document.getElementById("saveSettingsBtn");
-  const cancelSettingsBtnElem = document.getElementById("cancelSettingsBtn");
-  const segSettingsWOBtnElem = document.getElementById("segSettingsWOBtn");
-  const segSettingsAdvBtnElem = document.getElementById("segSettingsAdvBtn");
-  const bodySettingsWOElem = document.getElementById("bodySettingsWOBox");
-  const bodySettingsAdvElem = document.getElementById("bodySettingsAdvBox");
-
-  const scoresBtnElem = document.getElementById("scoresBtn");
-  const scoresElem = document.getElementById("scoresBox");
-  const scoresOKBtnElem = document.getElementById("scoresOKBtn");
-  const segJourneyBtnElem = document.getElementById("segJourneyBtn");
-  const segBestBtnElem = document.getElementById("segBestBtn");
-  const bodyJourneyElem = document.getElementById("bodyJourneyBox");
-  const bodyBestScoreElem = document.getElementById("bodyBestScoreBox");
-
-  const helpElem = document.getElementById("helpBox");
-  const helpBtnElem = document.getElementById("helpBtn");
-  const segHowToUseBtnElem = document.getElementById("segHowToUseBtn");
-  const segAboutBtnElem = document.getElementById("segAboutBtn");
-  const bodyHowToUseElem = document.getElementById("bodyHowToUseBox");
-  const bodyAboutElem = document.getElementById("bodyAboutBox");
-  const helpOKBtnElem = document.getElementById("helpOKBtn");
-
-  const developerModeElem = document.getElementById("developerModeBox");
-  const imgDirectionSignElem = document.getElementById("imgDirectionSignBox");
-  const goAdviceBtnElem = document.getElementById("goAdviceBtn");
-  const adviceWrapElem = document.getElementById("adviceWrapBox");
-  const sliderAdviceElem = document.getElementById("sliderAdviceBox");
-  const sliderCameraElem = document.getElementById("sliderCameraBox");
-  const recordKeypointsBtnElem = document.getElementById("recordKeypointsBtn");
-  const pingRecordElem = document.getElementById("pingRecordBox");
-  const restartBtnElem = document.getElementById("restartBtn");
+  if (!elements.webcamElem || !elements.cnvPoseElem || !elements.parentWebcamElem) {
+    console.error("Essential elements not found, aborting script.");
+    return; // Stop script execution if critical elements are missing
+  }
 
   let isFirstPlay = true;
   let isWebcamSecPlay = false;
