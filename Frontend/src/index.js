@@ -86,17 +86,17 @@ document.addEventListener("DOMContentLoaded", async () => {
     w: 16,
   };
 
-  const WOPose = new PoseHandler(webcamElem, cnvPoseElem);
+  const WOPose = new PoseHandler(elements.webcamElem, elements.cnvPoseElem);
   const WOTimer = new TimerHandler();
   const WOScore = new ScoreHandler();
   const WOSettings = new SettingsHandler();
 
   WOPose.additionalElem = {
-    fpsElem,
-    countElem,
-    adviceWrapElem,
-    confidenceElem,
-    imgDirectionSignElem,
+    fpsElem: elements.fpsElem,
+    countElem: elements.countElem,
+    adviceWrapElem: elements.adviceWrapElem,
+    confidenceElem: elements.confidenceElem,
+    imgDirectionSignElem: elements.imgDirectionSignElem,
   };
 
   // eslint-disable-next-line no-underscore-dangle
@@ -113,16 +113,16 @@ document.addEventListener("DOMContentLoaded", async () => {
       widthResult = Math.floor(heightResult * (ratio.w / ratio.h));
     }
 
-    parentWebcamElem.setAttribute(
+    elements.parentWebcamElem.setAttribute(
       "style",
       `width:${widthResult}px;height:${heightResult}px`
     );
 
-    for (let i = 0; i < parentWebcamElem.children.length; i += 1) {
-      const element = parentWebcamElem.children[i];
+    for (let i = 0; i < elements.parentWebcamElem.children.length; i += 1) {
+      const element = elements.parentWebcamElem.children[i];
       if (element.tagName === "CANVAS") {
-        cnvPoseElem.width = widthResult;
-        cnvPoseElem.height = heightResult;
+        elements.cnvPoseElem.width = widthResult;
+        elements.cnvPoseElem.height = heightResult;
       } else {
         element.style.width = `${widthResult}px`;
         element.style.height = `${heightResult}px`;
@@ -246,8 +246,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // Ask to get permission to access camera
   const getAccessCam = async () => {
-    if (!webcamElem.paused && WOPose.isLoop) return;
-    loaderElem.style.display = "flex";
+    if (!elements.webcamElem.paused && WOPose.isLoop) return;
+    elements.loaderElem.style.display = "flex";
     // Try get permission as well as stream
     await WOPose.camHandler
       .start()
@@ -256,8 +256,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         WOSettings.change({
           isAccessCamera: true,
         });
-        loaderElem.style.display = "none";
-        accessCamElem.style.display = "none";
+        elements.loaderElem.style.display = "none";
+        elements.accessCamElem.style.display = "none";
       })
       .catch((err) => {
         console.log("Permission Denied: Webcam Access is Not Granted");
@@ -270,7 +270,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Update and show current time
   const setCurrTime = () => {
     const currTime = WOTimer.getCurrTime();
-    timerElem.innerHTML = `${`0${currTime.minutes}`.slice(
+    elements.timerElem.innerHTML = `${`0${currTime.minutes}`.slice(
       -2
     )}:${`0${currTime.seconds}`.slice(-2)}`;
   };
@@ -287,8 +287,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       .then(async (data) => {
         WOPose.counter.setup(data.rulesCountConfig);
         const title = `${data.rulesCountConfig.nameWorkout} - ${WOSettings.DBWOSettings.currDuration}`;
-        titleWOElem.innerText = title;
-        resultTitleElem.innerText = title;
+        elements.titleWOElem.innerText = title;
+        elements.resultTitleElem.innerText = title;
 
         // Setup timer to first play
         WOTimer.remove();
@@ -320,13 +320,13 @@ document.addEventListener("DOMContentLoaded", async () => {
           })
           .then(async () => {
             console.log("Classifier Ready to Use");
-            chooseWOElem.style.display = "none";
+            elements.chooseWOElem.style.display = "none";
             if (WOSettings.DBWOSettings.isAccessCamera) {
               // It still try to get access (auto) to check if disabled
               if (!WOPose.isVideoMode) await getAccessCam();
             } else {
-              loaderElem.style.display = "none";
-              accessCamElem.style.display = "flex";
+              elements.loaderElem.style.display = "none";
+              elements.accessCamElem.style.display = "flex";
             }
           })
           .catch((e) => {
@@ -338,59 +338,59 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
   };
 
-  helpBtnElem.addEventListener("click", () => {
-    helpElem.style.display = "flex";
+  elements.helpBtnElem.addEventListener("click", () => {
+    elements.helpElem.style.display = "flex";
   });
 
-  helpOKBtnElem.addEventListener("click", () => {
-    helpElem.style.display = "none";
+  elements.helpOKBtnElem.addEventListener("click", () => {
+    elements.helpElem.style.display = "none";
   });
 
-  segHowToUseBtnElem.addEventListener("click", () => {
-    if (bodyHowToUseElem.style.display !== "none") return;
-    bodyAboutElem.style.display = "none";
-    bodyHowToUseElem.style.display = "flex";
-    segAboutBtnElem.classList.remove("bg-amber-300", "text-gray-600");
-    segAboutBtnElem.classList.add("bg-amber-200", "text-gray-400");
-    segHowToUseBtnElem.classList.remove("bg-amber-200", "text-gray-400");
-    segHowToUseBtnElem.classList.add("bg-amber-300", "text-gray-600");
+  elements.segHowToUseBtnElem.addEventListener("click", () => {
+    if (elements.bodyHowToUseElem.style.display !== "none") return;
+    elements.bodyAboutElem.style.display = "none";
+    elements.bodyHowToUseElem.style.display = "flex";
+    elements.segAboutBtnElem.classList.remove("bg-amber-300", "text-gray-600");
+    elements.segAboutBtnElem.classList.add("bg-amber-200", "text-gray-400");
+    elements.segHowToUseBtnElem.classList.remove("bg-amber-200", "text-gray-400");
+    elements.segHowToUseBtnElem.classList.add("bg-amber-300", "text-gray-600");
   });
 
-  segAboutBtnElem.addEventListener("click", () => {
-    if (bodyAboutElem.style.display !== "none") return;
-    bodyHowToUseElem.style.display = "none";
-    bodyAboutElem.style.display = "flex";
-    segHowToUseBtnElem.classList.remove("bg-amber-300", "text-gray-600");
-    segHowToUseBtnElem.classList.add("bg-amber-200", "text-gray-400");
-    segAboutBtnElem.classList.remove("bg-amber-200", "text-gray-400");
-    segAboutBtnElem.classList.add("bg-amber-300", "text-gray-600");
+  elements.segAboutBtnElem.addEventListener("click", () => {
+    if (elements.bodyAboutElem.style.display !== "none") return;
+    elements.bodyHowToUseElem.style.display = "none";
+    elements.bodyAboutElem.style.display = "flex";
+    elements.segHowToUseBtnElem.classList.remove("bg-amber-300", "text-gray-600");
+    elements.segHowToUseBtnElem.classList.add("bg-amber-200", "text-gray-400");
+    elements.segAboutBtnElem.classList.remove("bg-amber-200", "text-gray-400");
+    elements.segAboutBtnElem.classList.add("bg-amber-300", "text-gray-600");
   });
 
-  restartBtnElem.addEventListener("click", () => {
-    loaderElem.style.display = "flex";
-    delayElem.innerText = "";
+  elements.restartBtnElem.addEventListener("click", () => {
+    elements.loaderElem.style.display = "flex";
+    elements.delayElem.innerText = "";
 
     WOTimer.setup({
       interval: 1000,
       duration: WOPose.isVideoMode
-        ? Math.floor(webcamElem.duration)
+        ? Math.floor(elements.webcamElem.duration)
         : 60 * +WOSettings.DBWOSettings.currDuration.split(" ")[0],
       type: "DEC",
       firstDelayDuration: WOPose.isVideoMode ? 0 : 3,
     });
 
     WOPose.counter.resetCount();
-    countElem.innerText = "0";
+    elements.countElem.innerText = "0";
 
     WOTimer.isFirstDelay = !WOPose.isVideoMode;
-    if (WOPose.isVideoMode && webcamElem.currentTime !== 0) {
-      webcamElem.currentTime = 0;
-      webcamElem.load();
+    if (WOPose.isVideoMode && elements.webcamElem.currentTime !== 0) {
+      elements.webcamElem.currentTime = 0;
+      elements.webcamElem.load();
     }
 
     setCurrTime();
     WOTimer.pause();
-    webcamElem.pause();
+    elements.webcamElem.pause();
     WOPose.isLoop = false;
     isFirstPlay = true;
     isWebcamSecPlay = true;
@@ -398,30 +398,30 @@ document.addEventListener("DOMContentLoaded", async () => {
     WOPose.counter.nextStage = {};
 
     // Clear screen
-    imgDirectionSignElem.style.display = "none";
-    adviceWrapElem.style.display = "none";
-    resumeBtnElem.style.display = "flex";
-    restartBtnElem.style.display = "none";
-    pauseBtnElem.style.display = "none";
-    loaderElem.style.display = "none";
+    elements.imgDirectionSignElem.style.display = "none";
+    elements.adviceWrapElem.style.display = "none";
+    elements.resumeBtnElem.style.display = "flex";
+    elements.restartBtnElem.style.display = "none";
+    elements.pauseBtnElem.style.display = "none";
+    elements.loaderElem.style.display = "none";
   });
 
-  recordKeypointsBtnElem.addEventListener("click", () => {
+  elements.recordKeypointsBtnElem.addEventListener("click", () => {
     // Toggler for start and stop extract keypoints each frame
     WOPose.isExtractKeypoints = !WOPose.isExtractKeypoints;
     if (WOPose.isExtractKeypoints) {
-      pingRecordElem.classList.remove("bg-gray-500");
-      pingRecordElem.classList.add("bg-red-500");
-      pingRecordElem.children[0].style.display = "block";
+      elements.pingRecordElem.classList.remove("bg-gray-500");
+      elements.pingRecordElem.classList.add("bg-red-500");
+      elements.pingRecordElem.children[0].style.display = "block";
     } else {
-      pingRecordElem.classList.remove("bg-red-500");
-      pingRecordElem.classList.add("bg-gray-500");
-      pingRecordElem.children[0].style.display = "none";
+      elements.pingRecordElem.classList.remove("bg-red-500");
+      elements.pingRecordElem.classList.add("bg-gray-500");
+      elements.pingRecordElem.children[0].style.display = "none";
       WOPose.DBHandler.saveToCSV();
     }
   });
 
-  scoresBtnElem.addEventListener("click", () => {
+  elements.scoresBtnElem.addEventListener("click", () => {
     // Render current journey score and best score
     let htmlJourney = "";
     let htmlBestScore = "";
@@ -501,62 +501,62 @@ document.addEventListener("DOMContentLoaded", async () => {
         </div>
       `;
     });
-    bodyJourneyElem.innerHTML = htmlJourney;
-    bodyBestScoreElem.innerHTML = htmlBestScore;
-    scoresElem.style.display = "flex";
+    elements.bodyJourneyElem.innerHTML = htmlJourney;
+    elements.bodyBestScoreElem.innerHTML = htmlBestScore;
+    elements.scoresElem.style.display = "flex";
   });
 
-  scoresOKBtnElem.addEventListener("click", () => {
-    scoresElem.style.display = "none";
+  elements.scoresOKBtnElem.addEventListener("click", () => {
+    elements.scoresElem.style.display = "none";
   });
 
-  segJourneyBtnElem.addEventListener("click", () => {
+  elements.segJourneyBtnElem.addEventListener("click", () => {
     // Show body journey element
-    if (bodyJourneyElem.style.display !== "none") return;
-    bodyBestScoreElem.style.display = "none";
-    bodyJourneyElem.style.display = "block";
-    segBestBtnElem.classList.remove("bg-amber-300", "text-gray-600");
-    segBestBtnElem.classList.add("bg-amber-200", "text-gray-400");
-    segJourneyBtnElem.classList.remove("bg-amber-200", "text-gray-400");
-    segJourneyBtnElem.classList.add("bg-amber-300", "text-gray-600");
+    if (elements.bodyJourneyElem.style.display !== "none") return;
+    elements.bodyBestScoreElem.style.display = "none";
+    elements.bodyJourneyElem.style.display = "block";
+    elements.segBestBtnElem.classList.remove("bg-amber-300", "text-gray-600");
+    elements.segBestBtnElem.classList.add("bg-amber-200", "text-gray-400");
+    elements.segJourneyBtnElem.classList.remove("bg-amber-200", "text-gray-400");
+    elements.segJourneyBtnElem.classList.add("bg-amber-300", "text-gray-600");
   });
 
-  segBestBtnElem.addEventListener("click", () => {
+  elements.segBestBtnElem.addEventListener("click", () => {
     // Show body best score element
-    if (bodyBestScoreElem.style.display !== "none") return;
-    bodyJourneyElem.style.display = "none";
-    bodyBestScoreElem.style.display = "block";
-    segJourneyBtnElem.classList.remove("bg-amber-300", "text-gray-600");
-    segJourneyBtnElem.classList.add("bg-amber-200", "text-gray-400");
-    segBestBtnElem.classList.remove("bg-amber-200", "text-gray-400");
-    segBestBtnElem.classList.add("bg-amber-300", "text-gray-600");
+    if (elements.bodyBestScoreElem.style.display !== "none") return;
+    elements.bodyJourneyElem.style.display = "none";
+    elements.bodyBestScoreElem.style.display = "block";
+    elements.segJourneyBtnElem.classList.remove("bg-amber-300", "text-gray-600");
+    elements.segJourneyBtnElem.classList.add("bg-amber-200", "text-gray-400");
+    elements.segBestBtnElem.classList.remove("bg-amber-200", "text-gray-400");
+    elements.segBestBtnElem.classList.add("bg-amber-300", "text-gray-600");
   });
 
-  segSettingsWOBtnElem.addEventListener("click", () => {
+  elements.segSettingsWOBtnElem.addEventListener("click", () => {
     // Show body settings (choose WO) element
-    if (bodySettingsWOElem.style.display !== "none") return;
-    bodySettingsAdvElem.style.display = "none";
-    bodySettingsWOElem.style.display = "block";
-    segSettingsAdvBtnElem.classList.remove("bg-amber-300", "text-gray-600");
-    segSettingsAdvBtnElem.classList.add("bg-amber-200", "text-gray-400");
-    segSettingsWOBtnElem.classList.remove("bg-amber-200", "text-gray-400");
-    segSettingsWOBtnElem.classList.add("bg-amber-300", "text-gray-600");
+    if (elements.bodySettingsWOElem.style.display !== "none") return;
+    elements.bodySettingsAdvElem.style.display = "none";
+    elements.bodySettingsWOElem.style.display = "block";
+    elements.segSettingsAdvBtnElem.classList.remove("bg-amber-300", "text-gray-600");
+    elements.segSettingsAdvBtnElem.classList.add("bg-amber-200", "text-gray-400");
+    elements.segSettingsWOBtnElem.classList.remove("bg-amber-200", "text-gray-400");
+    elements.segSettingsWOBtnElem.classList.add("bg-amber-300", "text-gray-600");
   });
 
-  segSettingsAdvBtnElem.addEventListener("click", () => {
+  elements.segSettingsAdvBtnElem.addEventListener("click", () => {
     // Show body advance settings element
-    if (bodySettingsAdvElem.style.display !== "none") return;
-    bodySettingsWOElem.style.display = "none";
-    bodySettingsAdvElem.style.display = "block";
-    segSettingsWOBtnElem.classList.remove("bg-amber-300", "text-gray-600");
-    segSettingsWOBtnElem.classList.add("bg-amber-200", "text-gray-400");
-    segSettingsAdvBtnElem.classList.remove("bg-amber-200", "text-gray-400");
-    segSettingsAdvBtnElem.classList.add("bg-amber-300", "text-gray-600");
+    if (elements.bodySettingsAdvElem.style.display !== "none") return;
+    elements.bodySettingsWOElem.style.display = "none";
+    elements.bodySettingsAdvElem.style.display = "block";
+    elements.segSettingsWOBtnElem.classList.remove("bg-amber-300", "text-gray-600");
+    elements.segSettingsWOBtnElem.classList.add("bg-amber-200", "text-gray-400");
+    elements.segSettingsAdvBtnElem.classList.remove("bg-amber-200", "text-gray-400");
+    elements.segSettingsAdvBtnElem.classList.add("bg-amber-300", "text-gray-600");
   });
 
-  settingsBtnElem.addEventListener("click", () => {
+  elements.settingsBtnElem.addEventListener("click", () => {
     // Show modal / pop up settings element (choose WO & advance settings)
-    settingsElem.style.display = "flex";
+    elements.settingsElem.style.display = "flex";
     // Get and show current settings
     document.querySelector(
       `input[value="${WOSettings.DBWOSettings.currWorkout}"][name="settingsNameWO"]`
@@ -588,9 +588,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const actionSettings = {
     currWorkoutDuration: async (data) => {
-      loaderElem.style.display = "flex";
-      delayElem.innerText = "";
-      webcamElem.pause();
+      elements.loaderElem.style.display = "flex";
+      elements.delayElem.innerText = "";
+      elements.webcamElem.pause();
       WOPose.isLoop = false;
       isFirstPlay = true;
       isWebcamSecPlay = true;
@@ -601,7 +601,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         WOTimer.setup({
           interval: 1000,
           duration: WOPose.isVideoMode
-            ? Math.floor(webcamElem.duration)
+            ? Math.floor(elements.webcamElem.duration)
             : 60 * +data.durationWO.value.split(" ")[0],
           type: "DEC",
           firstDelayDuration: WOPose.isVideoMode ? 0 : 3,
@@ -609,27 +609,27 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         setCurrTime();
         const title = `${WOPose.counter.rules.nameWorkout} - ${data.durationWO.value}`;
-        titleWOElem.innerText = title;
-        resultTitleElem.innerText = title;
+        elements.titleWOElem.innerText = title;
+        elements.resultTitleElem.innerText = title;
       }
       if (data.nameWO.isChange) {
         await setupChangeWO(`./rules/${data.nameWO.value}.json`);
       }
 
       WOTimer.isFirstDelay = !WOPose.isVideoMode;
-      if (WOPose.isVideoMode && webcamElem.currentTime !== 0) {
-        webcamElem.currentTime = 0;
-        webcamElem.load();
+      if (WOPose.isVideoMode && elements.webcamElem.currentTime !== 0) {
+        elements.webcamElem.currentTime = 0;
+        elements.webcamElem.load();
       }
 
       WOTimer.pause();
       // Clear screen
-      imgDirectionSignElem.style.display = "none";
-      adviceWrapElem.style.display = "none";
-      resumeBtnElem.style.display = "flex";
-      restartBtnElem.style.display = "none";
-      pauseBtnElem.style.display = "none";
-      loaderElem.style.display = "none";
+      elements.imgDirectionSignElem.style.display = "none";
+      elements.adviceWrapElem.style.display = "none";
+      elements.resumeBtnElem.style.display = "flex";
+      elements.restartBtnElem.style.display = "none";
+      elements.pauseBtnElem.style.display = "none";
+      elements.loaderElem.style.display = "none";
     },
     isAudioEffect: (data) => {
       WOPose.counter.isPlayAudStage = data;
@@ -655,16 +655,16 @@ document.addEventListener("DOMContentLoaded", async () => {
       // Toggler to show direction sign
       WOPose.isShowDirectionSign = data;
       if (WOPose.isClassify) {
-        imgDirectionSignElem.style.display = data ? "block" : "none";
+        elements.imgDirectionSignElem.style.display = data ? "block" : "none";
       }
     },
     isDeveloperMode: (data) => {
       // Toggler to show developer mode element
-      developerModeElem.style.display = data ? "flex" : "none";
+      elements.developerModeElem.style.display = data ? "flex" : "none";
     },
   };
 
-  saveSettingsBtnElem.addEventListener("click", () => {
+  elements.saveSettingsBtnElem.addEventListener("click", () => {
     // Get newest data settings
     const currWorkout = document.querySelector(
       'input[name="settingsNameWO"]:checked'
@@ -701,11 +701,11 @@ document.addEventListener("DOMContentLoaded", async () => {
       },
       actionSettings
     );
-    settingsElem.style.display = "none";
+    elements.settingsElem.style.display = "none";
   });
 
-  cancelSettingsBtnElem.addEventListener("click", () => {
-    settingsElem.style.display = "none";
+  elements.cancelSettingsBtnElem.addEventListener("click", () => {
+    elements.settingsElem.style.display = "none";
   });
 
   // Get configuration of scores
@@ -718,12 +718,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         return resp.json();
       })
       .then(async (data) => {
-        formChooseWOElem.innerHTML = getHTMLChooseWO(data, false);
-        bodySettingsWOElem.innerHTML = getHTMLChooseWO(data, true);
+        elements.formChooseWOElem.innerHTML = getHTMLChooseWO(data, false);
+        elements.bodySettingsWOElem.innerHTML = getHTMLChooseWO(data, true);
         document
           .getElementById("chooseHelpBtn")
           .addEventListener("click", () => {
-            helpElem.style.display = "flex";
+            elements.helpElem.style.display = "flex";
           });
         // Init and try to load localStorage data scores
         WOScore.setup(data);
@@ -737,13 +737,13 @@ document.addEventListener("DOMContentLoaded", async () => {
           WOSettings.DBWOSettings.currWorkout &&
           WOSettings.DBWOSettings.currWorkout !== "None"
         ) {
-          loaderElem.style.display = "flex";
+          elements.loaderElem.style.display = "flex";
           await setupChangeWO(
             `./rules/${WOSettings.DBWOSettings.currWorkout}.json`
           );
         } else {
-          chooseWOElem.style.display = "flex";
-          loaderElem.style.display = "none";
+          elements.chooseWOElem.style.display = "flex";
+          elements.loaderElem.style.display = "none";
         }
       })
       .catch((e) => {
@@ -756,28 +756,28 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Just for initial (once run)
   // It will be remove when replaced by new webcamElem
   // Check: uploadVideoBtnElem
-  webcamElem.addEventListener("loadeddata", () => {
+  elements.webcamElem.addEventListener("loadeddata", () => {
     if (!WOPose.isVideoMode) {
       if (WOPose.isClassify) {
         WOPose.isClassify = false;
       }
       WOPose.isLoop = true;
-      sliderCameraElem.checked = true;
+      elements.sliderCameraElem.checked = true;
       if (isWebcamSecPlay) {
         isWebcamSecPlay = false;
       }
-      delayElem.innerText = "";
+      elements.delayElem.innerText = "";
       WOTimer.pause();
       WOPose.counter.resetCount();
       WOPose.drawPose();
     }
   });
 
-  accessCamBtnElem.addEventListener("click", async () => {
+  elements.accessCamBtnElem.addEventListener("click", async () => {
     await getAccessCam();
   });
 
-  formChooseWOElem.addEventListener("submit", async (event) => {
+  elements.formChooseWOElem.addEventListener("submit", async (event) => {
     event.preventDefault();
     // Get user choice
     const workout = document.querySelector(
@@ -792,23 +792,23 @@ document.addEventListener("DOMContentLoaded", async () => {
         currWorkout: workout,
         currDuration: duration,
       });
-      chooseWOElem.style.display = "flex";
-      loaderElem.style.display = "flex";
+      elements.chooseWOElem.style.display = "flex";
+      elements.loaderElem.style.display = "flex";
       await setupChangeWO(`./rules/${workout}.json`);
     }
   });
 
   // Callback to update and show delay time
   const delayCB = (time) => {
-    delayElem.innerText = time;
+    elements.delayElem.innerText = time;
   };
   // Callback when delay time is finished
   const finishDelayCB = () => {
-    delayElem.innerText = "";
+    elements.delayElem.innerText = "";
   };
   // Callback to update and show current time
   const timerCB = (time) => {
-    timerElem.innerText = `${`0${time.minutes}`.slice(
+    elements.timerElem.innerText = `${`0${time.minutes}`.slice(
       -2
     )}:${`0${time.seconds}`.slice(-2)}`;
   };
@@ -826,30 +826,30 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
     setCurrTime();
     WOTimer.isFirstDelay = !WOPose.isVideoMode;
-    resultRepElem.innerText = WOPose.counter.count;
+    elements.resultRepElem.innerText = WOPose.counter.count;
     WOTimer.start(delayCB, finishDelayCB, timerCB, finishTimerCB);
     WOTimer.pause();
-    webcamElem.pause();
+    elements.webcamElem.pause();
     isFirstPlay = true;
     WOPose.isLoop = false;
     WOPose.counter.resetCount();
     WOPose.counter.lastStage = {};
     WOPose.counter.nextStage = {};
-    resultElem.style.display = "flex";
-    resumeBtnElem.style.display = "flex";
-    restartBtnElem.style.display = "none";
-    pauseBtnElem.style.display = "none";
-    imgDirectionSignElem.style.display = "none";
-    adviceWrapElem.style.display = "none";
+    elements.resultElem.style.display = "flex";
+    elements.resumeBtnElem.style.display = "flex";
+    elements.restartBtnElem.style.display = "none";
+    elements.pauseBtnElem.style.display = "none";
+    elements.imgDirectionSignElem.style.display = "none";
+    elements.adviceWrapElem.style.display = "none";
   };
 
   // Fired when timer is finished and try to restart with OK btn
-  resultOKBtnElem.addEventListener("click", () => {
-    resultElem.style.display = "none";
+  elements.resultOKBtnElem.addEventListener("click", () => {
+    elements.resultElem.style.display = "none";
     if (isFirstPlay && WOPose.isVideoMode) {
-      webcamElem.pause();
-      webcamElem.currentTime = 0;
-      webcamElem.load();
+      elements.webcamElem.pause();
+      elements.webcamElem.currentTime = 0;
+      elements.webcamElem.load();
     } else {
       WOTimer.reset();
       setCurrTime();
@@ -857,21 +857,21 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   // Pause webcam or video
-  pauseBtnElem.addEventListener("click", () => {
+  elements.pauseBtnElem.addEventListener("click", () => {
     WOTimer.pause();
-    webcamElem.pause();
+    elements.webcamElem.pause();
     WOPose.isLoop = false;
-    resumeBtnElem.style.display = "flex";
-    restartBtnElem.style.display = "flex";
-    pauseBtnElem.style.display = "none";
+    elements.resumeBtnElem.style.display = "flex";
+    elements.restartBtnElem.style.display = "flex";
+    elements.pauseBtnElem.style.display = "none";
   });
 
   // Play or resume button for video and webcam
-  resumeBtnElem.addEventListener("click", () => {
-    if (!isFirstPlay && !webcamElem.paused && WOPose.isLoop) return;
-    pauseBtnElem.style.display = "flex";
-    restartBtnElem.style.display = "none";
-    resumeBtnElem.style.display = "none";
+  elements.resumeBtnElem.addEventListener("click", () => {
+    if (!isFirstPlay && !elements.webcamElem.paused && WOPose.isLoop) return;
+    elements.pauseBtnElem.style.display = "flex";
+    elements.restartBtnElem.style.display = "none";
+    elements.resumeBtnElem.style.display = "none";
     const firstPlay = isFirstPlay;
 
     if (isFirstPlay) {
@@ -882,7 +882,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     WOTimer.resume();
     WOPose.isLoop = true;
-    webcamElem.play().then(() => {
+    elements.webcamElem.play().then(() => {
       if (!isWebcamSecPlay && firstPlay && !WOPose.isVideoMode) {
         console.log("It run?");
         isWebcamSecPlay = true;
@@ -893,17 +893,17 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   });
 
-  uploadVideoBtnElem.addEventListener("change", (event) => {
+  elements.uploadVideoBtnElem.addEventListener("change", (event) => {
     if (event.target.files && event.target.files[0]) {
       // Stop webcam first before replace with video
       WOPose.camHandler.stop();
       WOPose.isClassify = true;
       WOPose.isLoop = false;
       WOPose.isVideoMode = true;
-      webcamElem.pause();
+      elements.webcamElem.pause();
       // Remove current webcamElem to fix error pose detector
       // during transition source webcam to video (it's async, not directly changing)
-      webcamElem.remove();
+      elements.webcamElem.remove();
 
       const newWebcamElem = document.createElement("video");
       newWebcamElem.setAttribute("id", "webcamBox");
@@ -914,7 +914,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       );
       newWebcamElem.muted = true;
 
-      parentWebcamElem.insertBefore(newWebcamElem, parentWebcamElem.firstChild);
+      elements.parentWebcamElem.insertBefore(newWebcamElem, elements.parentWebcamElem.firstChild);
 
       newWebcamElem.setAttribute(
         "src",
@@ -931,19 +931,19 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       newWebcamElem.addEventListener("loadeddata", () => {
         if (WOPose.isVideoMode) {
-          webcamElem = newWebcamElem;
-          WOPose.webcamElem = newWebcamElem;
+          elements.webcamElem = newWebcamElem;
+          WOPose.elements.webcamElem = newWebcamElem;
           // This is for prepare when to switch to webcam again
           // eslint-disable-next-line no-underscore-dangle
           WOPose.camHandler._webcamElement = newWebcamElem;
         }
         WOPose.counter.resetCount();
-        countElem.innerText = "0";
-        delayElem.innerText = "";
+        elements.countElem.innerText = "0";
+        elements.delayElem.innerText = "";
         WOTimer.setup({
           interval: 1000,
           duration: WOPose.isVideoMode
-            ? Math.floor(webcamElem.duration)
+            ? Math.floor(elements.webcamElem.duration)
             : 60 * +WOSettings.DBWOSettings.currDuration.split(" ")[0],
           type: "DEC",
           firstDelayDuration: WOPose.isVideoMode ? 0 : 3,
@@ -951,7 +951,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         WOTimer.isFirstDelay = !WOPose.isVideoMode;
         WOTimer.pause();
         setCurrTime();
-        webcamElem.pause();
+        elements.webcamElem.pause();
         WOPose.counter.lastStage = {};
         WOPose.counter.nextStage = {};
         if (widthRealVideo !== 0 && WOPose.isVideoMode) {
@@ -966,27 +966,27 @@ document.addEventListener("DOMContentLoaded", async () => {
           width: widthRealVideo,
           height: heightRealVideo,
         };
-        resumeBtnElem.style.display = "flex";
-        restartBtnElem.style.display = "none";
-        pauseBtnElem.style.display = "none";
-        imgDirectionSignElem.style.display = "none";
-        adviceWrapElem.style.display = "none";
-        sliderCameraElem.checked = !WOPose.isVideoMode;
+        elements.resumeBtnElem.style.display = "flex";
+        elements.restartBtnElem.style.display = "none";
+        elements.pauseBtnElem.style.display = "none";
+        elements.imgDirectionSignElem.style.display = "none";
+        elements.adviceWrapElem.style.display = "none";
+        elements.sliderCameraElem.checked = !WOPose.isVideoMode;
       });
     }
   });
 
   // Advice auto show when classifier is running
-  goAdviceBtnElem.addEventListener("click", (event) => {
+  elements.goAdviceBtnElem.addEventListener("click", (event) => {
     event.preventDefault();
     WOPose.isShowAdvice = !WOPose.isShowAdvice;
-    sliderAdviceElem.checked = WOPose.isShowAdvice;
+    elements.sliderAdviceElem.checked = WOPose.isShowAdvice;
     if (WOPose.isClassify) {
-      adviceWrapElem.style.display = WOPose.isShowAdvice ? "flex" : "none";
+      elements.adviceWrapElem.style.display = WOPose.isShowAdvice ? "flex" : "none";
     }
   });
 
-  goWebcamBtnElem.addEventListener("click", async (event) => {
+  elements.goWebcamBtnElem.addEventListener("click", async (event) => {
     event.preventDefault();
     if (!WOPose.isVideoMode) return;
     widthRealVideo = 640;
@@ -1003,12 +1003,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     };
     WOPose.isLoop = false;
     isWebcamSecPlay = true;
-    sliderCameraElem.checked = true;
+    elements.sliderCameraElem.checked = true;
     WOPose.isVideoMode = false;
     await WOPose.camHandler.start();
   });
 
-  endWorkoutBtn.addEventListener("click", () => {
+  elements.endWorkoutBtn.addEventListener("click", () => {
     finishTimerCB();
     //location.reload();
     window.location.href = "http://localhost:8080/dashboard.html";
