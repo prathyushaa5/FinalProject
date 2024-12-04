@@ -263,6 +263,7 @@
       justify-content: end;
       padding: 0;
       width: 100%;
+
     }
 
     .navbar {
@@ -309,6 +310,8 @@
       color: var(--space-cadet-1);
       font-size: 2.8rem;
       padding: 4px;
+      background: none;
+      border: none;
     }
 
     .navbar-item:not(:last-child) {
@@ -342,6 +345,7 @@
       pointer-events: all;
     }
 
+
     @media (min-width: 768px) {
       /**
 * REUSED STYLE
@@ -367,6 +371,8 @@
       color: var(--color);
       font-size: 32px;
       padding: 4px;
+      background: none;
+      border: none;
     }
 
     @media (min-width: 992px) {
@@ -488,138 +494,231 @@
       z-index: 1;
     }
 
-    form {
-      margin-top: 10px;
+    body {
+      font-family: "Open Sans", sans-serif;
+      color: #444444;
+      background-color: #f8f9fa;
+      padding: 30px;
+      margin: 0;
     }
 
-    form input,
-    form select {
-      background-color: #ffffff;
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
-
-    form button {
-      background-color: #d9232d;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    form button:hover {
-      background-color: #e1444d;
-    }
-
-    form {
-      background-color: #f7f2f2;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      margin-bottom: 30px;
-    }
-
-    .meal-section {
-      background-color: #fff;
-      padding: 20px;
+    h2,
+    h3 {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #343a40;
+      text-align: center;
       margin-bottom: 20px;
-      border-radius: 8px;
-      box-shadow: 0px 0px 20px hsl(335, 43%, 40%);
     }
 
-    h2 {
-      font-family: "Raleway", sans-serif;
-      color: #fff;
+    .container-sec {
+      display: flex;
+      flex-direction: row;
+      /* Aligns the children (sections) in a row */
+      justify-content: space-between;
+      /* Optional, adds space between sections */
+      gap: 20px;
+      /* Adds gap between the two sections */
+      width: 100%;
+      /* Ensures the container takes full width */
+      
+      padding: 40px;
+      height: 100%;
     }
 
-    table {
+    .container-sec>section {
+      flex: 1;
+      /* Ensures both sections take equal width */
+      padding: 20px;
+      /* Optional padding for spacing inside each section */
+      background-color: #e9ecef;
+      /* Optional background color */
+      border-radius: 10px;
+      /* Optional rounded corners */
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      /* Optional shadow for better styling */
+      height: 100vh;
+      overflow: auto
+    }
+
+    /* Form Group Styling */
+    form {
+      background-color: #e9ecef;
+      color: white;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+
+    }
+
+    .form-group label {
+      font-weight: 600;
+      color: #333;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 6px;
+      margin-top: 5px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 1rem;
+
+    }
+
+    .form-group input[type="number"] {
+      background-color: #ffffff;
+
+    }
+
+    /* Button Styling */
+    .form-group .btn-primary {
+      background-color: #007bff;
+      border-color: #007bff;
+      font-size: 1.1rem;
+      padding: 12px 24px;
+      width: 100%;
+      border-radius: 5px;
+      color: white;
+    }
+
+    .form-group .btn-primary:hover {
+      background-color: #0056b3;
+      border-color: #0056b3;
+    }
+
+    /* Results Section Styling */
+    /* Results Section Styling */
+    #personal-info-results,
+    #results {
+      background-color: #f9fafb;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      margin-top: 30px;
+      display: none;
+      transition: all 0.3s ease-in-out;
+      /* Smooth transition when showing the results */
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      /* Centering the results box */
+      font-family: 'Roboto', sans-serif;
+      color: #333;
+      border-left: 8px solid #4A90E2;
+      /* Blue border for visual accent */
+    }
+
+    #personal-info-results h2,
+    #results h2 {
+      font-size: 2rem;
+      color: #2d3748;
+      margin-bottom: 20px;
+      text-align: center;
+      padding: 10px;
+      color: #4A90E2;
+      /* Accent color */
+      background-color: white;
+      border-radius: 10px;
+    }
+
+    #personal-info-results p,
+    #results p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #4A5568;
+      margin-bottom: 12px;
+      padding-left: 10px;
+      border-left: 4px solid #E5E5E5;
+      /* Light left border for sections */
+    }
+
+    .diet-plan {
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 30px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      border-top: 5px solid #FF7F50;
+      /* Orange accent for the diet plan */
+    }
+
+    .diet-plan h3 {
+      font-size: 1.5rem;
+      color: #FF7F50;
+      /* Orange color */
+      text-transform: uppercase;
+      margin-bottom: 15px;
+
+    }
+
+    .diet-plan p {
+      font-size: 1.1rem;
+      color: #4A5568;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .table {
       width: 100%;
       border-collapse: collapse;
-      background-color: #f9f9f9;
+      margin-top: 30px;
     }
 
-    table th,
-    table td {
+    .table th,
+    .table td {
       padding: 12px;
       text-align: left;
-      border: 1px solid #ddd;
+      border-bottom: 1px solid #E5E5E5;
     }
 
-    table th {
+    .table th {
+      background-color: #F0F8FF;
+      /* Light blue for table headers */
+      color: #4A5568;
+    }
+
+    .table td {
+      background-color: #ffffff;
+      color: #333;
+    }
+
+    .table-striped tbody tr:nth-child(odd) {
+      background-color: #fafafa;
+      /* Alternating row color */
+    }
+
+    .table-striped tbody tr:nth-child(even) {
+      background-color: #f0f8ff;
+      /* Light blue alternating row color */
+    }
+
+    .table-striped tbody tr:hover {
       background-color: #f1f1f1;
-      color: #555;
     }
 
-    table td {
-      background-color: #fff;
-      color: #333;
-    }
-
-    table tr:nth-child(even) {
-      background-color: #f2f2f2;
-    }
-
-    table tr:hover {
-      background-color: #f0f0f0;
-    }
-
-    .meal-section p {
-      font-size: 16px;
-      color: #888;
-      font-style: italic;
-    }
-
-    .meal-section h2{
-      color: #333;
-    }
-
-    #results {
-      margin-top: 20px;
-    }
-
-    form button {
-      background-color: #d9232d;
-      color: white;
-      padding: 10px 20px;
+    button {
+      background-color: #4A90E2;
+      color: #ffffff;
       border: none;
-      border-radius: 5px;
+      padding: 12px 25px;
+      font-size: 1rem;
+      border-radius: 12px;
       cursor: pointer;
-      font-size: 16px;
-      transition: background-color 0.3s;
+      transition: background-color 0.3s ease;
+      margin-top: 25px;
+      display: block;
+
     }
 
-    form button:hover {
-      background-color: #e1444d;
+    button:hover {
+      background-color: #0072bb;
     }
 
-
-    .hero {
-      padding: 10%;
-      background-image: linear-gradient(90deg,
-          hsl(231, 68%, 21%) 0,
-          hsl(275, 54%, 33%) 51%,
-          hsl(231, 68%, 21%));
-    }
-
-    form {
-      padding: 10%;
-    }
-    #personal-info-results { 
-      display: none;
-      background-color: #f7f2f2;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      box-shadow: 0px 0px 20px hsl(335, 43%, 40%);
-      margin: 24px 0px;
-    }
-    #personal-info-results h3{
-      color: #333;
-      
+    button:focus {
+      outline: none;
     }
 
   </style>
@@ -878,32 +977,44 @@
     </div>
   </header>
 
-  <div class="container">
-    <!-- BMI and BMR Form -->
-    <section>
-      <h2>Enter Personal Information for BMI Calculation</h2>
+  <div class="container-sec">
+
+    <section id="personal-info-section">
+      <h2>Enter Personal Information for BMI and BMR Calculation</h2>
+
       <form id="personal-info-form">
         <div class="form-group">
           <label for="age">Age:</label>
-          <input type="number" id="age" name="age" class="form-control" required />
+          <input type="number" id="age" name="age" required />
         </div>
 
         <div class="form-group">
           <label for="weight">Weight (kg):</label>
-          <input type="number" id="weight" name="weight" class="form-control" step="0.01" required />
+          <input type="number" id="weight" name="weight" step="0.01" required />
         </div>
 
         <div class="form-group">
           <label for="height">Height (cm):</label>
-          <input type="number" id="height" name="height" class="form-control" step="0.01" required />
+          <input type="number" id="height" name="height" step="0.01" required />
         </div>
 
         <div class="form-group">
           <label for="gender">Gender:</label>
-          <select id="gender" name="gender" class="form-control" required>
+          <select id="gender" name="gender" required>
             <option value="male">Male</option>
             <option value="female">Female</option>
             <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="activity-level">Activity Level:</label>
+          <select id="activity-level" name="activity-level" required>
+            <option value="sedentary">0-2</option>
+            <option value="lightly active">2-4</option>
+            <option value="moderately active">4-6</option>
+            <option value="very active">6-8</option>
+            <option value="extra active">8-10</option>
           </select>
         </div>
 
@@ -912,14 +1023,20 @@
       <div id="personal-info-results">
         <!-- Results will be displayed here -->
       </div>
+
     </section>
+
+
+
+
+
 
     <section>
       <h2>Diet Plan Generator</h2>
       <form id="dietForm">
         <div class="form-group">
           <label for="state">State:</label>
-          <select id="state" class="form-control"  required>
+          <select id="state" class="form-control" required>
             <option value="Andhra Pradesh">Andhra Pradesh</option>
             <option value="Arunachal Pradesh">Arunachal Pradesh</option>
             <option value="Assam">Assam</option>
@@ -979,65 +1096,96 @@
   </button>
 
   <script>
-    // Scroll to Top
-    window.addEventListener("scroll", () => {
-      document.querySelector(".back-to-top").style.display =
-        window.pageYOffset > 200 ? "block" : "none";
+    document.addEventListener('DOMContentLoaded', function () {
+      const personalInfoForm = document.getElementById("personal-info-form");
+      const personalInfoResults = document.getElementById("personal-info-results");
+
+      personalInfoForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const age = parseInt(document.getElementById("age").value);
+        const weight = parseFloat(document.getElementById("weight").value);
+        const height = parseFloat(document.getElementById("height").value) / 100; // converting cm to meters
+        const gender = document.getElementById("gender").value;
+        const activityLevel = document.getElementById("activity-level").value;
+
+        // Calculate BMI
+        const BMI = weight / (height * height);
+
+        // Calculate BMR using Mifflin-St Jeor equation
+        let BMR;
+        if (gender === "male") {
+          BMR = 10 * weight + 6.25 * height * 100 - 5 * age + 5;
+        } else if (gender === "female") {
+          BMR = 10 * weight + 6.25 * height * 100 - 5 * age - 161;
+        } else {
+          BMR = 10 * weight + 6.25 * height * 100 - 5 * age + 0;
+        }
+
+        // Activity level adjustment factor
+        let activityFactor;
+        switch (activityLevel) {
+          case "sedentary":
+            activityFactor = 1.2;
+            break;
+          case "lightly active":
+            activityFactor = 1.375;
+            break;
+          case "moderately active":
+            activityFactor = 1.55;
+            break;
+          case "very active":
+            activityFactor = 1.725;
+            break;
+          case "extra active":
+            activityFactor = 1.9;
+            break;
+        }
+
+        // Calculate maintenance calories
+        const caloriesToMaintainWeight = BMR * activityFactor;
+
+        // Macronutrient breakdown (example with general recommendations)
+        const requiredCarbs = (caloriesToMaintainWeight * 0.45) / 4; // 45% carbs
+        const requiredProtein = (caloriesToMaintainWeight * 0.30) / 4; // 30% protein
+        const requiredFat = (caloriesToMaintainWeight * 0.25) / 9; // 25% fat
+
+        // BMI Tags
+        let BMITags;
+        if (BMI < 18.5) {
+          BMITags = "Underweight";
+        } else if (BMI >= 18.5 && BMI < 24.9) {
+          BMITags = "Normal weight";
+        } else if (BMI >= 25 && BMI < 29.9) {
+          BMITags = "Overweight";
+        } else {
+          BMITags = "Obese";
+        }
+
+        // Display results
+        personalInfoResults.innerHTML = `
+              <h2>Hey, we have calculated a few metrics to analyze your health!</h2>
+              <p>Age: ${age}</p>
+              <p>Activity Level: ${activityLevel}</p>
+              <p>BMI: ${BMI.toFixed(2)}</p>
+              <p>BMR: ${BMR.toFixed(2)} kcal/day</p>
+              <p>BMI Tags: ${BMITags}</p>
+              <p>Calories to maintain weight: ${caloriesToMaintainWeight.toFixed(2)} kcal/day</p>
+              <p>Required daily intake of carbohydrates: ${requiredCarbs.toFixed(2)} grams</p>
+              <p>Required daily intake of protein: ${requiredProtein.toFixed(2)} grams</p>
+              <p>Required daily intake of fat: ${requiredFat.toFixed(2)} grams</p>
+              <div class="diet-plan">
+                <h3>Intake</h3>
+                <p><strong>Carbohydrates:</strong> ${requiredCarbs.toFixed(2)} grams/day</p>
+                <p><strong>Protein:</strong> ${requiredProtein.toFixed(2)} grams/day</p>
+                <p><strong>Fat:</strong> ${requiredFat.toFixed(2)} grams/day</p>
+              </div>
+            `;
+
+        // Show the results section
+        personalInfoResults.style.display = "block";
+      });
     });
-
-    function scrollToTop() {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-
-    // Personal Information Form Submission
-    document.getElementById("personal-info-form").addEventListener("submit", function (event) {
-      event.preventDefault();
-
-      // Fetch values from the form fields
-      const age = parseFloat(document.getElementById("age").value);
-      const weight = parseFloat(document.getElementById("weight").value);
-      const heightCm = parseFloat(document.getElementById("height").value);
-      const gender = document.getElementById("gender").value;
-
-      // Convert height to meters
-      const height = heightCm / 100;
-
-      // Calculate BMI
-      const BMI = weight / (height * height);
-
-      // Calculate BMR based on gender
-      let BMR;
-      if (gender === "male") {
-        BMR = 10 * weight + 6.25 * heightCm - 5 * age + 5;
-      } else if (gender === "female") {
-        BMR = 10 * weight + 6.25 * heightCm - 5 * age - 161;
-      } else {
-        BMR = 10 * weight + 6.25 * heightCm - 5 * age;
-      }
-
-      // Determine BMI category
-      let bmiCategory;
-      if (BMI < 18.5) {
-        bmiCategory = "Underweight";
-      } else if (BMI < 25) {
-        bmiCategory = "Normal weight";
-      } else if (BMI < 30) {
-        bmiCategory = "Overweight";
-      } else {
-        bmiCategory = "Obese";
-      }
-
-      // Display results
-      const resultDiv = document.getElementById("personal-info-results");
-      resultDiv.innerHTML = `
-          <h3>BMI and BMR Results</h3>
-          <p><strong>BMI:</strong> ${BMI.toFixed(2)} (${bmiCategory})</p>
-          <p><strong>BMR:</strong> ${BMR.toFixed(2)} kcal/day</p>
-        `;
-      resultDiv.style.display = "block"; // Make sure the results div is displayed
-    });
-
-    // Diet Plan Fetching
     document.getElementById("dietForm").addEventListener("submit", async function (event) {
       event.preventDefault();
 
@@ -1098,11 +1246,13 @@
 
           tableHtml += "</tbody></table>";
           mealSection.innerHTML += tableHtml;
+
         } else {
           mealSection.innerHTML += "<p>No suggestions available</p>";
         }
 
         document.getElementById("results").appendChild(mealSection);
+        document.getElementById("results").style.display = "block"
       } catch (error) {
         console.error("Error fetching diet plan:", error);
         document.getElementById("results").innerHTML = "<p>Failed to load diet plan.</p>";
