@@ -2,17 +2,20 @@
 <html>
 
 <head>
-  <title>Activity</title>
+  <title>Diet Plan Generator</title>
   <link rel="icon" type="image/x-icon" href="./img/ai.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+  <script type="module" src="https://unpkg.com/ionicons@6.0.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@6.0.0/dist/ionicons/ionicons.js"></script>
   <style>
     /* 1st change */
     @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
     :root {
       /**
-   * colors
-   */
+* colors
+*/
 
       --st-patricks-blue: hsl(236, 57%, 28%);
       --amaranth-purple: hsl(335, 88%, 38%);
@@ -29,7 +32,7 @@
       --black_70: hsla(0, 0%, 0%, 0.7);
       --rajah: hsl(29, 99%, 67%);
       --white: hsl(0, 0%, 100%);
-
+      --color: var(--white);
       --gradient-1: linear-gradient(90deg,
           var(--royal-blue-dark) 0,
           var(--ksu-purple) 51%,
@@ -37,8 +40,8 @@
       --gradient-2: linear-gradient(90deg, var(--razzmatazz), var(--rajah));
 
       /**
-   * typography
-   */
+* typography
+*/
 
       --ff-source-sans-pro: "Source Sans Pro", sans-serif;
       --ff-poppins: "Poppins", sans-serif;
@@ -57,21 +60,21 @@
       --fw-700: 700;
 
       /**
-   * border radius
-   */
+* border radius
+*/
 
       --radius-4: 4px;
       --radius-12: 12px;
 
       /**
-   * spacing
-   */
+* spacing
+*/
 
       --section-padding: 60px;
 
       /**
-   * transition
-   */
+* transition
+*/
 
       --transition-1: 0.15s ease;
       --transition-2: 0.35s ease;
@@ -79,15 +82,57 @@
       --cubic-out: cubic-bezier(0.33, 0.85, 0.56, 1.02);
 
       /**
-   * shadow
-   */
+* shadow
+*/
 
       --shadow: 0 5px 20px 1px hsla(220, 63%, 33%, 0.1);
     }
 
     body {
       font-family: "Open Sans", sans-serif;
-      color: #444444;
+      color: #fff;
+    }
+
+    .hero {
+      padding-top: 10%;
+      background-image: linear-gradient(90deg,
+          hsl(231, 68%, 21%) 0,
+          hsl(275, 54%, 33%) 51%,
+          hsl(231, 68%, 21%));
+    }
+
+    .table {
+      color: #fff;
+    }
+
+    a,
+    img,
+    span,
+    input,
+    button,
+    ion-icon {
+      display: block;
+    }
+
+    li {
+      list-style: none;
+    }
+
+    li a {
+      text-decoration: none;
+    }
+
+    li a:hover {
+      color: white;
+      text-shadow: 2px 2px #556270;
+      text-decoration: none;
+    }
+
+    button,
+    input {
+      background: none;
+      border: none;
+      font: inherit;
     }
 
     a {
@@ -107,11 +152,13 @@
     h5,
     h6 {
       font-family: "Raleway", sans-serif;
+      color: #fff;
+      font-size: larger;
     }
 
     /*--------------------------------------------------------------
-      # Back to top button
-      --------------------------------------------------------------*/
+  # Back to top button
+  --------------------------------------------------------------*/
     .back-to-top {
       position: fixed;
       visibility: hidden;
@@ -143,26 +190,27 @@
     }
 
     /*--------------------------------------------------------------
-      # Header
-      --------------------------------------------------------------*/
-    #header {
-      /* background: white; */
-      transition: all 0.5s;
-      z-index: 997;
-      padding: 20px 0;
-      position:absolute;
+  # Header
+  --------------------------------------------------------------*/
+    .header {
+      --color: var(--white);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding-block: 14px;
+      z-index: 4;
+      transition: var(--transition-1);
     }
 
-    #header.header-scrolled {
-      box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
-      padding: 12px 0;
+    .header.active {
+      --color: var(--st-patricks-blue);
+      position: fixed;
+      background-color: var(--white);
+      box-shadow: 0 2px 30px hsla(0, 0%, 0%, 0.1);
     }
 
-    #header.header-inner-pages {
-      box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
-    }
-
-    #header .logo {
+    .logo {
       color: white;
       font-size: 30px;
       margin: 0;
@@ -172,181 +220,222 @@
       text-transform: uppercase;
     }
 
-    #header .logo a {
+    .logo a:hover {
+      text-decoration: none;
+    }
+
+    .header .logo a {
       color: white;
       text-decoration: none;
     }
 
-    #header .logo a:hover {
+    .header .logo a:hover {
       text-shadow: 2px 2px#556270;
     }
 
-    #header .logo img {
+    .header .logo img {
       max-height: 40px;
       filter: invert(1);
+
     }
 
-    #header .btn {
+    .header .btn {
       display: flex;
       align-items: center;
       gap: 5px;
       margin-inline-start: auto;
     }
 
-    #header .btn {
+    .header .btn {
       margin-inline-start: 0;
     }
 
+    .header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 30px;
+      height: 60px;
+    }
+
     /* 1st change ends here */
-    #header .navbar {
+    .header .container {
+      justify-content: end;
       padding: 0;
       width: 100%;
-      justify-content: end;
+
     }
 
-    .btn {
-      background-image: linear-gradient(90deg,
-          var(--razzmatazz),
-          var(--rajah));
-      background-size: 200%;
-      color: #fff;
-      padding: 12px 35px;
-      font-size: 1.5rem;
-      font-weight: 500;
-      border-radius: 0 25px;
-      transition: 0.35s ease;
+    .navbar {
+      top: 0;
+      left: -280px;
+      width: 100%;
+      height: 500px;
+      max-width: 280px;
+      min-height: 100%;
+      padding: 20px;
+      visibility: hidden;
+      z-index: 2;
+      transition: 0.25s var(--cubic-in);
     }
 
-    .btn:is(:hover, :focus) {
-      background-position: right;
+    .navbar.active {
+      transform: translateX(280px);
+      visibility: visible;
+      transition: 0.5s var(--cubic-out);
+      background-color: var(--white);
+      position: fixed;
+      display: inline;
     }
 
-    .logout-button {
-      background-color: red;
-      color: white;
-      padding: 8px 16px;
-      border: none;
-      border-radius: 4px;
-      position: absolute;
-      top: 50%;
-      right: 16px;
-      transform: translateY(-50%);
-    }
-
-    .navbar ul {
-      margin: 0;
-      padding-right: 20px;
+    .navbar-top {
       display: flex;
-      list-style: none;
+      justify-content: space-between;
       align-items: center;
-    }
-
-    .navbar li {
-      position: relative;
-    }
-
-    .navbar a,
-    .navbar a:focus {
-      display: flex;
-      align-items: center;
-      padding: 10px 0 10px 30px;
-      font-family: var(--ff-poppins);
-      font-size: 20px;
-      font-weight: 500;
-      color: var(--white);
-      font-family: var(--fw-700);
-      white-space: nowrap;
-
-    }
-
-    .navbar a i,
-    .navbar a:focus i {
-      font-size: 12px;
-      line-height: 0;
-      margin-left: 5px;
-    }
-
-    .navbar a:hover,
-    .navbar .active,
-    .navbar .active:focus,
-    .navbar li:hover>a {
-      color:var(--white);
-      text-decoration: none;
-      text-shadow: 2px 2px#556270;
-    }
-
-    .navbar .getstarted,
-    .navbar .getstarted:focus {
-      background: #d9232d;
-      padding: 8px 25px;
+      padding-block: 10px 30px;
       margin-left: 30px;
-      border-radius: 4px;
-      font-weight: 400;
-      color: #fff;
     }
 
-    .navbar .getstarted:hover,
-    .navbar .getstarted:focus:hover {
-      color: #fff;
-      background: #e1444d;
+    .navbar-top .logo {
+      color: var(--st-patricks-blue);
+      font-size: 2.2rem;
+      font-weight: var(--fw-700);
     }
 
-    .navbar .dropdown ul {
-      display: block;
-      position: absolute;
-      left: 14px;
-      top: calc(100% + 30px);
-      margin: 0;
-      padding: 10px 0;
-      z-index: 99;
+    .navbar-top .logo a {
+      text-decoration: none;
+    }
+
+    .nav-close-btn {
+      color: var(--space-cadet-1);
+      font-size: 2.8rem;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+
+    .navbar-item:not(:last-child) {
+      border-bottom: 1px solid var(--platinum);
+    }
+
+    .navbar-item li a:hover {
+      text-decoration: none;
+
+    }
+
+    .navbar-link {
+      color: var(--space-cadet-1);
+      font-size: var(--fs-8);
+      font-weight: var(--fw-600);
+      padding-block: 12px;
+    }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background-color: var(--black_70);
+      z-index: 1;
       opacity: 0;
-      visibility: hidden;
-      background: #fff;
-      box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
-      transition: 0.3s;
+      pointer-events: none;
+      transition: var(--transition-2);
     }
 
-    .navbar .dropdown ul li {
-      min-width: 200px;
-    }
-
-    .navbar .dropdown ul a {
-      padding: 10px 20px;
-      font-size: 15px;
-      text-transform: none;
-      font-weight: 400;
-    }
-
-    .navbar .dropdown ul a i {
-      font-size: 12px;
-    }
-
-    .navbar .dropdown ul a:hover,
-    .navbar .dropdown ul .active:hover,
-    .navbar .dropdown ul li:hover>a {
-      color: #d9232d;
-    }
-
-    .navbar .dropdown:hover>ul {
+    .overlay.active {
       opacity: 1;
-      top: 100%;
-      visibility: visible;
+      pointer-events: all;
     }
 
-    .navbar .dropdown .dropdown ul {
-      top: 0;
-      left: calc(100% - 30px);
-      visibility: hidden;
+
+    @media (min-width: 768px) {
+      /**
+* REUSED STYLE
+*/
+
+      .header .container {
+        max-width: 720px;
+      }
     }
 
-    .navbar .dropdown .dropdown:hover>ul {
-      opacity: 1;
-      top: 0;
-      left: 100%;
-      visibility: visible;
+    @media (max-width: 1366px) {
+      /* .header .container{
+    max-width: 1069px;
+  } */
     }
 
-    .navbar .btn {
+    /* Second Change */
+    /**
+  * Mobile Navigation 
+  */
+
+    .nav-open-btn {
+      color: var(--color);
+      font-size: 32px;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+
+    @media (min-width: 992px) {
+      /**
+* CUSTOM PROPERTY
+*/
+
+      :root {
+        /**
+ * typography
+ */
+
+        --fs-1: 5.4rem;
+      }
+
+      /**
+* REUSED STYLE
+*/
+
+      .header .container {
+        max-width: 1069px;
+      }
+
+      /**
+* HEADER
+*/
+
+      .header {
+        padding-block: 20px;
+      }
+
+      .overlay,
+      .nav-open-btn,
+      .navbar-top {
+        display: none;
+      }
+
+      .navbar,
+      .navbar.active {
+        all: unset;
+        margin-inline-start: auto;
+      }
+
+      .header .btn {
+        margin-inline-start: 0;
+      }
+
+      .navbar-list {
+        display: flex;
+        gap: 25px;
+      }
+
+      .navbar-item:not(:last-child) {
+        border-bottom: none;
+      }
+
+      .navbar-link {
+        color: var(--color);
+        font-size: 20px;
+      }
+    }
+
+    .header .btn {
       background-image: var(--gradient-2);
       background-size: 100%;
       color: var(--white);
@@ -357,9 +446,9 @@
       transition: var(--transition-2);
     }
 
-    .navbar .btn:hover {
+    .header .btn:hover {
       background-position: right;
-      color:var(--white);
+      color: var(--white);
       text-decoration: none;
       text-shadow: 2px 2px#556270;
     }
@@ -372,126 +461,12 @@
       animation: waveAnim 2s linear infinite alternate;
     }
 
-    @media (max-width: 1366px) {
-      .navbar .dropdown .dropdown ul {
-        left: -90%;
-      }
+    .center {
+      text-align: center;
+      /* border: 3px solid green; */
 
-      .navbar .dropdown .dropdown:hover>ul {
-        left: -100%;
-      }
-    }
-    
-
-    /* Second Change */
-    /**
-      * Mobile Navigation 
-      */
-    .mobile-nav-toggle {
-      color: #556270;
-      font-size: 28px;
-      cursor: pointer;
-      display: none;
-      line-height: 0;
-      transition: 0.5s;
     }
 
-    .mobile-nav-toggle.bi-x {
-      color: #fff;
-    }
-
-    @media (max-width: 991px) {
-      .mobile-nav-toggle {
-        display: block;
-      }
-
-      .navbar ul {
-        display: none;
-      }
-    }
-
-    .navbar-mobile {
-      position: fixed;
-      overflow: hidden;
-      top: 0;
-      right: 0;
-      left: 0;
-      bottom: 0;
-      background: rgba(63, 73, 83, 0.9);
-      transition: 0.3s;
-      z-index: 999;
-    }
-
-    .navbar-mobile .mobile-nav-toggle {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-    }
-
-    .navbar-mobile ul {
-      display: block;
-      position: absolute;
-      top: 55px;
-      right: 15px;
-      bottom: 15px;
-      left: 15px;
-      padding: 10px 0;
-      background-color: #fff;
-      overflow-y: auto;
-      transition: 0.3s;
-    }
-
-    .navbar-mobile a,
-    .navbar-mobile a:focus {
-      padding: 10px 20px;
-      font-size: 15px;
-      color: #556270;
-    }
-
-    .navbar-mobile a:hover,
-    .navbar-mobile .active,
-    .navbar-mobile li:hover>a {
-      color: #d9232d;
-    }
-
-    .navbar-mobile .getstarted,
-    .navbar-mobile .getstarted:focus {
-      margin: 15px;
-    }
-
-    .navbar-mobile .dropdown ul {
-      position: static;
-      display: none;
-      margin: 10px 20px;
-      padding: 10px 0;
-      z-index: 99;
-      opacity: 1;
-      visibility: visible;
-      background: #fff;
-      box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
-    }
-
-    .navbar-mobile .dropdown ul li {
-      min-width: 200px;
-    }
-
-    .navbar-mobile .dropdown ul a {
-      padding: 10px 20px;
-    }
-
-    .navbar-mobile .dropdown ul a i {
-      font-size: 12px;
-    }
-
-    .navbar-mobile .dropdown ul a:hover,
-    .navbar-mobile .dropdown ul .active:hover,
-    .navbar-mobile .dropdown ul li:hover>a {
-      color: #d9232d;
-    }
-
-    .navbar-mobile .dropdown>.dropdown-active {
-      display: block;
-    }
 
     /* Second change ends here */
     /* Popup overlay is default */
@@ -519,125 +494,233 @@
       z-index: 1;
     }
 
-    form {
-      margin-top: 10px;
+    body {
+      font-family: "Open Sans", sans-serif;
+      color: #444444;
+      background-color: #f8f9fa;
+      padding: 30px;
+      margin: 0;
     }
 
-    form input,
-    form select {
-      background-color: #ffffff;
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
-
-    form button {
-      background-color: #d9232d;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    form button:hover {
-      background-color: #e1444d;
-    }
-
-    form {
-      background-color: #f7f2f2;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      margin-bottom: 30px;
-    }
-
-    .meal-section {
-      background-color: #fff;
-      padding: 20px;
+    h2,
+    h3 {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #343a40;
+      text-align: center;
       margin-bottom: 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
-    h2 {
-      font-family: "Raleway", sans-serif;
-      color: #fff;
-    }
-
-    table {
+    .container-sec {
+      display: flex;
+      flex-direction: row;
+      /* Aligns the children (sections) in a row */
+      justify-content: space-between;
+      /* Optional, adds space between sections */
+      gap: 20px;
+      /* Adds gap between the two sections */
       width: 100%;
-      border-collapse: collapse;
-      background-color: #f9f9f9;
+      /* Ensures the container takes full width */
+      
+      padding: 40px;
+      height: 100%;
     }
 
-    table th,
-    table td {
-      padding: 12px;
-      text-align: left;
-      border: 1px solid #ddd;
+    .container-sec>section {
+      flex: 1;
+      /* Ensures both sections take equal width */
+      padding: 20px;
+      /* Optional padding for spacing inside each section */
+      background-color: #e9ecef;
+      /* Optional background color */
+      border-radius: 10px;
+      /* Optional rounded corners */
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      /* Optional shadow for better styling */
+      height: 100vh;
+      overflow: auto
     }
 
-    table th {
-      background-color: #f1f1f1;
-      color: #555;
+    /* Form Group Styling */
+    form {
+      background-color: #e9ecef;
+      color: white;
     }
 
-    table td {
-      background-color: #fff;
+    .form-group {
+      margin-bottom: 15px;
+
+    }
+
+    .form-group label {
+      font-weight: 600;
       color: #333;
     }
 
-    table tr:nth-child(even) {
-      background-color: #f2f2f2;
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 6px;
+      margin-top: 5px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 1rem;
+
     }
 
-    table tr:hover {
-      background-color: #f0f0f0;
+    .form-group input[type="number"] {
+      background-color: #ffffff;
+
     }
 
-    .meal-section p {
-      font-size: 16px;
-      color: #888;
-      font-style: italic;
+    /* Button Styling */
+    .form-group .btn-primary {
+      background-color: #007bff;
+      border-color: #007bff;
+      font-size: 1.1rem;
+      padding: 12px 24px;
+      width: 100%;
+      border-radius: 5px;
+      color: white;
     }
 
+    .form-group .btn-primary:hover {
+      background-color: #0056b3;
+      border-color: #0056b3;
+    }
+
+    /* Results Section Styling */
+    /* Results Section Styling */
+    #personal-info-results,
     #results {
-      margin-top: 20px;
+      background-color: #f9fafb;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      margin-top: 30px;
+      display: none;
+      transition: all 0.3s ease-in-out;
+      /* Smooth transition when showing the results */
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      /* Centering the results box */
+      font-family: 'Roboto', sans-serif;
+      color: #333;
+      border-left: 8px solid #4A90E2;
+      /* Blue border for visual accent */
+    }
+
+    #personal-info-results h2,
+    #results h2 {
+      font-size: 2rem;
+      color: #2d3748;
+      margin-bottom: 20px;
+      text-align: center;
+      padding: 10px;
+      color: #4A90E2;
+      /* Accent color */
+      background-color: white;
+      border-radius: 10px;
+    }
+
+    #personal-info-results p,
+    #results p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #4A5568;
+      margin-bottom: 12px;
+      padding-left: 10px;
+      border-left: 4px solid #E5E5E5;
+      /* Light left border for sections */
+    }
+
+    .diet-plan {
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 30px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      border-top: 5px solid #FF7F50;
+      /* Orange accent for the diet plan */
+    }
+
+    .diet-plan h3 {
+      font-size: 1.5rem;
+      color: #FF7F50;
+      /* Orange color */
+      text-transform: uppercase;
+      margin-bottom: 15px;
+
+    }
+
+    .diet-plan p {
+      font-size: 1.1rem;
+      color: #4A5568;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 30px;
+    }
+
+    .table th,
+    .table td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #E5E5E5;
+    }
+
+    .table th {
+      background-color: #F0F8FF;
+      /* Light blue for table headers */
+      color: #4A5568;
+    }
+
+    .table td {
+      background-color: #ffffff;
+      color: #333;
+    }
+
+    .table-striped tbody tr:nth-child(odd) {
+      background-color: #fafafa;
+      /* Alternating row color */
+    }
+
+    .table-striped tbody tr:nth-child(even) {
+      background-color: #f0f8ff;
+      /* Light blue alternating row color */
+    }
+
+    .table-striped tbody tr:hover {
+      background-color: #f1f1f1;
     }
 
     button {
-      background-color: #d9232d;
-      color: white;
-      padding: 10px 20px;
+      background-color: #4A90E2;
+      color: #ffffff;
       border: none;
-      border-radius: 5px;
+      padding: 12px 25px;
+      font-size: 1rem;
+      border-radius: 12px;
       cursor: pointer;
-      font-size: 16px;
-      transition: background-color 0.3s;
+      transition: background-color 0.3s ease;
+      margin-top: 25px;
+      display: block;
+
     }
 
     button:hover {
-      background-color: #e1444d;
+      background-color: #0072bb;
     }
 
-    section {
-      margin-top: 100px;
+    button:focus {
+      outline: none;
     }
 
-    .hero {
-      padding: 10%;
-      background-image: linear-gradient(90deg,
-          hsl(231, 68%, 21%) 0,
-          hsl(275, 54%, 33%) 51%,
-          hsl(231, 68%, 21%));
-    }
-
-    form {
-      padding: 10%;
-    }
   </style>
   <script>
     (function (factory) {
@@ -842,7 +925,7 @@
         // Handle error if necessary
       });
   </script>
-  
+
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
   <!-- Bootstrap CSS -->
@@ -852,75 +935,157 @@
 </head>
 
 <body style="height: 100%" class="hero">
-  <header id="header" class="fixed-top d-flex align-items-center">
-    <div class="container d-flex align-items-center">
+  <header class="header" data-header>
+    <div class="container">
+      <div class="overlay" data-overlay></div>
       <h1 class="logo me-auto"><a href="index.html">Zen&Gen</a></h1>
 
       <a href="index.html" class="logo me-auto">
-        <img src="\img\yoga.svg" alt="" class="img-fluid" />
+        <img src="\img\yoga.svg" alt="" />
       </a>
 
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a href="dashboard.html">Exercises</a></li>
-          <li><a href="user_activity.html"> Activities</a></li>
-          <li><a href="bmi.html">Diet Plan Generator</a></li>
-          <li><a href="user_activity_graph.html"> Activity Graphs</a></li>
-          <!-- <button id="logoutButton" class="logout-button btn">Logout</button> -->
-        </ul>
-        <button id="logoutButton" class="btn">
-          <ion-icon name="chevron-forward-outline" aria-hidden="true"></ion-icon>
+      <nav class="navbar" data-navbar>
+        <div class="navbar-top">
+          <a href="#" class="logo">ZEN&GEN</a>
 
-          <span>Logout</span>
-        </button>
-        <i class="bi bi-list mobile-nav-toggle"></i>
+          <button class="nav-close-btn" aria-label="Close Menu" data-nav-close-btn>
+            <ion-icon name="close-outline"></ion-icon>
+          </button>
+        </div>
+
+        <ul class="navbar-list">
+          <li class="navbar-item"><a href="dashboard.html" class="navbar-link" data-navbar-link>Exercises</a></li>
+          <li class="navbar-item"><a href="user_activity.html" class="navbar-link" data-navbar-link> Activities</a></li>
+          <li class="navbar-item"><a href="bmi.html" class="navbar-link" data-navbar-link>Diet Plan Generator</a></li>
+          <li class="navbar-item"><a href="user_activity_graph.html" class="navbar-link" data-navbar-link> Activity
+              Graphs</a></li>
+          <!-- <button id="logoutButton" class="logout-button">Logout</button> -->
+
+        </ul>
+
+        <!-- <i class="bi bi-list mobile-nav-toggle"></i> -->
+
       </nav>
+      <button id="logoutButton" class="btn">
+        <ion-icon name="chevron-forward-outline" aria-hidden="true"></ion-icon>
+
+        <span>Logout</span>
+      </button>
+      <button class="nav-open-btn" aria-label="Open Menu" data-nav-open-btn>
+        <ion-icon name="menu-outline"></ion-icon>
+      </button>
     </div>
   </header>
-  <div class="container">
-    <!-- BMI and BMR Form -->
-    <section>
-      <h2>Enter Personal Information for BMI Calculation</h2>
+
+  <div class="container-sec">
+
+    <section id="personal-info-section">
+      <h2>Enter Personal Information for BMI and BMR Calculation</h2>
+
       <form id="personal-info-form">
-        <label for="age">Age:</label>
-        <input type="number" id="age" name="age" required />
+        <div class="form-group">
+          <label for="age">Age:</label>
+          <input type="number" id="age" name="age" required />
+        </div>
 
-        <label for="weight">Weight (kg):</label>
-        <input type="number" id="weight" name="weight" step="0.01" required />
+        <div class="form-group">
+          <label for="weight">Weight (kg):</label>
+          <input type="number" id="weight" name="weight" step="0.01" required />
+        </div>
 
-        <label for="height">Height (m):</label>
-        <input type="number" id="height" name="height" step="0.01" required />
+        <div class="form-group">
+          <label for="height">Height (cm):</label>
+          <input type="number" id="height" name="height" step="0.01" required />
+        </div>
 
-        <label for="gender">Gender:</label>
-        <select id="gender" name="gender" required>
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-          <option value="other">Other</option>
-        </select>
+        <div class="form-group">
+          <label for="gender">Gender:</label>
+          <select id="gender" name="gender" required>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
 
-        <button type="submit">Calculate BMI and BMR</button>
+        <div class="form-group">
+          <label for="activity-level">Activity Level:</label>
+          <select id="activity-level" name="activity-level" required>
+            <option value="sedentary">0-2</option>
+            <option value="lightly active">2-4</option>
+            <option value="moderately active">4-6</option>
+            <option value="very active">6-8</option>
+            <option value="extra active">8-10</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Calculate BMI and BMR</button>
       </form>
-      <div id="personal-info-results" style="display: none"></div>
+      <div id="personal-info-results">
+        <!-- Results will be displayed here -->
+      </div>
+
     </section>
 
-    <!-- Diet Plan Form -->
+
+
+
+
+
     <section>
       <h2>Diet Plan Generator</h2>
       <form id="dietForm">
-        <label for="dietType">Diet Type:</label>
-        <select id="dietType">
-          <option value="0">Vegetarian</option>
-          <option value="1">Non-Vegetarian</option>
-        </select>
+        <div class="form-group">
+          <label for="state">State:</label>
+          <select id="state" class="form-control" required>
+            <option value="Andhra Pradesh">Andhra Pradesh</option>
+            <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+            <option value="Assam">Assam</option>
+            <option value="Bihar">Bihar</option>
+            <option value="Chhattisgarh">Chhattisgarh</option>
+            <option value="Goa">Goa</option>
+            <option value="Gujarat">Gujarat</option>
+            <option value="Haryana">Haryana</option>
+            <option value="Himachal Pradesh">Himachal Pradesh</option>
+            <option value="Jharkhand">Jharkhand</option>
+            <option value="Karnataka">Karnataka</option>
+            <option value="Kerala">Kerala</option>
+            <option value="Madhya Pradesh">Madhya Pradesh</option>
+            <option value="Maharashtra">Maharashtra</option>
+            <option value="Manipur">Manipur</option>
+            <option value="Meghalaya">Meghalaya</option>
+            <option value="Mizoram">Mizoram</option>
+            <option value="Nagaland">Nagaland</option>
+            <option value="Odisha">Odisha</option>
+            <option value="Punjab">Punjab</option>
+            <option value="Rajasthan">Rajasthan</option>
+            <option value="Sikkim">Sikkim</option>
+            <option value="Tamil Nadu">Tamil Nadu</option>
+            <option value="Telangana">Telangana</option>
+            <option value="Tripura">Tripura</option>
+            <option value="Uttar Pradesh">Uttar Pradesh</option>
+            <option value="Uttarakhand">Uttarakhand</option>
+            <option value="West Bengal">West Bengal</option>
+          </select>
+        </div>
 
-        <label for="weightGoal">Weight Goal:</label>
-        <select id="weightGoal">
-          <option value="gain">Gain</option>
-          <option value="lose">Lose</option>
-          <option value="healthy">Healthy</option>
-        </select>
+        <div class="form-group">
+          <label for="dietType">Diet Type:</label>
+          <select id="dietType" class="form-control" required>
+            <option value="0">Vegetarian</option>
+            <option value="1">Non-Vegetarian</option>
+          </select>
+        </div>
 
-        <button type="submit">Get Diet Plan</button>
+        <div class="form-group">
+          <label for="weightGoal">Weight Goal:</label>
+          <select id="weightGoal" class="form-control" required>
+            <option value="gain">Gain</option>
+            <option value="lose">Lose</option>
+            <option value="healthy">Healthy</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Get Diet Plan</button>
       </form>
       <div id="results"></div>
     </section>
@@ -931,126 +1096,168 @@
   </button>
 
   <script>
-    // Scroll to Top
-    window.addEventListener("scroll", () => {
-      document.querySelector(".back-to-top").style.display =
-        window.pageYOffset > 200 ? "block" : "none";
-    });
+    document.addEventListener('DOMContentLoaded', function () {
+      const personalInfoForm = document.getElementById("personal-info-form");
+      const personalInfoResults = document.getElementById("personal-info-results");
 
-    function scrollToTop() {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-
-    // BMI and BMR Calculation
-    document
-      .getElementById("personal-info-form")
-      .addEventListener("submit", function (event) {
+      personalInfoForm.addEventListener("submit", function (event) {
         event.preventDefault();
 
-        const age = parseFloat(document.getElementById("age").value);
+        const age = parseInt(document.getElementById("age").value);
         const weight = parseFloat(document.getElementById("weight").value);
-        const height = parseFloat(document.getElementById("height").value);
+        const height = parseFloat(document.getElementById("height").value) / 100; // converting cm to meters
         const gender = document.getElementById("gender").value;
-
-        // Convert height to meters if entered in centimeters
-        const heightInMeters = height / 100;
+        const activityLevel = document.getElementById("activity-level").value;
 
         // Calculate BMI
-        const BMI = weight / (heightInMeters * heightInMeters);
+        const BMI = weight / (height * height);
 
-        // Calculate BMR based on gender
-        const BMR =
-          gender === "male"
-            ? 10 * weight + 6.25 * height - 5 * age + 5
-            : 10 * weight + 6.25 * height - 5 * age - 161;
+        // Calculate BMR using Mifflin-St Jeor equation
+        let BMR;
+        if (gender === "male") {
+          BMR = 10 * weight + 6.25 * height * 100 - 5 * age + 5;
+        } else if (gender === "female") {
+          BMR = 10 * weight + 6.25 * height * 100 - 5 * age - 161;
+        } else {
+          BMR = 10 * weight + 6.25 * height * 100 - 5 * age + 0;
+        }
 
-        // Determine BMI category
-        let bmiCategory;
-        if (BMI < 18.5) bmiCategory = "Underweight";
-        else if (BMI < 25) bmiCategory = "Normal weight";
-        else if (BMI < 30) bmiCategory = "Overweight";
-        else bmiCategory = "Obese";
+        // Activity level adjustment factor
+        let activityFactor;
+        switch (activityLevel) {
+          case "sedentary":
+            activityFactor = 1.2;
+            break;
+          case "lightly active":
+            activityFactor = 1.375;
+            break;
+          case "moderately active":
+            activityFactor = 1.55;
+            break;
+          case "very active":
+            activityFactor = 1.725;
+            break;
+          case "extra active":
+            activityFactor = 1.9;
+            break;
+        }
+
+        // Calculate maintenance calories
+        const caloriesToMaintainWeight = BMR * activityFactor;
+
+        // Macronutrient breakdown (example with general recommendations)
+        const requiredCarbs = (caloriesToMaintainWeight * 0.45) / 4; // 45% carbs
+        const requiredProtein = (caloriesToMaintainWeight * 0.30) / 4; // 30% protein
+        const requiredFat = (caloriesToMaintainWeight * 0.25) / 9; // 25% fat
+
+        // BMI Tags
+        let BMITags;
+        if (BMI < 18.5) {
+          BMITags = "Underweight";
+        } else if (BMI >= 18.5 && BMI < 24.9) {
+          BMITags = "Normal weight";
+        } else if (BMI >= 25 && BMI < 29.9) {
+          BMITags = "Overweight";
+        } else {
+          BMITags = "Obese";
+        }
 
         // Display results
-        document.getElementById("personal-info-results").innerHTML = `
-    <h2>BMI and BMR Results</h2>
-    <p><strong>BMI:</strong> ${BMI.toFixed(2)} (${bmiCategory})</p>
-    <p><strong>BMR:</strong> ${BMR.toFixed(2)} kcal/day</p>
-  `;
-        document.getElementById("personal-info-results").style.display =
-          "block";
+        personalInfoResults.innerHTML = `
+              <h2>Hey, we have calculated a few metrics to analyze your health!</h2>
+              <p>Age: ${age}</p>
+              <p>Activity Level: ${activityLevel}</p>
+              <p>BMI: ${BMI.toFixed(2)}</p>
+              <p>BMR: ${BMR.toFixed(2)} kcal/day</p>
+              <p>BMI Tags: ${BMITags}</p>
+              <p>Calories to maintain weight: ${caloriesToMaintainWeight.toFixed(2)} kcal/day</p>
+              <p>Required daily intake of carbohydrates: ${requiredCarbs.toFixed(2)} grams</p>
+              <p>Required daily intake of protein: ${requiredProtein.toFixed(2)} grams</p>
+              <p>Required daily intake of fat: ${requiredFat.toFixed(2)} grams</p>
+              <div class="diet-plan">
+                <h3>Intake</h3>
+                <p><strong>Carbohydrates:</strong> ${requiredCarbs.toFixed(2)} grams/day</p>
+                <p><strong>Protein:</strong> ${requiredProtein.toFixed(2)} grams/day</p>
+                <p><strong>Fat:</strong> ${requiredFat.toFixed(2)} grams/day</p>
+              </div>
+            `;
+
+        // Show the results section
+        personalInfoResults.style.display = "block";
       });
+    });
+    document.getElementById("dietForm").addEventListener("submit", async function (event) {
+      event.preventDefault();
 
-    // Diet Plan Fetching
-    document
-      .getElementById("dietForm")
-      .addEventListener("submit", async function (event) {
-        event.preventDefault();
+      const state = document.getElementById("state").value;
+      const dietType = document.getElementById("dietType").value;
+      const weightGoal = document.getElementById("weightGoal").value;
 
-        const dietType = document.getElementById("dietType").value;
-        const weightGoal = document.getElementById("weightGoal").value;
-
-        try {
-          const response = await fetch(
-            `http://127.0.0.1:8000/get_diet_plan/?diet_type=${dietType}&weight_goal=${weightGoal}`
-          );
-          if (!response.ok) {
-            throw new Error("Network response was not ok");
-          }
-
-          const data = await response.json();
-          document.getElementById("results").innerHTML = ""; // Clear previous results
-          const mealTypes = ["breakfast", "lunch", "dinner"];
-
-          mealTypes.forEach((meal) => {
-            const suggestions = data.suggestions[meal];
-            const mealSection = document.createElement("div");
-            mealSection.className = "meal-section";
-
-            // Add a heading for each meal
-            const mealHeading = document.createElement("h2");
-            mealHeading.textContent =
-              meal.charAt(0).toUpperCase() + meal.slice(1);
-            mealSection.appendChild(mealHeading);
-
-            // Check if there are suggestions for the meal
-            if (suggestions && suggestions.length > 0) {
-              let tableHtml = `
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Food Items</th>
-                      <th>Calories</th>
-                      <th>Proteins</th>
-                      <th>Fats</th>
-                      <th>Carbohydrates</th>
-                    </tr>
-                  </thead>
-                  <tbody>`;
-
-              suggestions.forEach((item) => {
-                tableHtml += `
-                  <tr>
-                    <td>${item.Food_items}</td>
-                    <td>${item.Calories}</td>
-                    <td>${item.Proteins}</td>
-                    <td>${item.Fats}</td>
-                    <td>${item.Carbohydrates}</td>
-                  </tr>`;
-              });
-
-              tableHtml += "</tbody></table>";
-              mealSection.innerHTML += tableHtml;
-            } else {
-              mealSection.innerHTML += "<p>No suggestions available</p>";
-            }
-
-            document.getElementById("results").appendChild(mealSection);
-          });
-        } catch (error) {
-          console.error("Error fetching diet plan:", error);
+      try {
+        const response = await fetch(
+          `http://127.0.0.1:8000/get_diet_plan/?state=${state}&diet_type=${dietType}&weight_goal=${weightGoal}`
+        );
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
         }
-      });
+
+        const data = await response.json();
+        document.getElementById("results").innerHTML = ""; // Clear previous results
+        const mealSection = document.createElement("div");
+        mealSection.className = "meal-section";
+
+        // Add a heading for the selected meal
+        const mealHeading = document.createElement("h2");
+        mealHeading.textContent = "Diet Plan Suggestions";
+        mealSection.appendChild(mealHeading);
+
+        // Display suggestions
+        const suggestions = data.suggestions;
+        if (suggestions && suggestions.length > 0) {
+          let tableHtml = `
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Food Name</th>
+                    <th>Allergic Ingredients</th>
+                    <th>Calories</th>
+                    <th>Proteins</th>
+                    <th>Fats</th>
+                    <th>Carbohydrates</th>
+                    <th>Sodium</th>
+                    <th>Vitamin Content</th>
+                  </tr>
+                </thead>
+                <tbody>`;
+
+          suggestions.forEach((item) => {
+            tableHtml += `
+                <tr>
+                  <td>${item['Food Name']}</td>
+                  <td>${item['Allergic Ingredients'] || "None"}</td>
+                  <td>${item['Total Calories']}</td>
+                  <td>${item['Total Protein']}</td>
+                  <td>${item['Total Fats']}</td>
+                  <td>${item['Total Carbs']}</td>
+                  <td>${item['Total Sodium']}</td>
+                  <td>${item['Vitamin Content']}</td>
+                </tr>`;
+          });
+
+          tableHtml += "</tbody></table>";
+          mealSection.innerHTML += tableHtml;
+
+        } else {
+          mealSection.innerHTML += "<p>No suggestions available</p>";
+        }
+
+        document.getElementById("results").appendChild(mealSection);
+        document.getElementById("results").style.display = "block"
+      } catch (error) {
+        console.error("Error fetching diet plan:", error);
+        document.getElementById("results").innerHTML = "<p>Failed to load diet plan.</p>";
+      }
+    });
   </script>
   <script>
     // Logout button click event
@@ -1062,6 +1269,38 @@
       // Redirect to the login page or perform any other necessary actions
       window.location.href = "/";
     });
+
+    "use strict";
+
+    /**
+     * navbar toggle
+     */
+    const navOpenBtn = document.querySelector("[data-nav-open-btn]");
+    const navbar = document.querySelector("[data-navbar]");
+    const navCloseBtn = document.querySelector("[data-nav-close-btn]");
+    const overlay = document.querySelector("[data-overlay]");
+
+    const elemArr = [navCloseBtn, overlay, navOpenBtn];
+
+    for (let i = 0; i < elemArr.length; i++) {
+      elemArr[i].addEventListener("click", function () {
+        navbar.classList.toggle("active");
+        overlay.classList.toggle("active");
+      });
+    }
+
+    /**
+     * toggle navbar & overlay when click any navbar-link
+     */
+
+    const navbarLinks = document.querySelectorAll("[data-navbar-link]");
+
+    for (let i = 0; i < navbarLinks.length; i++) {
+      navbarLinks[i].addEventListener("click", function () {
+        navbar.classList.toggle("active");
+        overlay.classList.toggle("active");
+      });
+    }
   </script>
 </body>
 

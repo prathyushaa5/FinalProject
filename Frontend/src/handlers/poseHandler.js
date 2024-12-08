@@ -32,10 +32,16 @@ export default class PoseHandler {
     this.isLoop = false;
     this.additionalElem = {};
     this.webcamElem = webcamElem;
+    if (!cnvPoseElem) {
+        return;
+    }
+
     this.cnvPoseElem = cnvPoseElem;
-    this.ctxPose = this.cnvPoseElem.getContext
-      ? this.cnvPoseElem.getContext("2d")
-      : null;
+    this.ctxPose = cnvPoseElem.getContext ? cnvPoseElem.getContext("2d") : null;
+
+    if (!this.ctxPose) {
+        console.error("Failed to get 2D context for canvas.");
+    }
     this.nameModel = "";
     this.model = null;
     this.detector = null;

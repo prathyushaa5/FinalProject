@@ -2,10 +2,13 @@
 <html>
 
 <head>
-  <title>Dashboard Page</title>
+  <title>Exercises for you!!</title>
   <link rel="icon" type="image/x-icon" href="./img/ai.svg" />
+  <script type="module" src="https://unpkg.com/ionicons@6.0.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@6.0.0/dist/ionicons/ionicons.js"></script>
 
   <style>
+    /* 1st change */
     @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 
     :root {
@@ -28,7 +31,7 @@
       --black_70: hsla(0, 0%, 0%, 0.7);
       --rajah: hsl(29, 99%, 67%);
       --white: hsl(0, 0%, 100%);
-
+      --color: var(--white);
       --gradient-1: linear-gradient(90deg,
           var(--royal-blue-dark) 0,
           var(--ksu-purple) 51%,
@@ -84,28 +87,53 @@
       --shadow: 0 5px 20px 1px hsla(220, 63%, 33%, 0.1);
     }
 
-    ion-icon {
-      pointer-events: none;
-    }
-
     body {
       font-family: "Open Sans", sans-serif;
-      color: #444444;
+      color: #fff;
     }
 
     .hero {
-      padding-top: 2%;
+      padding-top: 10%;
       background-image: linear-gradient(90deg,
           hsl(231, 68%, 21%) 0,
           hsl(275, 54%, 33%) 51%,
           hsl(231, 68%, 21%));
     }
-    button{
-      cursor:pointer;
-      background: none;
-      border:none;
+
+    .table {
+      color: #fff;
     }
-    
+
+    a,
+    img,
+    span,
+    input,
+    button,
+    ion-icon {
+      display: block;
+    }
+
+    li {
+      list-style: none;
+    }
+
+    li a{
+      text-decoration: none;
+    }
+
+    li a:hover{
+      color: white;
+      text-shadow: 2px 2px #556270;
+      text-decoration: none;
+    }
+
+    button,
+    input {
+      background: none;
+      border: none;
+      font: inherit;
+    }
+
     a {
       text-decoration: none;
       color: #d9232d;
@@ -123,10 +151,8 @@
     h5,
     h6 {
       font-family: "Raleway", sans-serif;
-    }
-
-    .hydrated {
-      visibility: inherit;
+      color: #fff;
+      font-size: larger;
     }
 
     /*--------------------------------------------------------------
@@ -165,207 +191,245 @@
     /*--------------------------------------------------------------
       # Header
       --------------------------------------------------------------*/
-    #header .btn {
-      display: none;
-    }
-
-    #header .overlay,
-    #header .nav-open-btn,
-    #header .navbar-top {
-      display: none;
-    }
-
-    #header {
-      color: white;
-      transition: all 0.5s;
-      z-index: 997;
-      padding: 20px 0;
+    .header {
+      --color: var(--white);
       position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding-block: 14px;
+      z-index: 4;
+      transition: var(--transition-1);
     }
 
-    #header .nav-open-btn {
-      color: var(--color);
-      font-size: 32px;
-      padding: 4px;
+    .header.active {
+      --color: var(--st-patricks-blue);
+      position: fixed;
+      background-color: var(--white);
+      box-shadow: 0 2px 30px hsla(0, 0%, 0%, 0.1);
     }
 
-    #header.header-scrolled {
-      box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
-      padding: 12px 0;
-    }
-
-    #header.header-inner-pages {
-      box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
-    }
-
-    #header .logo {
+    .logo {
       color: white;
       font-size: 30px;
-      margin-right: 0;
+      margin: 0;
       padding: 0;
       line-height: 1;
       font-weight: 700;
       text-transform: uppercase;
     }
 
-    #header .logo a {
-      color: white;
+    .logo a:hover{
       text-decoration: none;
-
     }
 
-    #header .logo a:hover {
+    .header .logo a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .header .logo a:hover {
       text-shadow: 2px 2px#556270;
     }
 
-    #header .logo img {
+    .header .logo img {
       max-height: 40px;
       filter: invert(1);
 
     }
 
-    #header .btn {
+    .header .btn {
       display: flex;
       align-items: center;
       gap: 5px;
       margin-inline-start: auto;
     }
 
-    #header .btn {
+    .header .btn {
       margin-inline-start: 0;
     }
 
-    /*--------------------------------------------------------------
-      # Navigation Menu
-      --------------------------------------------------------------*/
-    /**
-      * Desktop Navigation 
-      */
-    #header .navbar {
+    .header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 30px;
+      height: 60px;
+    }
+
+    /* 1st change ends here */
+    .header .container {
       justify-content: end;
       padding: 0;
       width: 100%;
 
     }
 
-    .navbar ul {
-      color: white;
-      margin: 0;
-      padding-right: 20px;
+    .navbar {
+      top: 0;
+      left: -280px;
+      width: 100%;
+      height: 500px;
+      max-width: 280px;
+      min-height: 100%;
+      padding: 20px;
+      visibility: hidden;
+      z-index: 2;
+      transition: 0.25s var(--cubic-in);
+    }
+
+    .navbar.active {
+      transform: translateX(280px);
+      visibility: visible;
+      transition: 0.5s var(--cubic-out);
+      background-color: var(--white);
+      position: fixed;
+      display: inline;
+    }
+
+    .navbar-top {
       display: flex;
-      list-style: none;
+      justify-content: space-between;
       align-items: center;
-    }
-
-    .navbar li {
-      position: relative;
-    }
-
-
-    .navbar a,
-    .navbar a:focus {
-      display: flex;
-      align-items: center;
-
-      padding: 10px 0 10px 30px;
-      font-family: var(--ff-poppins);
-      font-size: 20px;
-      font-weight: 500;
-      color: var(--white);
-      font-family: var(--fw-700);
-      white-space: nowrap;
-
-
-    }
-
-    .navbar a i,
-    .navbar a:focus i {
-      font-size: 12px;
-      line-height: 0;
-      margin-left: 5px;
-    }
-
-    .navbar a:hover,
-    .navbar .active,
-    .navbar .active:focus,
-    .navbar li:hover>a {
-      color: var(--white);
-      text-decoration: none;
-      text-shadow: 2px 2px#556270;
-    }
-
-    .navbar .getstarted,
-    .navbar .getstarted:focus {
-
-      padding: 8px 25px;
+      padding-block: 10px 30px;
       margin-left: 30px;
-      border-radius: 4px;
-      font-weight: 400;
-      color: #fff;
     }
 
-    .navbar .getstarted:hover,
-    .navbar .getstarted:focus:hover {
-      color: #fff;
-      background: #e1444d;
+    .navbar-top .logo {
+      color: var(--st-patricks-blue);
+      font-size: 2.2rem;
+      font-weight: var(--fw-700);
     }
 
-    .navbar .dropdown ul {
-      display: block;
-      position: absolute;
-      left: 14px;
-      top: calc(100% + 30px);
-      margin: 0;
-      padding: 10px 0;
-      z-index: 99;
+    .navbar-top .logo a{
+      text-decoration: none;
+    }
+
+    .nav-close-btn {
+      color: var(--space-cadet-1);
+      font-size: 2.8rem;
+      padding: 4px;
+    }
+
+    .navbar-item:not(:last-child) {
+      border-bottom: 1px solid var(--platinum);
+    }
+
+    .navbar-item li a:hover{
+      text-decoration: none;
+
+    }
+    .navbar-link {
+      color: var(--space-cadet-1);
+      font-size: var(--fs-8);
+      font-weight: var(--fw-600);
+      padding-block: 12px;
+    }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background-color: var(--black_70);
+      z-index: 1;
       opacity: 0;
-      visibility: hidden;
-      background: #fff;
-      box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
-      transition: 0.3s;
+      pointer-events: none;
+      transition: var(--transition-2);
     }
 
-    .navbar .dropdown ul li {
-      min-width: 200px;
-    }
-
-    .navbar .dropdown ul a {
-      padding: 10px 20px;
-      font-size: 15px;
-      text-transform: none;
-      font-weight: 400;
-    }
-
-    .navbar .dropdown ul a i {
-      font-size: 12px;
-    }
-
-    .navbar .dropdown ul a:hover,
-    .navbar .dropdown ul .active:hover,
-    .navbar .dropdown ul li:hover>a {
-      color: #d9232d;
-    }
-
-    .navbar .dropdown:hover>ul {
+    .overlay.active {
       opacity: 1;
-      top: 100%;
-      visibility: visible;
+      pointer-events: all;
     }
 
-    .navbar .dropdown .dropdown ul {
-      top: 0;
-      left: calc(100% - 30px);
-      visibility: hidden;
+
+    @media (min-width: 768px) {
+      /**
+   * REUSED STYLE
+   */
+
+      .header .container {
+        max-width: 720px;
+      }
     }
 
-    .navbar .dropdown .dropdown:hover>ul {
-      opacity: 1;
-      top: 0;
-      left: 100%;
-      visibility: visible;
+    @media (max-width: 1366px) {
+      /* .header .container{
+        max-width: 1069px;
+      } */
     }
 
-    .navbar .btn {
+    /* Second Change */
+    /**
+      * Mobile Navigation 
+      */
+
+    .nav-open-btn {
+      color: var(--color);
+      font-size: 32px;
+      padding: 4px;
+    }
+
+    @media (min-width: 992px) {
+      /**
+   * CUSTOM PROPERTY
+   */
+
+      :root {
+        /**
+     * typography
+     */
+
+        --fs-1: 5.4rem;
+      }
+
+      /**
+   * REUSED STYLE
+   */
+
+      .header .container {
+        max-width: 1069px;
+      }
+
+      /**
+   * HEADER
+   */
+
+      .header {
+        padding-block: 20px;
+      }
+
+      .overlay,
+      .nav-open-btn,
+      .navbar-top {
+        display: none;
+      }
+
+      .navbar,
+      .navbar.active {
+        all: unset;
+        margin-inline-start: auto;
+      }
+
+      .header .btn {
+        margin-inline-start: 0;
+      }
+
+      .navbar-list {
+        display: flex;
+        gap: 25px;
+      }
+
+      .navbar-item:not(:last-child) {
+        border-bottom: none;
+      }
+
+      .navbar-link {
+        color: var(--color);
+        font-size: 20px;
+      }
+    }
+
+    .header .btn {
       background-image: var(--gradient-2);
       background-size: 100%;
       color: var(--white);
@@ -376,7 +440,7 @@
       transition: var(--transition-2);
     }
 
-    .navbar .btn:hover {
+    .header .btn:hover {
       background-position: right;
       color: var(--white);
       text-decoration: none;
@@ -389,125 +453,6 @@
 
     .banner-animation {
       animation: waveAnim 2s linear infinite alternate;
-    }
-
-    @media (max-width: 1366px) {
-      .navbar .dropdown .dropdown ul {
-        left: -90%;
-      }
-
-      .navbar .dropdown .dropdown:hover>ul {
-        left: -100%;
-      }
-    }
-
-    /**
-      * Mobile Navigation 
-      */
-    .mobile-nav-toggle {
-      color: #556270;
-      font-size: 28px;
-      cursor: pointer;
-      display: none;
-      line-height: 0;
-      transition: 0.5s;
-    }
-
-    .mobile-nav-toggle.bi-x {
-      color: #fff;
-    }
-
-    @media (max-width: 1200px) {
-      .mobile-nav-toggle {
-        display: block;
-      }
-
-      .navbar ul {
-        display: none;
-      }
-    }
-
-    .navbar-mobile {
-      position: fixed;
-      overflow: hidden;
-      top: 0;
-      right: 0;
-      left: 0;
-      bottom: 0;
-      background: rgba(63, 73, 83, 0.9);
-      transition: 0.3s;
-      z-index: 999;
-    }
-
-    .navbar-mobile .mobile-nav-toggle {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-    }
-
-    .navbar-mobile ul {
-      display: block;
-      position: absolute;
-      top: 55px;
-      right: 15px;
-      bottom: 15px;
-      left: 15px;
-      padding: 10px 0;
-      background-color: #fff;
-      overflow-y: auto;
-      transition: 0.3s;
-    }
-
-    .navbar-mobile a,
-    .navbar-mobile a:focus {
-      padding: 10px 20px;
-      font-size: 15px;
-      color: #556270;
-    }
-
-    .navbar-mobile a:hover,
-    .navbar-mobile .active,
-    .navbar-mobile li:hover>a {
-      color: #d9232d;
-    }
-
-    .navbar-mobile .getstarted,
-    .navbar-mobile .getstarted:focus {
-      margin: 15px;
-    }
-
-    .navbar-mobile .dropdown ul {
-      position: static;
-      display: none;
-      margin: 10px 20px;
-      padding: 10px 0;
-      z-index: 99;
-      opacity: 1;
-      visibility: visible;
-      background: #fff;
-      box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
-    }
-
-    .navbar-mobile .dropdown ul li {
-      min-width: 200px;
-    }
-
-    .navbar-mobile .dropdown ul a {
-      padding: 10px 20px;
-    }
-
-    .navbar-mobile .dropdown ul a i {
-      font-size: 12px;
-    }
-
-    .navbar-mobile .dropdown ul a:hover,
-    .navbar-mobile .dropdown ul .active:hover,
-    .navbar-mobile .dropdown ul li:hover>a {
-      color: #d9232d;
-    }
-
-    .navbar-mobile .dropdown>.dropdown-active {
-      display: block;
     }
   </style>
   <script>
@@ -724,31 +669,44 @@
 </head>
 
 <body style="height: 100%" class="hero">
-  <header id="header" class="fixed-top d-flex align-items-center">
-    <div class="container d-flex align-items-center">
+  <header class="header"  data-header>
+    <div class="container " >
       <div class="overlay" data-overlay></div>
       <h1 class="logo me-auto"><a href="index.html">Zen&Gen</a></h1>
 
       <a href="index.html" class="logo me-auto">
-        <img src="\img\yoga.svg" alt="" class="img-fluid" />
+        <img src="\img\yoga.svg" alt="" />
       </a>
+      <nav class="navbar" data-navbar>
+        <div class="navbar-top">
+          <a href="#" class="logo">ZEN&GEN</a>
 
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a href="dashboard.html">Exercises</a></li>
-          <li><a href="user_activity.html"> Activities</a></li>
-          <li><a href="bmi.html">Diet Plan Generator</a></li>
-          <li><a href="user_activity_graph.html"> Activity Graphs</a></li>
+          <button class="nav-close-btn" aria-label="Close Menu" data-nav-close-btn>
+            <ion-icon name="close-outline"></ion-icon>
+          </button>
+        </div>
+
+        <ul class="navbar-list">
+          <li class="navbar-item"><a href="dashboard.html" class="navbar-link" data-navbar-link>Exercises</a></li>
+          <li class="navbar-item"><a href="user_activity.html" class="navbar-link" data-navbar-link> Activities</a></li>
+          <li class="navbar-item"><a href="bmi.html" class="navbar-link" data-navbar-link>Diet Plan Generator</a></li>
+          <li class="navbar-item"><a href="user_activity_graph.html" class="navbar-link" data-navbar-link> Activity
+              Graphs</a></li>
           <!-- <button id="logoutButton" class="logout-button">Logout</button> -->
 
         </ul>
-        <button id="logoutButton" class="btn">
-          <ion-icon name="chevron-forward-outline" aria-hidden="true"></ion-icon>
-
-          <span>Logout</span>
-        </button>
-        <i class="bi bi-list mobile-nav-toggle"></i>
+        
+        <!-- <i class="bi bi-list mobile-nav-toggle"></i> -->
+        
       </nav>
+      <button id="logoutButton" class="btn">
+        <ion-icon name="chevron-forward-outline" aria-hidden="true"></ion-icon>
+
+        <span>Logout</span>
+      </button>
+      <button class="nav-open-btn" aria-label="Open Menu" data-nav-open-btn>
+        <ion-icon name="menu-outline"></ion-icon>
+      </button>
     </div>
   </header>
 
@@ -940,6 +898,38 @@
       // Redirect to the login page or perform any other necessary actions
       window.location.href = "/";
     });
+
+    "use strict";
+
+    /**
+     * navbar toggle
+     */
+    const navOpenBtn = document.querySelector("[data-nav-open-btn]");
+    const navbar = document.querySelector("[data-navbar]");
+    const navCloseBtn = document.querySelector("[data-nav-close-btn]");
+    const overlay = document.querySelector("[data-overlay]");
+
+    const elemArr = [navCloseBtn, overlay, navOpenBtn];
+
+    for (let i = 0; i < elemArr.length; i++) {
+      elemArr[i].addEventListener("click", function () {
+        navbar.classList.toggle("active");
+        overlay.classList.toggle("active");
+      });
+    }
+
+    /**
+     * toggle navbar & overlay when click any navbar-link
+     */
+
+    const navbarLinks = document.querySelectorAll("[data-navbar-link]");
+
+    for (let i = 0; i < navbarLinks.length; i++) {
+      navbarLinks[i].addEventListener("click", function () {
+        navbar.classList.toggle("active");
+        overlay.classList.toggle("active");
+      });
+    }
   </script>
 </body>
 
